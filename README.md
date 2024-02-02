@@ -164,42 +164,58 @@ Esta análise de riscos visa identificar possíveis desafios durante o desenvolv
 
 ### Custo Total do Projeto: $1.550,00
 
-## 7. Documentação
+# 7. Documentação Reajustada para o Aplicativo de Gestão de Veículos
 
-### Requisitos Funcionais
+## Requisitos Funcionais
 
-1. **Check-in de Limpeza:**
-   - Como um funcionário, eu quero poder realizar o check-in de limpeza em ambientes específicos, para registrar a conclusão das atividades.
-     - **Critérios de Aceitação:** Deve ser possível assinalar a limpeza de um ambiente específico através de um botão de check-in no aplicativo.
+### Check-in de Serviço Mecânico:
 
-2. **Observações no Check-in de Limpeza:**
-   - Como um funcionário, eu quero ter a opção de adicionar observações ao realizar o check-in de limpeza, para fornecer informações adicionais quando necessário.
-     - **Critérios de Aceitação:** O aplicativo deve permitir que o usuário adicione texto livre para descrever observações relevantes durante o processo de limpeza.
+Como usuário do aplicativo, desejo realizar o check-in dos serviços mecânicos realizados no meu veículo, registrando a conclusão das atividades.
 
-3. **Notificações em Tempo Real para Supervisores:**
-   - Como um supervisor, eu quero receber notificações em tempo real quando um ambiente for marcado como limpo, para possibilitar acompanhamento imediato.
-     - **Critérios de Aceitação:** Os supervisores devem receber notificações instantâneas no painel de supervisão quando os funcionários realizarem o check-in de limpeza.
+**Critérios de Aceitação:** Deve ser possível assinalar a conclusão de um serviço mecânico específico através de um botão de check-in no aplicativo.
 
-4. **Painel de Supervisão:**
-   - Como um supervisor, eu quero ter acesso a um painel de supervisão para visualizar o status de limpeza de todos os ambientes em tempo real.
-     - **Critérios de Aceitação:** O painel de supervisão deve exibir uma visão geral dos ambientes, indicando quais foram limpos e quais estão pendentes.
+### Observações no Check-in de Serviço Mecânico:
 
-5. **Relatórios Detalhados de Atividades de Limpeza:**
-   - Como um supervisor, eu quero relatórios detalhados sobre as atividades de limpeza, incluindo datas, horários e observações, para análise e tomada de decisões informadas.
-     - **Critérios de Aceitação:** O sistema deve gerar relatórios que incluam datas, horários, observações e outras informações relevantes sobre as atividades de limpeza.
+Como usuário do aplicativo, desejo ter a opção de adicionar observações ao realizar o check-in de serviço mecânico, para fornecer informações adicionais quando necessário.
 
-6. **Treinamento Inicial no Uso do Aplicativo:**
-   - Como um funcionário, eu quero ter um treinamento inicial no uso do aplicativo, para garantir que eu possa utilizá-lo eficientemente.
-     - **Critérios de Aceitação:** A equipe de treinamento deve fornecer sessões iniciais de treinamento que cubram todos os recursos e funcionalidades do aplicativo.
+**Critérios de Aceitação:** O aplicativo deve permitir que o usuário adicione texto livre para descrever observações relevantes durante o processo de serviço mecânico.
 
-7. **Suporte Técnico Disponível:**
-   - Como um funcionário, eu quero suporte técnico disponível para resolver dúvidas ou problemas relacionados ao uso do aplicativo.
-     - **Critérios de Aceitação:** Deve haver um canal de suporte técnico, como um chat ou sistema de tickets, para atender às questões dos usuários.
+### Notificações em Tempo Real para Usuários:
 
-8. **Relatórios Pós-Implementação:**
-   - Como um supervisor, eu quero relatórios de avaliação pós-implementação, destacando lições aprendidas, melhores práticas e recomendações para futuros projetos semelhantes.
-     - **Critérios de Aceitação:** O sistema deve gerar relatórios abrangentes que ofereçam insights sobre o desempenho do projeto, pontos positivos e áreas de melhoria.
-    
+Como usuário do aplicativo, desejo receber notificações em tempo real quando um serviço mecânico for concluído, para estar ciente do status do meu veículo.
+
+**Critérios de Aceitação:** Os usuários devem receber notificações instantâneas no aplicativo quando os serviços mecânicos forem finalizados.
+
+### Painel de Controle:
+
+Como usuário do aplicativo, desejo ter acesso a um painel de controle para visualizar o status dos serviços mecânicos do meu veículo em tempo real.
+
+**Critérios de Aceitação:** O painel de controle deve exibir uma visão geral dos serviços realizados, indicando quais foram concluídos e quais estão pendentes.
+
+### Relatórios Detalhados de Atividades de Serviço Mecânico:
+
+Como usuário do aplicativo, desejo relatórios detalhados sobre as atividades de serviço mecânico, incluindo datas, tipos de serviços e observações, para análise e tomada de decisões informadas.
+
+**Critérios de Aceitação:** O sistema deve gerar relatórios que incluam datas, tipos de serviços, observações e outras informações relevantes sobre as atividades de serviço mecânico.
+
+### Treinamento Inicial no Uso do Aplicativo:
+
+Como usuário do aplicativo, desejo ter um treinamento inicial no uso do aplicativo, para garantir que eu possa utilizá-lo eficientemente.
+
+**Critérios de Aceitação:** A equipe de treinamento deve fornecer sessões iniciais de treinamento que cubram todos os recursos e funcionalidades do aplicativo.
+
+### Suporte Técnico Disponível:
+
+Como usuário do aplicativo, desejo suporte técnico disponível para resolver dúvidas ou problemas relacionados ao uso do aplicativo.
+
+**Critérios de Aceitação:** Deve haver um canal de suporte técnico, como um chat ou sistema de tickets, para atender às questões dos usuários.
+
+### Relatórios Pós-Implementação:
+
+Como usuário do aplicativo, desejo relatórios de avaliação pós-implementação, destacando lições aprendidas, melhores práticas e recomendações para futuras atualizações e aprimoramentos do aplicativo.
+
+**Critérios de Aceitação:** O sistema deve gerar relatórios abrangentes que ofereçam insights sobre o desempenho do aplicativo, pontos positivos e áreas de melhoria.
+
      - 
 ## 8. Avaliação do Projeto
 
