@@ -68,4 +68,45 @@ Projetar o sistema para lidar com um aumento no número de clientes e solicitaç
 - **Estratégias de Mitigação:** Testar o aplicativo em uma variedade de dispositivos e versões de sistemas operacionais. Utilizar frameworks de desenvolvimento que ofereçam suporte amplo.
 - **Plano de Contingência:** Corrigir rapidamente problemas de compatibilidade identificados. Lançar atualizações específicas para dispositivos problemáticos, se necessário.
 
+- 
+### 7. Interrupções na Conectividade de Rede:
+
+- **Estratégias de Mitigação:** Implementar funcionalidades offline sempre que possível. Testar o aplicativo em condições de conectividade variadas.
+- **Plano de Contingência:** Oferecer funcionalidades básicas offline. Notificar os usuários sobre a interrupção planejada e fornecer informações claras sobre como lidar com isso.
+
+### 8. Problemas de Usabilidade:
+
+- **Estratégias de Mitigação:** Realizar testes de usabilidade com usuários reais. Iterar sobre o design com base no feedback contínuo.
+- **Plano de Contingência:** Implementar ajustes de usabilidade com base em feedback pós-lançamento. Oferecer suporte adicional aos usuários que enfrentam dificuldades.
+
+Esta análise de riscos visa identificar possíveis desafios durante o desenvolvimento e implementação do aplicativo mobile, oferecendo estratégias de mitigação e planos de contingência para enfrentar cada cenário.
+
+## 4. Cronograma
+
+- **Janeiro/2024:** Planejamento e Análise
+  - Formação das equipes
+  - Processo de empatia
+  - Identificação de requisitos detalhados
+  - Início do desenvolvimento do escopo do projeto e documentação da ideia inicial
+  - Definição do backlog e prioridade das atividades
+
+- **Fevereiro/2024:** Desenvolvimento do MVP (Menor Produto Viável)
+  - Codificação e validação do MVP com o cliente e adaptação dos documentos de escopo (se necessário)
+
+- **Março/2024:** Desenvolvimento do Protótipo do Aplicativo
+  - Desenvolvimento das interfaces do usuário, fluxos da aplicação
+  - Desenvolvimento dos micro serviços e bancos de dados
+  - Revisão e ajuste do protótipo com feedback da equipe e usuários
+
+- **Abril/2024:** Implementação do Painel de Supervisão e Integração
+  - Desenvolvimento do painel de supervisão para os gestores
+  - Início da integração com sistemas existentes
+  - Testes de integração e ajustes necessários
+
+- **Maio/2024:** Testes Finais e Lançamento
+  - Testes finais do aplicativo e do sistema integrado
+  - Treinamento final dos funcionários e supervisores
+  - Lançamento oficial do Sistema de Gestão Mecânica de Automóveis
+  - Monitoramento inicial de feedback e desempenho
+
 
