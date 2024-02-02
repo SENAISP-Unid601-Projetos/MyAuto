@@ -164,4 +164,40 @@ Esta análise de riscos visa identificar possíveis desafios durante o desenvolv
 
 ### Custo Total do Projeto: $1.550,00
 
+## 7. Documentação
+
+### Requisitos Funcionais
+
+1. **Check-in de Limpeza:**
+   - Como um funcionário, eu quero poder realizar o check-in de limpeza em ambientes específicos, para registrar a conclusão das atividades.
+     - **Critérios de Aceitação:** Deve ser possível assinalar a limpeza de um ambiente específico através de um botão de check-in no aplicativo.
+
+2. **Observações no Check-in de Limpeza:**
+   - Como um funcionário, eu quero ter a opção de adicionar observações ao realizar o check-in de limpeza, para fornecer informações adicionais quando necessário.
+     - **Critérios de Aceitação:** O aplicativo deve permitir que o usuário adicione texto livre para descrever observações relevantes durante o processo de limpeza.
+
+3. **Notificações em Tempo Real para Supervisores:**
+   - Como um supervisor, eu quero receber notificações em tempo real quando um ambiente for marcado como limpo, para possibilitar acompanhamento imediato.
+     - **Critérios de Aceitação:** Os supervisores devem receber notificações instantâneas no painel de supervisão quando os funcionários realizarem o check-in de limpeza.
+
+4. **Painel de Supervisão:**
+   - Como um supervisor, eu quero ter acesso a um painel de supervisão para visualizar o status de limpeza de todos os ambientes em tempo real.
+     - **Critérios de Aceitação:** O painel de supervisão deve exibir uma visão geral dos ambientes, indicando quais foram limpos e quais estão pendentes.
+
+5. **Relatórios Detalhados de Atividades de Limpeza:**
+   - Como um supervisor, eu quero relatórios detalhados sobre as atividades de limpeza, incluindo datas, horários e observações, para análise e tomada de decisões informadas.
+     - **Critérios de Aceitação:** O sistema deve gerar relatórios que incluam datas, horários, observações e outras informações relevantes sobre as atividades de limpeza.
+
+6. **Treinamento Inicial no Uso do Aplicativo:**
+   - Como um funcionário, eu quero ter um treinamento inicial no uso do aplicativo, para garantir que eu possa utilizá-lo eficientemente.
+     - **Critérios de Aceitação:** A equipe de treinamento deve fornecer sessões iniciais de treinamento que cubram todos os recursos e funcionalidades do aplicativo.
+
+7. **Suporte Técnico Disponível:**
+   - Como um funcionário, eu quero suporte técnico disponível para resolver dúvidas ou problemas relacionados ao uso do aplicativo.
+     - **Critérios de Aceitação:** Deve haver um canal de suporte técnico, como um chat ou sistema de tickets, para atender às questões dos usuários.
+
+8. **Relatórios Pós-Implementação:**
+   - Como um supervisor, eu quero relatórios de avaliação pós-implementação, destacando lições aprendidas, melhores práticas e recomendações para futuros projetos semelhantes.
+     - **Critérios de Aceitação:** O sistema deve gerar relatórios abrangentes que ofereçam insights sobre o desempenho do projeto, pontos positivos e áreas de melhoria.
+
 
