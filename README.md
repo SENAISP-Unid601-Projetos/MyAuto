@@ -35,3 +35,37 @@ Facilitar a manutenção e atualização do sistema, incluindo a capacidade de r
 ### Escalabilidade do Sistema:
 Projetar o sistema para lidar com um aumento no número de clientes e solicitações de serviço sem comprometer o desempenho ou a funcionalidade.
 
+
+## 3. Análise de Riscos
+
+### 1. Resistência à Adoção pelos Usuários:
+
+- **Estratégias de Mitigação:** Realizar sessões de treinamento abrangentes e envolver os usuários desde as fases iniciais do desenvolvimento para obter feedback e endereçar preocupações.
+- **Plano de Contingência:** Disponibilizar suporte técnico contínuo e implementar um programa de incentivo para promover a adoção.
+
+### 2. Problemas de Desempenho:
+
+- **Estratégias de Mitigação:** Realizar testes de desempenho durante o desenvolvimento para identificar e corrigir possíveis gargalos. Otimizar o código e utilizar recursos de cache, se necessário.
+- **Plano de Contingência:** Implementar melhorias incrementais de desempenho e, se necessário, lançar atualizações rápidas para abordar problemas emergentes.
+
+### 3. Falhas Técnicas:
+
+- **Estratégias de Mitigação:** Realizar testes rigorosos do aplicativo antes do lançamento. Contratar desenvolvedores qualificados e experientes para o projeto.
+- **Plano de Contingência:** Implementar um sistema de backup para rápida restauração em caso de falhas críticas. Manter uma equipe de suporte técnico disponível para resolver problemas imprevistos.
+
+### 4. Problemas de Segurança:
+
+- **Estratégias de Mitigação:** Utilizar práticas de segurança robustas durante o desenvolvimento. Realizar auditorias de segurança periódicas.
+- **Plano de Contingência:** Implementar correções de segurança imediatas em caso de identificação de vulnerabilidades. Notificar os usuários sobre ações preventivas.
+
+### 5. Mudanças nos Requisitos durante o Desenvolvimento:
+
+- **Estratégias de Mitigação:** Realizar uma análise detalhada dos requisitos antes do início do desenvolvimento. Estabelecer um processo formal para gerenciar alterações.
+- **Plano de Contingência:** Avaliar o impacto das mudanças nos prazos e recursos. Comunicar proativamente as alterações aos stakeholders e ajustar o cronograma conforme necessário.
+
+### 6. Problemas de Compatibilidade com Dispositivos Móveis:
+
+- **Estratégias de Mitigação:** Testar o aplicativo em uma variedade de dispositivos e versões de sistemas operacionais. Utilizar frameworks de desenvolvimento que ofereçam suporte amplo.
+- **Plano de Contingência:** Corrigir rapidamente problemas de compatibilidade identificados. Lançar atualizações específicas para dispositivos problemáticos, se necessário.
+
+
