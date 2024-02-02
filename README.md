@@ -199,5 +199,41 @@ Esta análise de riscos visa identificar possíveis desafios durante o desenvolv
 8. **Relatórios Pós-Implementação:**
    - Como um supervisor, eu quero relatórios de avaliação pós-implementação, destacando lições aprendidas, melhores práticas e recomendações para futuros projetos semelhantes.
      - **Critérios de Aceitação:** O sistema deve gerar relatórios abrangentes que ofereçam insights sobre o desempenho do projeto, pontos positivos e áreas de melhoria.
+    
+     - 
+## 8. Avaliação do Projeto
+
+- **Taxa de Adoção do Aplicativo:**
+  - **Objetivo:** Alcançar uma taxa de adoção de 80% entre os funcionários no uso regular do aplicativo.
+  - **Métrica:** Número total de funcionários utilizando o aplicativo em comparação com o número total de funcionários.
+
+- **Eficiência Operacional:**
+  - **Objetivo:** Reduzir o tempo médio gasto na conclusão das atividades de limpeza em pelo menos 20% após a implementação do sistema.
+  - **Métrica:** Comparação do tempo médio de conclusão de atividades de limpeza antes e após a implementação.
+
+- **Taxa de Conclusão de Limpeza:**
+  - **Objetivo:** Alcançar uma taxa de conclusão de limpeza de pelo menos 95% dos ambientes designados no prazo estabelecido.
+  - **Métrica:** Número de ambientes marcados como limpos em relação ao número total de ambientes designados.
+
+- **Satisfação do Usuário:**
+  - **Objetivo:** Alcançar uma pontuação de satisfação do usuário de pelo menos 4,5 em 5, com base em pesquisas de satisfação.
+  - **Métrica:** Resultados de pesquisas de satisfação realizadas com funcionários e supervisores.
+
+- **Integridade dos Dados:**
+  - **Objetivo:** Alcançar uma precisão de pelo menos 98% na integridade dos dados registrados pelo sistema.
+  - **Métrica:** Comparação entre os dados registrados no sistema e as verificações físicas dos ambientes.
+
+- **Disponibilidade do Sistema:**
+  - **Objetivo:** Garantir uma disponibilidade do sistema de pelo menos 99,5% ao longo do tempo.
+  - **Métrica:** Tempo total de operação sem interrupções em comparação com o tempo total planejado.
+
+- **Tempo de Implementação:**
+  - **Objetivo:** Cumprir o cronograma estabelecido, realizando a implementação e lançamento até a data prevista.
+  - **Métrica:** Comparação entre a data de conclusão real e a data planejada.
+
+
+
+
+
 
 
