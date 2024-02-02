@@ -110,3 +110,58 @@ Esta análise de riscos visa identificar possíveis desafios durante o desenvolv
   - Monitoramento inicial de feedback e desempenho
 
 
+## 5. Recursos
+
+### Pessoal:
+- Desenvolvedores de Software: Para a criação do aplicativo para funcionários e do painel de supervisão.
+- Equipe de Treinamento: Para capacitar funcionários e supervisores no uso do novo sistema.
+- Gerente de Projeto: Para coordenar e supervisionar todas as atividades.
+
+### Tecnologia:
+- Ambiente de Desenvolvimento Integrado (IDE): Ferramentas adequadas para o desenvolvimento do aplicativo e do painel de supervisão.
+- Sistemas de versionamento de código: Git e GitHub para manter o código versionado e sempre atualizado.
+- Servidores e Infraestrutura em Nuvem: Para hospedar o aplicativo, o painel de supervisão e os dados do sistema.
+- Ferramentas de Teste de Software: Para garantir a qualidade e a confiabilidade do aplicativo e do sistema.
+- API do chat GPT: Para integração de recursos de chat no aplicativo.
+
+### Equipamentos:
+- Computadores e Notebooks: Para desenvolvimento, teste e gerenciamento de projeto.
+- Dispositivos Móveis: Para testes e treinamento do aplicativo em condições reais.
+
+### Comunicação:
+- Ferramentas de Comunicação Online: Para facilitar a colaboração entre a equipe, como e-mails, mensagens instantâneas e videoconferências.
+
+## 6. Custos
+
+*OBS: Essa é uma das principais seções deste documento… realizar um orçamento de tudo que será preciso para desenvolver esse software, principalmente componentes físicos que precisam ser disponibilizados pelo SENAI. Quem irá avaliar esses orçamentos será o professor Marinho!*
+
+### Pessoal:
+- Desenvolvedores de Software:
+  - 12 desenvolvedores trabalhando por 3 dias na semana.
+- Gerente de Projeto:
+  - 1 gerente de projeto.
+
+### Tecnologia:
+- Ambiente de Desenvolvimento Integrado (IDE):
+  - Custo total (considerando licenças): $0
+- Sistemas de versionamento de código:
+  - Custo total (considerando licenças): $0
+- Servidores e Infraestrutura em Nuvem:
+  - Custo total (considerando serviços em nuvem): $500
+- Ferramentas de Teste de Software:
+  - Custo total (considerando licenças): $0
+- API do chat GPT:
+  - Custo total (considerando licenças): $50
+
+### Equipamentos:
+- Dispositivos Móveis de Reconhecimento de Ambiente:
+  - Custo total: $1000
+
+### Total Geral:
+- Pessoal: $0
+- Tecnologia: $550
+- Equipamentos: $1000
+
+### Custo Total do Projeto: $1.550,00
+
+
