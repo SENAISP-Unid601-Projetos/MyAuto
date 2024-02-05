@@ -3,8 +3,8 @@
 
 
 
-Nome do Grupo: TechLine
-Membros: Adrian, Matheus Bruno, Matheus felippe, Pedro Santos, Victor Petrucelli
+## Nome do Grupo: TechLine
+## Membros: Adrian, Matheus Bruno, Matheus felippe, Pedro Santos, Victor Petrucelli
 
 # Projeto: MyAuto
 
