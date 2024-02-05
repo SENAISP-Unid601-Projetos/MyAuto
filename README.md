@@ -98,13 +98,16 @@ Esta análise de riscos visa identificar possíveis desafios durante o desenvolv
   - Definição do backlog e prioridade das atividades
 
 - **Fevereiro/2024:** Desenvolvimento do MVP (Menor Produto Viável)
-  - Codificação e validação do MVP com o cliente e adaptação dos documentos de escopo (se necessário)
+  - Demonstração do Projeto
+  - Sistema de notificações
+  - Reagendamento 
+  - 
 
 - **Março/2024:** Desenvolvimento do Protótipo do Aplicativo
   - Desenvolvimento das interfaces do usuário, fluxos da aplicação
-  - Desenvolvimento dos micro serviços e bancos de dados
+  - Desenvolvimento do bancos de dados
   - Revisão e ajuste do protótipo com feedback da equipe e usuários
-
+  - Revisão de Bugs do projeto
 - **Abril/2024:** Implementação do Painel de Supervisão e Integração
   - Desenvolvimento do painel de supervisão para os gestores
   - Início da integração com sistemas existentes
@@ -140,8 +143,6 @@ Esta análise de riscos visa identificar possíveis desafios durante o desenvolv
 
 ## 6. Custos
 
-*OBS: Essa é uma das principais seções deste documento… realizar um orçamento de tudo que será preciso para desenvolver esse software, principalmente componentes físicos que precisam ser disponibilizados pelo SENAI. Quem irá avaliar esses orçamentos será o professor Marinho!*
-
 ### Pessoal:
 - Desenvolvedores de Software:
   - 12 desenvolvedores trabalhando por 3 dias na semana.
@@ -158,18 +159,18 @@ Esta análise de riscos visa identificar possíveis desafios durante o desenvolv
 - Ferramentas de Teste de Software:
   - Custo total (considerando licenças): $0
 - API do chat GPT:
-  - Custo total (considerando licenças): $50
+  - Custo total (considerando licenças): $0
 
 ### Equipamentos:
-- Dispositivos Móveis de Reconhecimento de Ambiente:
-  - Custo total: $1000
+- Dispositivos Móveis:
+  - Custo total: $0
 
 ### Total Geral:
 - Pessoal: $0
-- Tecnologia: $550
-- Equipamentos: $1000
+- Tecnologia: $500
+- Equipamentos: $0
 
-### Custo Total do Projeto: $1.550,00
+### Custo Total do Projeto: $500,00
 
 # 7. Documentação Reajustada para o Aplicativo de Gestão de Veículos
 
