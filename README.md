@@ -1,9 +1,12 @@
-!Logo ("D:\MY AUT.png")
 
 
 
 
 
+Nome do Grupo: TechLine
+Membros: Adrian, Matheus Bruno, Matheus felippe, Pedro Santos, Victor Petrucelli
+
+# Projeto: MyAuto
 
 # Projeto de Desenvolvimento de Aplicativo Mobile para Gestão Mecânica de Automóveis
 
