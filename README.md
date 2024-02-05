@@ -6,7 +6,7 @@
 ## Nome do Grupo: TechLine
 ## Membros: Adrian, Matheus Bruno, Matheus felippe, Pedro Santos, Victor Petrucelli
 
-# Projeto: MyAuto
+# Nome do Projeto: MyAuto
 
 # Projeto de Desenvolvimento de Aplicativo Mobile para Gestão Mecânica de Automóveis
 
