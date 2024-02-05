@@ -48,7 +48,7 @@ Projetar o sistema para lidar com um aumento no número de clientes e solicitaç
 
 ## 3. Análise de Riscos
 
-### 1. Resistência à Adoção pelos Usuários:
+### 1. Resistência à Adoção pelos Motoristas:
 
 - **Estratégias de Mitigação:** Realizar sessões de treinamento abrangentes e envolver os usuários desde as fases iniciais do desenvolvimento para obter feedback e endereçar preocupações.
 - **Plano de Contingência:** Disponibilizar suporte técnico contínuo e implementar um programa de incentivo para promover a adoção.
