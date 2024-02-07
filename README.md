@@ -18,32 +18,33 @@ Queremos que você agende serviços pelo app, não só a troca de óleo, mas tam
 
 ## 2. Objetivos do Projeto
 
-### Segurança dos Dados:
-Garantir que os dados dos clientes e veículos sejam armazenados de maneira segura e protegidos contra acesso não autorizado.
+### Segurança Avançada dos Dados:
+Implementar criptografia de ponta a ponta e protocolos de segurança robustos para proteger os dados sensíveis dos clientes e veículos contra ameaças cibernéticas, garantindo conformidade com regulamentações de privacidade.
 
-### Agendamento Eficiente:
-Permitir que os clientes agendem serviços de manutenção com antecedência, fornecendo opções claras de disponibilidade de horários e datas.
+### Agendamento Personalizado e Flexível:
+Oferecer aos clientes opções de agendamento personalizadas, como preferências de horário, tipo de serviço e lembretes automáticos, garantindo uma experiência conveniente e adaptada às necessidades individuais de cada cliente.
 
-### Notificações do Sistema:
-Implementar um sistema robusto de notificações para informar os clientes sobre o status do agendamento, lembretes de serviço e confirmações de agendamento.
+### Notificações Inteligentes em Tempo Real:
+Desenvolver um sistema inteligente de notificações em tempo real, que informe os clientes sobre o status atualizado do agendamento, mudanças nos horários de serviço e atualizações relevantes, proporcionando transparência e comunicação eficaz.
 
-### Desempenho do Sistema:
-Assegurar que o sistema seja capaz de lidar com múltiplos acessos simultâneos e processar solicitações eficientemente, evitando atrasos no agendamento e na prestação de serviços.
+### Desempenho Otimizado e Velocidade de Resposta:
+Garantir que o sistema seja altamente responsivo e capaz de lidar com picos de tráfego, garantindo tempos de carregamento rápidos e processamento eficiente das solicitações dos clientes, para uma experiência sem interrupções.
 
-### Usabilidade da Interface:
-Desenvolver uma interface intuitiva e fácil de usar, tanto para clientes quanto para funcionários da oficina, visando uma experiência amigável e eficiente.
+### Interface Intuitiva e Personalizada:
+Criar uma interface intuitiva e personalizada, adaptada às preferências de cada usuário, com recursos de navegação simplificados, design intuitivo e funcionalidades personalizáveis, para uma experiência de usuário excepcional.
 
-### Ordens de Serviço/Orçamento:
-Implementar a geração de ordens de serviço e orçamentos para os serviços solicitados pelos clientes, com a capacidade de visualização e aprovação por parte do cliente.
+### Orçamentos Transparentes e Detalhados:
+Fornecer aos clientes orçamentos transparentes e detalhados para os serviços solicitados, incluindo estimativas precisas de custos, descrições claras dos serviços e opções de visualização e aprovação simplificadas, promovendo transparência e confiança.
 
-### Confiabilidade do Sistema:
-Assegurar que o sistema seja confiável e esteja disponível sempre que necessário, minimizando o tempo de inatividade e problemas de acesso.
+### Garantia de Disponibilidade e Redundância:
+Implementar sistemas de redundância e backup para garantir a disponibilidade contínua do sistema, com planos de contingência em caso de falhas, minimizando assim o tempo de inatividade e mantendo a acessibilidade do serviço.
 
-### Manutenção e Atualizações:
-Facilitar a manutenção e atualização do sistema, incluindo a capacidade de realizar backups regulares dos dados e aplicar correções de bugs conforme necessário.
+### Manutenção Proativa e Atualizações Contínuas:
+Realizar manutenção proativa do sistema e aplicar atualizações regulares para garantir o bom funcionamento e a segurança do sistema, com processos eficientes de correção de bugs e melhorias contínuas baseadas no feedback dos usuários.
 
-### Escalabilidade do Sistema:
-Projetar o sistema para lidar com um aumento no número de clientes e solicitações de serviço sem comprometer o desempenho ou a funcionalidade.
+### Escalabilidade Sem Compromissos:
+Projetar o sistema para escalabilidade sem comprometer o desempenho ou a qualidade do serviço, utilizando arquiteturas flexíveis e tecnologias escaláveis, para atender às demandas crescentes de clientes e solicitações de serviço.
+
 
 
 ## 3. Análise de Riscos
