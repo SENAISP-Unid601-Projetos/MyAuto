@@ -7,6 +7,10 @@ const HomeScreen = () => {
     <View style={styles.container}>
       {/* Retângulo roxo como cabeçalho */}
       <View style={styles.headerContainer}>
+        <Image
+          source={{ uri: 'URL_DO_LOGO' }} // Insira a URL da imagem do logo aqui
+          style={styles.logo}
+        />
         <Text style={styles.headerText}>Bem-vindo ao MyAuto</Text>
       </View>
 
@@ -24,25 +28,24 @@ const HomeScreen = () => {
         {/* Botão Agendamento */}
         <View style={styles.buttonWithIcon}>
           <Icon name="calendar" size={30} color="black" style={styles.icon} />
-          <Button title="Agendamento" onPress={() => console.log('Botão Agendamento pressionado')} style={styles.footerButton} />
+          <Button title="Agendamento " onPress={() => console.log('Botão Agendamento pressionado')} style={styles.footerButton} />
         </View>
 
         {/* Botão Notificações */}
         <View style={styles.buttonWithIcon}>
           <Icon name="bell" size={30} color="black" style={styles.icon} />
-          <Button title="Notificações" onPress={() => console.log('Botão Notificações pressionado')} style={styles.footerButton} />
+          <Button title=" Notificações " onPress={() => console.log('Botão Notificações pressionado')} style={styles.footerButton} />
         </View>
 
         {/* Botão Relatórios */}
         <View style={styles.buttonWithIcon}>
           <Icon name="file-text" size={30} color="black" style={styles.icon} />
-          <Button title="Relatórios" onPress={() => console.log('Botão Relatórios pressionado')} style={styles.footerButton} />
+          <Button title="  Relatórios     " onPress={() => console.log('Botão Relatórios pressionado')} style={styles.footerButton} />
         </View>
       </View>
 
       {/* Retângulo roxo como rodapé */}
       <View style={styles.footerContainer}>
-        <Text style={styles.footerText}>Bem-vindo ao MyAuto</Text>
       </View>
     </View>
   );
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerContainer: {
-    backgroundColor: 'white',
+    backgroundColor: 'purple',
     borderWidth: 4,
     padding: 10,
     width: '100%',
@@ -68,6 +71,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'white',
+  },
+  logo: {
+    width: 100, // Ajuste conforme necessário
+    height: 100, // Ajuste conforme necessário
+    marginBottom: 10,
   },
   profileContainer: {
     position: 'absolute',
@@ -86,10 +94,10 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   icon: {
-    marginRight: 10,
+    marginRight: 13,
   },
   footerButton: {
-    backgroundColor: 'white',
+    backgroundColor: 'purple',
     borderColor: 'gold',
     borderWidth: 2,
     borderRadius: 5,
@@ -102,7 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   footerContainer: {
-    backgroundColor: 'white',
+    backgroundColor: 'purple',
     padding: 10,
     width: '100%',
     height: '15%',
