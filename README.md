@@ -1,14 +1,8 @@
-
-
-
-
-
+# Projeto de Desenvolvimento de Aplicativo Mobile para Gestão Mecânica de Automóveis
 #### Nome do Grupo: TechLine
 #### Membros: Adrian, Matheus Bruno, Matheus felippe, Pedro Santos, Victor Petrucelli
 
 # Nome do Projeto: MyAuto
-
-# Projeto de Desenvolvimento de Aplicativo Mobile para Gestão Mecânica de Automóveis
 
 ## 1. Escopo
 
