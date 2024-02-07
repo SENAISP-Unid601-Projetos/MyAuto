@@ -49,7 +49,7 @@ Projetar o sistema para escalabilidade sem comprometer o desempenho ou a qualida
 
 ## 3. Análise de Riscos
 
-### 1. Resistência à Adoção pelos Usuários:
+### 1. Resistência à Adoção pelos Motoristas:
 
 - **Estratégias de Mitigação:** Realizar sessões de treinamento abrangentes e envolver os usuários desde as fases iniciais do desenvolvimento para obter feedback e endereçar preocupações.
 - **Plano de Contingência:** Disponibilizar suporte técnico contínuo e implementar um programa de incentivo para promover a adoção.
@@ -87,8 +87,8 @@ Projetar o sistema para escalabilidade sem comprometer o desempenho ou a qualida
 
 ### 8. Problemas de Usabilidade:
 
-- **Estratégias de Mitigação:** Realizar testes de usabilidade com usuários reais. Iterar sobre o design com base no feedback contínuo.
-- **Plano de Contingência:** Implementar ajustes de usabilidade com base em feedback pós-lançamento. Oferecer suporte adicional aos usuários que enfrentam dificuldades.
+- **Estratégias de Mitigação:** Realizar testes de usabilidade com motoristas reais. Iterar sobre o design com base no feedback contínuo.
+- **Plano de Contingência:** Implementar ajustes de usabilidade com base em feedback pós-lançamento. Oferecer suporte adicional aos motoristas que enfrentam dificuldades.
 
 Esta análise de riscos visa identificar possíveis desafios durante o desenvolvimento e implementação do aplicativo mobile, oferecendo estratégias de mitigação e planos de contingência para enfrentar cada cenário.
 
@@ -102,16 +102,16 @@ Esta análise de riscos visa identificar possíveis desafios durante o desenvolv
   - Definição do backlog e prioridade das atividades
 
 - **Fevereiro/2024:** Desenvolvimento do MVP (Menor Produto Viável)
-  - Demonstração do Projeto
   - Sistema de notificações
   - Reagendamento 
-  - 
-
+  - Demonstração do Projeto
+ 
 - **Março/2024:** Desenvolvimento do Protótipo do Aplicativo
   - Desenvolvimento das interfaces do usuário, fluxos da aplicação
   - Desenvolvimento do bancos de dados
   - Revisão e ajuste do protótipo com feedback da equipe e usuários
   - Revisão de Bugs do projeto
+    
 - **Abril/2024:** Implementação do Painel de Supervisão e Integração
   - Desenvolvimento do painel de supervisão para os gestores
   - Início da integração com sistemas existentes
@@ -122,7 +122,6 @@ Esta análise de riscos visa identificar possíveis desafios durante o desenvolv
   - Treinamento final dos funcionários e supervisores
   - Lançamento oficial do Sistema de Gestão Mecânica de Automóveis
   - Monitoramento inicial de feedback e desempenho
-
 
 ## 5. Recursos
 
