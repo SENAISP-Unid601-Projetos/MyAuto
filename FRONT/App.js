@@ -30,9 +30,14 @@ const HomeScreen = () => {
 
       {/* Botão Agendar */}
       
+      <View style={styles.buttonContainer}>
+        <View style={styles.buttonWithIcon}>
+      <Icon name="calendar" size={30} color="black" style={styles.icon} />
       <TouchableOpacity onPress={() => setAgendamentoVisible(true)} style={styles.agendarButton}>
         <Text style={styles.agendarButtonText}>Agendar</Text>
       </TouchableOpacity>
+      </View>
+      </View>
 
       {/* Restante dos botões */}
       <View style={styles.buttonContainer}>
