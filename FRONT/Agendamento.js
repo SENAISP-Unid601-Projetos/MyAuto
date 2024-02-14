@@ -44,7 +44,7 @@ export default function App() {
             <TouchableOpacity
               style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
               onPress={() => {
-                setModalVisible(false);
+                setModalVisible(false),console.log("Dia Agendado: "+ selectedDay);
               }}
             >
               <Text style={styles.textStyle}>Fechar</Text>

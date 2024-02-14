@@ -34,7 +34,7 @@ const HomeScreen = () => {
         <View style={styles.buttonWithIcon}>
       <Icon name="calendar" size={30} color="black" style={styles.icon} />
       <TouchableOpacity onPress={() => setAgendamentoVisible(true)} style={styles.footerButton} >
-        <Text>AGENDAR</Text>
+        <Text style={styles.ButtonText}>AGENDAR</Text>
       </TouchableOpacity>
       </View>
       </View>
@@ -123,6 +123,11 @@ const styles = StyleSheet.create({
     height: 35,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  ButtonText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
   },
   buttonContainer: {
     marginBottom: 24,
