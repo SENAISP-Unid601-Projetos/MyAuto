@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import { Calendar } from 'react-native-calendars';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function App() {
   const [selectedDay, setSelectedDay] = useState(null);
@@ -39,6 +40,7 @@ export default function App() {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <Icon name="return" size={30} />
             <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Horários disponíveis para: {selectedDay}:</Text>
             {renderAvailableHours()}
             <TouchableOpacity
@@ -47,7 +49,7 @@ export default function App() {
                 setModalVisible(false),console.log("Dia Agendado: "+ selectedDay);
               }}
             >
-              <Text style={styles.textStyle}>Fechar</Text>
+              <Text style={styles.textStyle}>Agendar</Text>
             </TouchableOpacity>
           </View>
         </View>

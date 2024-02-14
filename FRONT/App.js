@@ -1,12 +1,15 @@
-// Importe o componente de Agendamento
 import React, { useState } from 'react';
-import { View, Text, Button, Image, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, Button, Image, StyleSheet, TouchableOpacity, Modal, BackHandler } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Agendamento from './Agendamento'; // Importe o componente de Agendamento
+import Agendamento from './Agendamento';
 
 const HomeScreen = () => {
-  // Defina o estado para controlar a visibilidade da tela de agendamento
   const [agendamentoVisible, setAgendamentoVisible] = useState(false);
+
+  const voltarParaTelaPrincipal = ()=>{
+    navigation.goBack();
+  }
 
   return (
     <View style={styles.container}>
@@ -33,7 +36,7 @@ const HomeScreen = () => {
       <View style={styles.buttonContainer}>
         <View style={styles.buttonWithIcon}>
       <Icon name="calendar" size={30} color="black" style={styles.icon} />
-      <TouchableOpacity onPress={() => setAgendamentoVisible(true)} style={styles.footerButton} >
+      <TouchableOpacity onPress={() =>  setAgendamentoVisible(true)}  style={styles.footerButton} >
         <Text style={styles.ButtonText}>AGENDAR</Text>
       </TouchableOpacity>
       </View>
