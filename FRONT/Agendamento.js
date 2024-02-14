@@ -39,7 +39,7 @@ export default function App() {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Horários disponíveis para {selectedDay}:</Text>
+            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Horários disponíveis para: {selectedDay}:</Text>
             {renderAvailableHours()}
             <TouchableOpacity
               style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
