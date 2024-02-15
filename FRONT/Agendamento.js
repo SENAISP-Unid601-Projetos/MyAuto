@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import HomeScreen from './App';
 
 export default function App() {
   const [selectedDay, setSelectedDay] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible, setVoltar] = useState(false);
 
   const handleDayPress = (day) => {
     setSelectedDay(day.dateString);
@@ -40,7 +41,11 @@ export default function App() {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Icon name="return" size={30} />
+            <TouchableOpacity
+            style={{...styles}}
+            onPress={()=> setVoltar(true)}>
+              <Icon name="share" size={30}/>
+            </TouchableOpacity>
             <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Horários disponíveis para: {selectedDay}:</Text>
             {renderAvailableHours()}
             <TouchableOpacity

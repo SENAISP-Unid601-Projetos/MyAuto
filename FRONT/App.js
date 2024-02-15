@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, Button, Image, StyleSheet, TouchableOpacity, Modal, BackHandler } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, Button, Image, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Agendamento from './Agendamento';
 
 const HomeScreen = () => {
   const [agendamentoVisible, setAgendamentoVisible] = useState(false);
 
-  const voltarParaTelaPrincipal = ()=>{
-    navigation.goBack();
-  }
 
   return (
     <View style={styles.container}>
