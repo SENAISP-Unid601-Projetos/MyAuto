@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View, Button } from 'react-native';
 import * as  Notifications from "expo-notifications";
 
 Notifications.setNotificationHandler({
@@ -25,9 +25,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
-      <button title="Chamar notificacao " 
+      <Button title="Chamar notificacao " 
       style={styles.button} 
-      onPress={handleCallNotifications}/>
+      onPress={handleCallNotifications}></Button>
       <StatusBar style="auto" />
     </View>
   );
