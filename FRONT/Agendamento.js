@@ -5,11 +5,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function App() {
   const [selectedDay, setSelectedDay] = useState(null);
-  const [modalVisible, setModalVisible, setVoltar] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleDayPress = (day) => {
     setSelectedDay(day.dateString);
     setModalVisible(true);
+  };
+
+  const fechar = () => {
+    setModalVisible(false);
   };
 
   const renderAvailableHours = () => {
@@ -40,10 +44,12 @@ export default function App() {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+
             <TouchableOpacity
             style={{...styles}}
-            onPress={()=> setVoltar(true)}>
+            onPress={()=> fechar(true)}>
               <Icon name="share" size={30}/>
+
             </TouchableOpacity>
             <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Horários disponíveis para: {selectedDay}:</Text>
             {renderAvailableHours()}
