@@ -4,9 +4,6 @@ import { Calendar } from 'react-native-calendars';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function App() {
-
-
 const Agendamento = () => {
 
   const [selectedDay, setSelectedDay] = useState(null);
@@ -71,10 +68,7 @@ const Agendamento = () => {
               }}
             >
               <Text style={styles.textStyle}>Agendar</Text>
-
                 setModalVisible(false);
-              }}
-            >
               <Text style={styles.textStyle}>Fechar</Text>
 
             </TouchableOpacity>
@@ -121,7 +115,6 @@ const styles = StyleSheet.create({
 
 });
 
-});
 
 export default Agendamento;
 
