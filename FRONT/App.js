@@ -1,11 +1,10 @@
-// Importe o componente de Agendamento
+
 import React, { useState } from 'react';
-import { View, Text, Button, Image, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, Button, Image, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Agendamento from './Agendamento'; // Importe o componente de Agendamento
+import Agendamento from './Agendamento.js';
 
 const HomeScreen = () => {
-  // Defina o estado para controlar a visibilidade da tela de agendamento
   const [agendamentoVisible, setAgendamentoVisible] = useState(false);
 
   return (
@@ -33,8 +32,10 @@ const HomeScreen = () => {
       <View style={styles.buttonContainer}>
         <View style={styles.buttonWithIcon}>
       <Icon name="calendar" size={30} color="black" style={styles.icon} />
-      <TouchableOpacity onPress={() => setAgendamentoVisible(true)} style={styles.agendarButton}>
-        <Text style={styles.agendarButtonText}>Agendar</Text>
+
+      <TouchableOpacity onPress={() =>  setAgendamentoVisible(true)}  style={styles.footerButton} >
+        <Text style={styles.ButtonText}>AGENDAR</Text>
+
       </TouchableOpacity>
       </View>
       </View>
@@ -44,13 +45,13 @@ const HomeScreen = () => {
         {/* Botão Notificações */}
         <View style={styles.buttonWithIcon}>
           <Icon name="bell" size={30} color="black" style={styles.icon} />
-          <Button title=" Notificações " onPress={() => console.log('Botão Notificações pressionado')} style={styles.footerButton} />
+          <Button title=" Notificações " onPress={() => console.log('Botão Notificações pressionado')}/>
         </View>
 
         {/* Botão Relatórios */}
         <View style={styles.buttonWithIcon}>
           <Icon name="file-text" size={30} color="black" style={styles.icon} />
-          <Button title="  Relatórios     " onPress={() => console.log('Botão Relatórios pressionado')} style={styles.footerButton} />
+          <Button title="  Relatórios     " onPress={() => console.log('Botão Relatórios pressionado')}/>
         </View>
       </View>
 
@@ -116,15 +117,18 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 13,
   },
-  footerButton: {
-    backgroundColor: 'purple',
-    borderColor: 'gold',
-    borderWidth: 2,
-    borderRadius: 5,
-    width: 140,
-    height: 40,
+  footerButton: { //Estilização dos Botões
+    backgroundColor: '#2196f3',
+    borderRadius: 2,
+    width: 120,
+    height: 35,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  ButtonText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
   },
   buttonContainer: {
     marginBottom: 24,

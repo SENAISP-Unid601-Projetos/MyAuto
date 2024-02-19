@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+export default function App() {
+
+
 const Agendamento = () => {
+
   const [selectedDay, setSelectedDay] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -10,6 +16,11 @@ const Agendamento = () => {
     setSelectedDay(day.dateString);
     setModalVisible(true);
   };
+
+  const fechar = () => {
+    setModalVisible(false);
+  };
+
 
   const renderAvailableHours = () => {
     // Simulação de horários disponíveis (pode ser substituído por uma chamada à API)
@@ -39,15 +50,33 @@ const Agendamento = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+
+
+            <TouchableOpacity
+            style={{...styles}}
+            onPress={()=> fechar(true)}>
+              <Icon name="share" size={30}/>
+
+            </TouchableOpacity>
+            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Horários disponíveis para: {selectedDay}:</Text>
+
             <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Horários disponíveis para {selectedDay}:</Text>
+
             {renderAvailableHours()}
             <TouchableOpacity
               style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
               onPress={() => {
+
+                setModalVisible(false),console.log("Dia Agendado: "+ selectedDay);
+              }}
+            >
+              <Text style={styles.textStyle}>Agendar</Text>
+
                 setModalVisible(false);
               }}
             >
               <Text style={styles.textStyle}>Fechar</Text>
+
             </TouchableOpacity>
           </View>
         </View>
@@ -89,6 +118,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center'
   }
+
+});
+
 });
 
 export default Agendamento;
+
