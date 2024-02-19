@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { View, Text, Button, Image, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -5,7 +6,6 @@ import Agendamento from './Agendamento.js';
 
 const HomeScreen = () => {
   const [agendamentoVisible, setAgendamentoVisible] = useState(false);
-
 
   return (
     <View style={styles.container}>
@@ -32,8 +32,10 @@ const HomeScreen = () => {
       <View style={styles.buttonContainer}>
         <View style={styles.buttonWithIcon}>
       <Icon name="calendar" size={30} color="black" style={styles.icon} />
+
       <TouchableOpacity onPress={() =>  setAgendamentoVisible(true)}  style={styles.footerButton} >
         <Text style={styles.ButtonText}>AGENDAR</Text>
+
       </TouchableOpacity>
       </View>
       </View>
