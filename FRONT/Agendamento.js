@@ -60,18 +60,17 @@ const Agendamento = () => {
             <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Horários disponíveis para {selectedDay}:</Text>
 
             {renderAvailableHours()}
+            
             <TouchableOpacity
               style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
               onPress={() => {
-
                 setModalVisible(false),console.log("Dia Agendado: "+ selectedDay);
               }}
             >
               <Text style={styles.textStyle}>Agendar</Text>
-                setModalVisible(false);
               <Text style={styles.textStyle}>Fechar</Text>
-
             </TouchableOpacity>
+
           </View>
         </View>
       </Modal>
