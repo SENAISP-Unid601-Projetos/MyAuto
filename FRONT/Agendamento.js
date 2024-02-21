@@ -68,7 +68,6 @@ const Agendamento = () => {
               }}
             >
               <Text style={styles.textStyle}>Agendar</Text>
-              <Text style={styles.textStyle}>Fechar</Text>
             </TouchableOpacity>
 
           </View>
