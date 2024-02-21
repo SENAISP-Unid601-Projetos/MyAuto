@@ -1,0 +1,56 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(45deg, skyblue, lightgreen);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+}
+
+h2{
+    text-align: center;
+}
+
+.input-group, .button-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group div, .button-group button{
+    flex: 1;
+}
+
+input, select, button{
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.divider {
+    text-align: center;
+    margin: 0 10px;
+}
+
+button{
+    background-color: dodgerblue;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover{
+    background-color: deepskyblue;
+}
