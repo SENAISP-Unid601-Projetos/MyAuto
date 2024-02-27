@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Notificação de Serviços</title>
+</head>
+<body>
+
+    <div id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 welcome-text">
+                    <h1 class="display-4">Bem-vindo ao Futuro da Manutenção Veicular</h1>
+                    <p class="lead">O aplicativo "MyAuto" chegou para revolucionar como você cuida do seu veículo. Diga adeus aos prejuízos inesperados e esteja sempre um passo à frente.</p>
+                </div>
+                <div class="col-lg-6">
+                <center><img src="img/MY AUT.png" alt="Logo do Projeto" id="logo"></center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div>
+</div>
+
+<div class="container feature">
+    <div class="row">
+        <div class="col-lg-4">
+            <img src="img/Notifica.png" alt="Imagem 2" class="img-fluid" width="700px" height="500px">
+            <i class="feature-icon fas fa-bell"></i><br>
+            <br><h3>Notificação de Próximo Serviço</h3>
+            <p>Fique tranquilo! Receba alertas precisos sobre a necessidade de novos serviços com base em critérios como tempo ou quilometragem.</p>
+        </div>
+        <div class="col-lg-4">
+            <img src="img/inicial.png" alt="Imagem 1" class="img-fluid" width="700px" height="500px">
+            <i class="feature-icon fas fa-car"></i>
+            <h3>Cadastro de Veículos e Clientes</h3>
+            <p>Registre seus veículos de forma descomplicada. Informe placa, marca, modelo e ano, garantindo um acompanhamento personalizado.</p>
+        </div>
+        <div class="col-lg-4">
+            <img src="img/agendamento.png" alt="Imagem 3" class="img-fluid" width="700px" height="500px">
+            <i class="feature-icon fas fa-calendar-alt"></i>
+            <h3>Agendamento de Serviços</h3>
+            <p>Agende seus serviços de maneira simples e rápida. Escolha o tipo de serviço desejado e o horário que melhor se encaixa na sua agenda.</p>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Adicione mais colunas conforme necessário para as funcionalidades restantes -->
+    </div>
+</div>
+
+<div class="container feature">
+    <!-- Adicione mais seções conforme necessário -->
+    <div class="row">
+        <div class="col-lg-12">
+            <img src="img/priv.png" alt="Imagem 4" class="img-fluid">
+            <div class="text-center">
+                <h1>Segurança e Privacidade</h1>
+                <p class="texto">
+                    Seus dados são tratados com o mais alto nível de segurança. No MyAuto, implementamos medidas robustas para proteger suas informações pessoais, garantindo total conformidade com as regulamentações vigentes.
+                </p>
+                <p class="texto">
+                    O MyAuto vai além de um simples aplicativo; é a sua chave para uma experiência automotiva descomplicada e eficiente. Nosso compromisso é simplificar o agendamento de serviços, aprimorar a comunicação com as oficinas parceiras e elevar a satisfação do cliente no universo dos cuidados veiculares.
+                </p>
+                <p class="texto">
+                    Ao confiar no MyAuto, você está embarcando em uma jornada de inovação no mundo dos serviços automotivos. Estamos dedicados a proporcionar conveniência, confiança e qualidade em cada interação. Juntos, vamos transformar a maneira como você cuida do seu veículo!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="qrcode-container">
+    <h3>Acesse o QR Code para mais informações do Projeto!!</h3>
+    <br>
+    <br>
+    <div id="qrcode"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<script>
+    // Gere o QR Code com a URL desejada
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: "https://github.com/SSancaSH-Projetos/MyAuto", // Substitua com a URL desejada
+        width: 250,
+        height: 250
+    });
+</script>
+
+</body>
+</html>
