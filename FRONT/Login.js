@@ -9,6 +9,7 @@ const LoginScreen = () => {
     // Aqui você pode adicionar a lógica de autenticação
     console.log('Email:', email);
     console.log('Password:', password);
+    console.log('Redirecionar para a tela de criação de conta');
   };
 
   return (
@@ -30,6 +31,11 @@ const LoginScreen = () => {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Criar uma conta</Text>
+      </TouchableOpacity>
+
     </View>
   );
 };
