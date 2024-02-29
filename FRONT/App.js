@@ -3,9 +3,12 @@ import React, { useState } from 'react';
 import { View, Text, Button, Image, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Agendamento from './Agendamento.js';
+import LoginScreen from './Login.js';
 
 const HomeScreen = () => {
   const [agendamentoVisible, setAgendamentoVisible] = useState(false);
+  
+  const [loginVisible, setLoginVisible] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -24,7 +27,17 @@ const HomeScreen = () => {
           source={{ uri: 'https://cdn.sistemawbuy.com.br/arquivos/2e6ddbbfd31f6f862b8912e60cd11daf/produtos/648a1d9f71080/img_20230601_093339-01-648a1da942b71.jpeg' }}
           style={styles.profileImage}
         />
-        <Button title="Perfil" onPress={() => console.log('Botão Perfil pressionado')} style={styles.footerButton} />
+
+        <View style={styles.buttonContainer}>
+        <View style={styles.buttonWithIcon}>
+
+      <TouchableOpacity onPress={() =>  setLoginVisible(true)}  style={styles.footerButton} >
+        <Text style={styles.ButtonText}>Login</Text>
+
+      </TouchableOpacity>
+      </View>
+      </View>
+
       </View>
 
       {/* Botão Agendar */}
@@ -67,6 +80,15 @@ const HomeScreen = () => {
         onRequestClose={() => setAgendamentoVisible(false)}
       >
         <Agendamento closeModal={() => setAgendamentoVisible(false)} />
+      </Modal>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={loginVisible}
+        onRequestClose={() => setLoginVisible(false)}
+      >
+        <LoginScreen closeModal={() => setLoginVisible(false)} />
       </Modal>
     </View>
   );
