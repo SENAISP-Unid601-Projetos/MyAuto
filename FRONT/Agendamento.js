@@ -57,8 +57,6 @@ const Agendamento = () => {
             </TouchableOpacity>
             <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Horários disponíveis para: {selectedDay}:</Text>
 
-            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Horários disponíveis para {selectedDay}:</Text>
-
             {renderAvailableHours()}
             
             <TouchableOpacity
