@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
 const LoginScreen = () => {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Aqui você pode adicionar a lógica de autenticação
-    console.log('Email:', email);
-    console.log('Password:', password);
+
+  const VerificarLogin =()=>{
+    if(email==='usuario@exemplo.com' && password==='123456'){
+      console.log('Login Bem Sucedido!!');
+      console.log('Email:', email);
+      console.log('Password:', password);
+    }else{
+      Alert.alert('Senha e/ou Email errado.')
+    };
+  }
+
+  const criarConta = () =>{
     console.log('Redirecionar para a tela de criação de conta');
-  };
+  }
 
   return (
     <View style={styles.container}>
@@ -28,11 +37,11 @@ const LoginScreen = () => {
         value={password}
         secureTextEntry={true}
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity style={styles.button} onPress={VerificarLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity style={styles.button} onPress={criarConta}>
         <Text style={styles.buttonText}>Criar uma conta</Text>
       </TouchableOpacity>
 
