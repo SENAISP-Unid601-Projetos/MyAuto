@@ -24,7 +24,7 @@ const HomeScreen = () => {
       {/* Foto de perfil e botão Perfil */}
       <View style={styles.profileContainer}>
         <Image
-          source={{ uri: 'https://cdn.sistemawbuy.com.br/arquivos/2e6ddbbfd31f6f862b8912e60cd11daf/produtos/648a1d9f71080/img_20230601_093339-01-648a1da942b71.jpeg' }}
+          source={{ uri: 'https://e7.pngegg.com/pngimages/505/761/png-clipart-login-computer-icons-avatar-icon-monochrome-black-thumbnail.png' }}
           style={styles.profileImage}
         />
 
