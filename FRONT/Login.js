@@ -10,7 +10,9 @@ const LoginScreen = () => {
   const VerificarLogin =()=>{
     if(email==='usuario@exemplo.com' && password==='123456'){
       console.log('Login Bem Sucedido!!');
+
       console.log('Email:', email);
+      
       console.log('Password:', password);
     }else{
       Alert.alert('Senha e/ou Email errado.')
