@@ -1,5 +1,5 @@
 header {
-    background-color: aliceblue;
+    background-color: rgb(255, 255, 255);
     /* display: flex; */
     padding: 20px;
     margin-bottom: 10px;
@@ -7,11 +7,45 @@ header {
 }
 
 animation-container{ 
-    color: black;
+    color: rgb(255, 255, 255);
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 50px;
     text-align: center;
 }
+
+.rotulo {
+    background-color: black;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+  }
+  
+  .texto .rotulo .transicao {
+    background-color: transparent;
+  }
+
+  .logo2 {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    }
+  .logo2 {   /* logo do MyAuto*/
+    background-image: url("../img/MY\ AUT.png");
+    min-height: 100%;
+  }
+
+  .secao {
+    text-align: center;
+    padding: 20px 60px;
+  }
+  
+  .secao2 {
+    background-color: aqua;
+    color: black;
+  
+  }
+  
 
 /* Parte do Header (animação) */
 

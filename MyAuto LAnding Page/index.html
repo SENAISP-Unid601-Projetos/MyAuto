@@ -8,62 +8,97 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Notificação de Serviços</title>
 </head>
+<style>
+    /* Definindo a animação de fade-in */
+    @keyframes fadeIn {
+        from {
+            opacity: 0; /* Começa com opacidade 0 */
+        }
+        to {
+            opacity: 1; /* Termina com opacidade 1 */
+        }
+    }
+
+    /* Aplicando a animação de fade-in à imagem */
+    .logo2 {
+        opacity: 0; /* Começa com opacidade 0 */
+        animation: fadeIn 1s ease-in-out forwards; /* Aplica a animação durante 1 segundo */
+    }
+</style>
 <body>
     <header>
-    <div class="animation-container" id="text"></div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const animationElement = document.getElementById('text');
-            let currentIndex = 0;
-            let intervalId;
-            const texts = [ "MyAuto", "O grupo TechLine Apresenta...." ];
-            let currentTextIndex = 0;
+        <div class="animation-container" id="text">
+            <span class="rotulo transicao"></span>
+        </div>
+        <img src="img/MY AUT.png" alt="Sua Imagem" class="logo2" style="max-width: 100%; height: auto; display: none;">
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const animationElement = document.querySelector('.rotulo');
+                let currentIndex = 0;
+                let intervalId;
+                const texts = [ "O grupo TechLine Apresenta...."];
+                let currentTextIndex = 0;
 
-            // Função para mostrar uma letra de cada vez
-            function showNextLetter(text) {
-                if (currentIndex < text.length) {
-                    animationElement.textContent += text[currentIndex];
-                    currentIndex++;
-                } else {
-                    clearInterval(intervalId);
-                    // Espera 1 segundo antes de chamar a função para desaparecer o texto
-                    setTimeout(function() {
-                        currentIndex = 0;
-                        intervalId = setInterval(function() {
-                            if (currentIndex <= text.length) {
-                                animationElement.textContent = text.substring(0, text.length - currentIndex);
-                                currentIndex++;
-                            } else {
-                                clearInterval(intervalId);
-                                // Chama a função para mostrar o próximo texto
-                                showNextText();
-                            }
-                        }, 50); // Tempo de aparição das letras
-                    }, 1000);
+                // Função para mostrar uma letra de cada vez
+                function showNextLetter(text) {
+                    if (currentIndex < text.length) {
+                        animationElement.textContent += text[currentIndex];
+                        currentIndex++;
+                    } else {
+                        clearInterval(intervalId);
+                        // Espera 1 segundo antes de chamar a função para desaparecer o texto e mostrar a imagem
+                        setTimeout(function() {
+                            currentIndex = 0;
+                            animationElement.textContent = ''; // Limpa o texto
+                            const img = document.querySelector('.logo2');
+                            img.style.display = 'block'; // Mostra a imagem
+                            animateImage(); // Anima a imagem
+                            // Reinicia o ciclo após um intervalo de tempo
+                            setTimeout(function() {
+                                img.style.display = 'none'; // Esconde a imagem
+                                showNextText(); // Chama a função para mostrar o próximo texto
+                            }, 3000); // Tempo de exibição da imagem antes de reiniciar o ciclo (em milissegundos)
+                        }, 1000);
+                    }
                 }
-            }
 
-            // Função para exibir o próximo texto
-            function showNextText() {
-                currentIndex = 0;
-                currentTextIndex = (currentTextIndex + 1) % texts.length; // Avança para o próximo texto
-                const currentText = texts[currentTextIndex];
-                intervalId = setInterval(function() {
-                    showNextLetter(currentText);
-                }, 200);
-            }
+                // Função para exibir o próximo texto
+                function showNextText() {
+                    currentIndex = 0;
+                    currentTextIndex = (currentTextIndex + 1) % texts.length; // Avança para o próximo texto
+                    const currentText = texts[currentTextIndex];
+                    intervalId = setInterval(function() {
+                        showNextLetter(currentText);
+                    }, 200);
+                }
 
-            // Inicia a animação
-            showNextText();
-        });
-    </script>
+                // Função para animar a imagem
+                function animateImage() {
+                    const img = document.querySelector('.logo2');
+                    img.style.opacity = 0; // Reinicia a opacidade da imagem
+                    let opacity = 0;
+                    const interval = setInterval(function() {
+                        opacity += 0.1; // Aumenta a opacidade gradualmente
+                        img.style.opacity = opacity;
+                        if (opacity >= 1) {
+                            clearInterval(interval); // Termina a animação quando a opacidade atinge 1
+                        }
+                    }, 100); // Intervalo de atualização da opacidade (em milissegundos)
+                }
+
+                // Inicia a animação
+                showNextText();
+            });
+        </script>
     </header>
+    
+    
 
 
 
 
 
-    <nav>
+    <!-- <nav>
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 welcome-text">
@@ -75,7 +110,7 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
 <div>
 </div>
