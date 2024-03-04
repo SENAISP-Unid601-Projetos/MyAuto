@@ -35,6 +35,9 @@ public class UsuarioController {
         if (usuarioExistente != null) {
             usuarioExistente.setNome(usuarioAtualizado.getNome());
             usuarioExistente.setEmail(usuarioAtualizado.getEmail());
+            usuarioExistente.setCpf(usuarioAtualizado.getCpf());
+            usuarioExistente.setDataDeNacimento(usuarioAtualizado.getDataDeNacimento());
+            usuarioExistente.setSexo(usuarioAtualizado.getSexo());
             return usuarioRepository.save(usuarioExistente);
         } else {
             return null; // Tratar caso o
