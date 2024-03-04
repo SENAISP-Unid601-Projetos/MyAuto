@@ -1,5 +1,7 @@
 package com.senai.auth.entities;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,11 +13,16 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    
     private String nome;
+    private String cpf;
     private String email;
-    private Integer cpf;
-    private String dataDeNacimento;
+    private Date dataDeNascimento;//Informações do usuario
     private String sexo;
+  
+
+    
+    
 
     public Long getId() {
         return id;
@@ -40,28 +47,31 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    public Integer getCpf() {
-    	return cpf;
-    }
-    
-    public void setCpf(Integer cpf) {
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public Date getDataDeNascimento() {
+		return dataDeNascimento;
+	}
+
+	public void setDataDeNascimento(Date dataDeNascimento) {
+		this.dataDeNascimento = dataDeNascimento;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
     
-    public String getDataDeNacimento() {
-    	return dataDeNacimento;
-    }
     
-    public void setDataDeNacimento(String dataDeNacimento) {
-		this.dataDeNacimento = dataDeNacimento;
-	}
     
-    public String getSexo(){
-    	return sexo;
-    }
-    
-    public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
 }
