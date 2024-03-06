@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyAuto Oficinas</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+}
+
+nav ul li a:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #007bff;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+.barra-pesquisa {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.barra-pesquisa input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.barra-pesquisa button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.barra-pesquisa button:hover {
+    background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>MyAuto Oficinas</h1>
+</header>
+<div class="container">
+    <nav>
+        <ul>
+            <li><a href="#">Clientes</a></li>
+            <li><a href="#">Agendamentos</a></li>
+            <li><a href="#">Histórico de Serviços</a></li>
+            <li><a href="#">Informações da Oficina</a></li>
+        </ul>
+    </nav>
+    <div class="barra-pesquisa">
+        <input type="text" placeholder="Pesquisar cliente...">
+        <button type="submit">Pesquisar</button>
+    </div>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Placa do Veículo</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th>CPF</th>
+        </tr>
+        <!-- Os dados dos clientes seriam inseridos aqui -->
+    </table>
+</div>
+</body>
+</html>
