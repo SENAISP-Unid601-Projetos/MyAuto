@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Modal } from 'react-native';
+import CadastroScreen from './Cadastro.js';
 
 const LoginScreen = () => {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [cadastroVisible, setCadastro] = useState(false);
 
   const VerificarLogin =()=>{
     if(email==='usuario@exemplo.com' && password==='123456'){
@@ -17,11 +18,8 @@ const LoginScreen = () => {
     }else{
       Alert.alert('Senha e/ou Email errado.')
     };
-  }
-
-  const criarConta = () =>{
-    console.log('Redirecionar para a tela de criação de conta');
-  }
+  };
+  
 
   return (
     <View style={styles.container}>
@@ -43,10 +41,18 @@ const LoginScreen = () => {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={criarConta}>
+      <TouchableOpacity onPress={()=> setCadastro(true)} style={styles.button}>
         <Text style={styles.buttonText}>Criar uma conta</Text>
       </TouchableOpacity>
 
+      <Modal
+       animationType="slide"
+       transparent={true}
+       visible={cadastroVisible}
+       onRequestClose={()=> setCadastro(false)}
+      >
+        <CadastroScreen closeModal={()=> setCadastro(false)}/>
+      </Modal>
     </View>
   );
 };
