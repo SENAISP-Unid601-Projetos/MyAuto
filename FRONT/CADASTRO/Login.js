@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Modal } from 'react-native';
-import CadastroScreen from './Cadastro.js';
+import Cadastro from './Cadastro.js';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [senha, setPassword] = useState('');
 
   const [cadastroVisible, setCadastro] = useState(false);
 
   const VerificarLogin =()=>{
-    if(email==='usuario@exemplo.com' && password==='123456'){
+    if(email==='usuario@exemplo.com' && senha==='123456'){
       console.log('Login Bem Sucedido!!');
 
       console.log('Email:', email);
       
-      console.log('Password:', password);
+      console.log('Password:', senha);
     }else{
       Alert.alert('Senha e/ou Email errado.')
     };
@@ -34,7 +34,7 @@ const LoginScreen = () => {
         style={styles.input}
         placeholder="Password"
         onChangeText={text => setPassword(text)}
-        value={password}
+        value={senha}
         secureTextEntry={true}
       />
       <TouchableOpacity style={styles.button} onPress={VerificarLogin}>
@@ -51,7 +51,7 @@ const LoginScreen = () => {
        visible={cadastroVisible}
        onRequestClose={()=> setCadastro(false)}
       >
-        <CadastroScreen closeModal={()=> setCadastro(false)}/>
+        <Cadastro closeModal={()=> setCadastro(false)}/>
       </Modal>
     </View>
   );

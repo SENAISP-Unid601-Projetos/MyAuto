@@ -1,75 +1,150 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, AsyncStorage } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-const CadastroScreen = ({ navigation }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const Cadastro = () => {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [nome, setNome] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [dataDeNascimento, setDataDeNascimento] = useState('');
+  const [sexo, setSexo] = useState('');
+  const [erro, setErro] = useState('');
 
-  const handleCadastro = async () => {
-    try {
-      await AsyncStorage.setItem('username', username);
-      await AsyncStorage.setItem('password', password);
-      navigation.navigate('Login');
-    } catch (error) {
-      console.error('Erro ao salvar os dados:', error);
+  const Criar = () => {
+    setErro('');
+
+    if (!email || senha == 0) {
+      setErro('Senha ou Email estão incorretos.');
+      return;
     }
-  };
 
-  return (
-    <View>
-      <TextInput
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
-      />
-      <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      <Button title="Cadastrar" onPress={handleCadastro} />
-    </View>
-  );
-};
-
-const LoginScreen = ({ navigation }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = async () => {
-    try {
-      const savedUsername = await AsyncStorage.getItem('username');
-      const savedPassword = await AsyncStorage.getItem('password');
-      
-      if (username === savedUsername && password === savedPassword) {
-        // Autenticação bem-sucedida, navegue para a próxima tela
-        navigation.navigate('Home');
-      } else {
-        alert('Credenciais inválidas');
+    const data = {
+      "nome": nome,
+      "email": email,
+      "senha": senha,
+      "cpf": cpf,
+      "dataDeNascimento": dataDeNascimento,
+      "sexo": sexo
+    };
+    
+    fetch('http://10.110.12.3:8080/api/usuarios', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro ao tentar criar usuário');
       }
-    } catch (error) {
-      console.error('Erro ao recuperar os dados:', error);
-    }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Usuário criado com sucesso:', data);
+    })
+    .catch(error => {
+      console.error('Ocorreu um erro ao tentar criar usuário:', error);
+    });
+    
   };
 
   return (
-    <View>
+    <View style={styles.container}>
+       <Text style={styles.label}>Digite o EMAIL:</Text>
       <TextInput
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
+        style={styles.input}
+        placeholder="EMAIL"
+        keyboardType="email-address"
+        value={email}
+        onChangeText={setEmail}
       />
+
+      <Text style={styles.label}>Digite o NOME:</Text>
       <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
+        style={styles.input}
+        placeholder="NOME"
+        keyboardType="email-address"
+        value={nome}
+        onChangeText={setNome}
       />
-      <Button title="Login" onPress={handleLogin} />
+
+       <Text style={styles.label}>Digite o CPF:</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="CPF"
+        keyboardType="numeric"
+        maxLength={8}
+        value={cpf}
+        onChangeText={setCpf} 
+      />
+
+       <Text style={styles.label}>Digite a DATA DE NASCIMENTO:</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="DATA DE NASCIMENTO"
+        keyboardType=""
+        value={dataDeNascimento}
+        onChangeText={setDataDeNascimento} 
+      />
+
+        <Text style={styles.label}>Digite o SEXO:</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="SEXO"
+        keyboardType="email-address"
+        value={sexo}
+        onChangeText={setSexo} 
+      />
+
+
+      <Text style={styles.label}>Digite a SENHA:</Text>
+      <TextInput
+      style={styles.input}
+      placeholder='SENHA'
+      keyboardType='visible-password'
+      value={senha}
+      onChangeText={setSenha}
+      />
+      <Button title="Criar Conta" onPress={Criar} />
+
+      {erro !== '' && <Text style={styles.error}>{erro}</Text>}
     </View>
   );
 };
 
-export default CadastroScreen; LoginScreen;
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  input: {
+    height: 40,
+    width: '100%',
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
+  resultContainer: {
+    marginTop: 20,
+  },
+  resultLabel: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  error: {
+    color: 'red',
+    marginTop: 10,
+  },
+});
 
+export default Cadastro;
