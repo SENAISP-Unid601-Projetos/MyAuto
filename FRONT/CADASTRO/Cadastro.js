@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput,Button, StyleSheet } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+
 
 const Cadastro = () => {
   const [email, setEmail] = useState('');
@@ -89,22 +91,26 @@ const Cadastro = () => {
       />
 
         <Text style={styles.label}>Digite o SEXO:</Text>
-      <TextInput
+        <Picker
+        selectedValue={sexo}
         style={styles.input}
-        placeholder="SEXO"
-        keyboardType="email-address"
-        value={sexo}
-        onChangeText={setSexo} 
-      />
+        onValueChange={(itemValue) => setSexo(itemValue)}
+      >
+        <Picker.Item label="Homem" value="Homem" keyboardType=""/>
+        <Picker.Item label="Mulher" value="Mulher" keyboardType="" />
+        <Picker.Item label="Prefiro Não Opinar" value="Prefiro Não Opinar" keyboardType="" />
+      </Picker>
+    
 
 
       <Text style={styles.label}>Digite a SENHA:</Text>
       <TextInput
       style={styles.input}
       placeholder='SENHA'
-      keyboardType='visible-password'
+      keyboardType=""
       value={senha}
       onChangeText={setSenha}
+      secureTextEntry={true}
       />
       <Button title="Criar Conta" onPress={Criar} />
 
