@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { View, Text, Button, Image, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Agendamento from './Agendamento.js';
-import LoginScreen from './Login.js';
+import LoginScreen from './CADASTRO/Login.js';
 
 const HomeScreen = () => {
   const [agendamentoVisible, setAgendamentoVisible] = useState(false);

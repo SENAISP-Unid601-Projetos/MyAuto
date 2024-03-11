@@ -17,6 +17,7 @@ public class Usuario {
     private String nome;
     private String cpf;
     private String email;
+    private String senha;
     private Date dataDeNascimento;//Informações do usuario
     private String sexo;
   
@@ -70,6 +71,14 @@ public class Usuario {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
     
     

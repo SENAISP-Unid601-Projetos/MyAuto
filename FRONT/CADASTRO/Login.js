@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Modal } from 'react-native';
+import Cadastro from './Cadastro.js';
 
 const LoginScreen = () => {
-
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [senha, setPassword] = useState('');
 
+  const [cadastroVisible, setCadastro] = useState(false);
 
   const VerificarLogin =()=>{
-    if(email==='usuario@exemplo.com' && password==='123456'){
+    if(email==='usuario@exemplo.com' && senha==='123456'){
       console.log('Login Bem Sucedido!!');
 
       console.log('Email:', email);
       
-      console.log('Password:', password);
+      console.log('Password:', senha);
     }else{
       Alert.alert('Senha e/ou Email errado.')
     };
-  }
-
-  const criarConta = () =>{
-    console.log('Redirecionar para a tela de criação de conta');
-  }
+  };
+  
 
   return (
     <View style={styles.container}>
@@ -36,17 +34,25 @@ const LoginScreen = () => {
         style={styles.input}
         placeholder="Password"
         onChangeText={text => setPassword(text)}
-        value={password}
+        value={senha}
         secureTextEntry={true}
       />
       <TouchableOpacity style={styles.button} onPress={VerificarLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={criarConta}>
+      <TouchableOpacity onPress={()=> setCadastro(true)} style={styles.button}>
         <Text style={styles.buttonText}>Criar uma conta</Text>
       </TouchableOpacity>
 
+      <Modal
+       animationType="slide"
+       transparent={true}
+       visible={cadastroVisible}
+       onRequestClose={()=> setCadastro(false)}
+      >
+        <Cadastro closeModal={()=> setCadastro(false)}/>
+      </Modal>
     </View>
   );
 };
