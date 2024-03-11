@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyAuto Oficinas</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    display: flex;
+}
+
+.horarios {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.agendamento {
+    flex: 1;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.agendamento form {
+    margin-bottom: 20px;
+}
+
+.agendamento label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.agendamento input[type="text"],
+.agendamento textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.agendamento button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.agendamento button:hover {
+    background-color: #0056b3;
+}
+
+.btn-horario.disabled {
+    background-color: #007bff;
+    cursor: not-allowed;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>MyAuto Oficinas</h1>
+</header>
+<div class="container">
+    <div class="horarios">
+        <h2>Horários Disponíveis</h2>
+        <div id="horarios-list"></div>
+    </div>
+    <div class="agendamento">
+        <h2>Novo Agendamento</h2>
+        <form>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome"><br>
+            <label for="veiculo">Veículo:</label>
+            <input type="text" id="veiculo" name="veiculo"><br>
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca"><br>
+            <label for="cor">Cor:</label>
+            <input type="text" id="cor" name="cor"><br>
+            <label for="ano">Ano:</label>
+            <input type="text" id="ano" name="ano"><br>
+            <label for="objetivo">Objetivo do Agendamento:</label><br>
+            <textarea id="objetivo" name="objetivo" rows="4" cols="50"></textarea><br>
+            <button type="button" id="btn-agendar">Agendar</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var horarios = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
+    var horariosList = document.getElementById("horarios-list");
+
+    horarios.forEach(function(horario) {
+        var btn = document.createElement("button");
+        btn.textContent = horario;
+        btn.className = "btn-horario";
+        btn.addEventListener("click", function() {
+            if (!btn.classList.contains("disabled")) {
+                btn.classList.add("disabled");
+                btn.disabled = true;
+                btn.style.backgroundColor = '#007bff'; // Voltando a cor para azul
+            }
+        });
+        horariosList.appendChild(btn);
+        horariosList.appendChild(document.createElement("br"));
+    });
+
+    document.getElementById("btn-agendar").addEventListener("click", function() {
+        var nome = document.getElementById("nome").value;
+        var veiculo = document.getElementById("veiculo").value;
+        var marca = document.getElementById("marca").value;
+        var cor = document.getElementById("cor").value;
+        var ano = document.getElementById("ano").value;
+        var objetivo = document.getElementById("objetivo").value;
+
+        // Aqui você pode adicionar a lógica para agendar o horário com os dados acima
+        alert("Horário agendado para " + nome + "!");
+    });
+});
+</script>
+
+</body>
+</html>
