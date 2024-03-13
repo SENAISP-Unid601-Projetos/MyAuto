@@ -7,10 +7,29 @@ const Cadastro = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [nome, setNome] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [dataDeNascimento, setDataDeNascimento] = useState('');
+  const [cpf, setCpf] = useState(''); 
+  const [dia, setDia] = useState('');
+  const [mes, setMes] = useState('');
+  const [ano, setAno] = useState('');
+  //const [dataDeNascimento, setDataDeNascimento] = useState('');
   const [sexo, setSexo] = useState('');
   const [erro, setErro] = useState('');
+
+  const formatarDataDeNascimento = (dia, mes, ano) => {
+    return `${ano}-${mes}-${dia}`;
+  };
+
+  const validarData = (dia, mes, ano) => {
+    const dataRegex = /^(0?[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[012])[/](19\d{2}|20[01]\d|202[0-4])$/;
+  
+    if (dataRegex.test(`${dia}/${mes}/${ano}`)) {
+      return 'Data de nascimento inválida.';
+    } else {
+      return '';
+    }
+  };
+  
+  
 
   const Criar = () => {
     setErro('');
@@ -20,21 +39,34 @@ const Cadastro = () => {
       return;
     }
 
-    const data = {
+    validarData();
+
+    if (erro) {
+      return;
+    }
+
+    const formattedDate = formatarDataDeNascimento(dia,mes,ano);
+
+   // console.log(formattedDate);
+
+    const dados = {
       "nome": nome,
       "email": email,
       "senha": senha,
       "cpf": cpf,
-      "dataDeNascimento": dataDeNascimento,
+      "dataDeNascimento": formattedDate,
       "sexo": sexo
     };
+
+    //console.log(dados);
+
     
     fetch('http://10.110.12.3:8080/api/usuarios', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(dados)
     })
     .then(response => {
       if (!response.ok) {
@@ -42,8 +74,8 @@ const Cadastro = () => {
       }
       return response.json();
     })
-    .then(data => {
-      console.log('Usuário criado com sucesso:', data);
+    .then(dados => {
+      console.log('Usuário criado com sucesso:', dados);
     })
     .catch(error => {
       console.error('Ocorreu um erro ao tentar criar usuário:', error);
@@ -81,17 +113,39 @@ const Cadastro = () => {
         onChangeText={setCpf} 
       />
 
-       <Text style={styles.label}>Digite a DATA DE NASCIMENTO:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="DATA DE NASCIMENTO"
-        keyboardType=""
-        value={dataDeNascimento}
-        onChangeText={setDataDeNascimento} 
-      />
+      <Text style={styles.label}>DATA DE NASCIMENTO:</Text>
+      <View style={styles.dataNascimentoInput}>
+        <TextInput
+          style={[styles.input, { width: '30%' }]}
+          placeholder="DD"
+          keyboardType="numeric"
+          maxLength={2}
+          value={dia}
+          onChangeText={setDia}
+        />
+        <Text style={{ paddingHorizontal: 5 }}>/</Text>
+        <TextInput
+          style={[styles.input, { width: '30%' }]}
+          placeholder="MM"
+          keyboardType="numeric"
+          maxLength={2}
+          value={mes}
+          onChangeText={setMes}
+        />
+        <Text style={{ paddingHorizontal: 5 }}>/</Text>
+        <TextInput
+          style={[styles.input, { width: '40%' }]}
+          placeholder="AAAA"
+          keyboardType="numeric"
+          maxLength={4}
+          value={ano}
+          onChangeText={setAno}
+        />
+      </View>
 
         <Text style={styles.label}>Digite o SEXO:</Text>
         <Picker
+        keyboardType=""
         selectedValue={sexo}
         style={styles.input}
         onValueChange={(itemValue) => setSexo(itemValue)}
@@ -141,6 +195,11 @@ const styles = StyleSheet.create({
   },
   resultContainer: {
     marginTop: 20,
+  },
+  dataNascimentoInput: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
   },
   resultLabel: {
     fontSize: 18,
