@@ -150,6 +150,7 @@ const Cadastro = () => {
         style={styles.input}
         onValueChange={(itemValue) => setSexo(itemValue)}
       >
+        <Picker.Item label='' value=''/>
         <Picker.Item label="Homem" value="Homem" keyboardType=""/>
         <Picker.Item label="Mulher" value="Mulher" keyboardType="" />
         <Picker.Item label="Prefiro Não Opinar" value="Prefiro Não Opinar" keyboardType="" />
