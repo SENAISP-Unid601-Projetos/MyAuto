@@ -11,20 +11,21 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Retângulo roxo como cabeçalho */}
+      {/*Cabeçalho */}
       <View style={styles.headerContainer}>
         <Image
-          source={{ uri: 'URL_DO_LOGO' }} // Insira a URL da imagem do logo aqui
+          source={{ uri: "https://github.com/SSancaSH-Projetos/MyAuto/blob/main/MY%20AUT.png?raw=true" }}
           style={styles.logo}
         />
-        <Text style={styles.headerText}>Bem-vindo ao MyAuto</Text>
       </View>
 
       {/* Foto de perfil e botão Perfil */}
       <View style={styles.profileContainer}>
         <View style= {styles.botaoImagemLogin}>
         <Image
-          source={{ uri: 'https://e7.pngegg.com/pngimages/505/761/png-clipart-login-computer-icons-avatar-icon-monochrome-black-thumbnail.png' }}
+          source={{ 
+            uri: 'https://e7.pngegg.com/pngimages/505/761/png-clipart-login-computer-icons-avatar-icon-monochrome-black-thumbnail.png' 
+          }}
           style={styles.profileImage}
         />
         <View style={styles.buttonWithIcon}>
@@ -114,9 +115,10 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   logo: {
-    width: 100, // Ajuste conforme necessário
-    height: 100, // Ajuste conforme necessário
-    marginBottom: 10,
+    width: 120, // Ajuste conforme necessário
+    height: 120, // Ajuste conforme necessário
+    //marginBottom: 30,
+    marginTop: 20
   },
   alinhaBotao: {
     flexDirection:'row' ,
@@ -124,11 +126,11 @@ const styles = StyleSheet.create({
     //alignSelf:"stretch"
   },
   profileContainer: {
-    //paddingLeft: -50,
-    alignItems:'flex-start',
+    //paddingLeft: 50,
+    //alignItems:'flex-start',
     position: 'absolute',
-    top: 36, // Aumentei a distância para o conteúdo central
-    right: 16,
+    top: 40, // Aumentei a distância para o conteúdo central
+    left: 16,
   },
   profileImage: {
     width: 50,
@@ -143,7 +145,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   buttonRodape:{
-    backgroundColor: "white",
+    backgroundColor: "#f3eeea",
     borderWidth: 1,
     alignItems: 'center',
     marginBottom: 10,
