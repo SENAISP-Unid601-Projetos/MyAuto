@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="animation-container" id="text"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const animationElement = document.getElementById('text');
+                const text = "TechLine Apresenta...";
+                let currentIndex = 0;
+                let intervalId;
+    
+                // Função para mostrar uma letra de cada vez
+                function showNextLetter() {
+                    if (currentIndex < text.length) {
+                        animationElement.textContent += text[currentIndex];
+                        currentIndex++;
+                    } else {
+                        clearInterval(intervalId);
+                    }
+                }
+    
+                // Inicia a animação
+                intervalId = setInterval(showNextLetter, 200);
+            });
+        </script>
+        <div class="logo-container">
+            <img src="img/MyAuto.jpg" alt="Sua Imagem" class="logo2">
+            <div id="qrcode-container">
+                <div id="qrcode-container">
+                    <h3>Acesse o QR Code para mais informações do Projeto!!</h3>
+                    <br>
+                    <br>
+                    <div id="qrcode"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+</body>
+<div class="textoFixa">
+    MyAuto <br> Facilidade que impressiona!!
+    <br>
+</div>
+
+<div class="content">
+    <div class="slides">
+        <input type="radio" name="radio" id="slide1" checked>
+        <input type="radio" name="radio" id="slide2">
+        <input type="radio" name="radio" id="slide3">
+        <input type="radio" name="radio" id="slide4">
+        <input type="radio" name="radio" id="slide5">
+
+        <div class="slide s1">
+            <img src="img/inicial.jpg" alt="paisagem medieval com montanhas">
+        </div>
+        <div class="slide">
+            <img src="img/agendamento.jpg" alt="jpg fantasia com arvores roxas">
+        </div>
+        <div class="slide">
+            <img src="img/Notifica.jpg" alt="capa do jogo cities skylines">
+        </div>
+    </div>
+
+    <div class="navigation">
+        <label class="bar" for="slide1"></label>
+        <label class="bar" for="slide2"></label>
+        <label class="bar" for="slide3"></label>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "https://ssancash-projetos.github.io/MyAuto/MyAuto%20LAnding%20Page/",
+            width: 250,
+            height: 250
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            var logo = document.querySelector('.logo2');
+            logo.style.opacity = '1';
+            logo.style.animation = 'fadeInLogo 6s ease-in-out forwards';
+        });
+    </script>
+    <br>
+
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2>Sua segurança em primeiro lugar!</h2>
+            <div class="video-container">
+                <video width="640" height="360" controls>
+                    <source src="img/VideoAcidente.mp4" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="final">
+        Grupo TechLine Agradece pela sua atenção!
+
+    </div>
+</footer>
+
+</html>
