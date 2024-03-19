@@ -98,7 +98,7 @@ const Cadastro = () => {
       <TextInput
         style={styles.input}
         placeholder="NOME"
-        keyboardType="email-address"
+        keyboardType="name-phone-pad"
         value={nome}
         onChangeText={setNome}
       />
@@ -145,15 +145,14 @@ const Cadastro = () => {
 
         <Text style={styles.label}>Digite o SEXO:</Text>
         <Picker
-        keyboardType=""
         selectedValue={sexo}
         style={styles.input}
         onValueChange={(itemValue) => setSexo(itemValue)}
       >
         <Picker.Item label='' value=''/>
-        <Picker.Item label="Homem" value="Homem" keyboardType=""/>
-        <Picker.Item label="Mulher" value="Mulher" keyboardType="" />
-        <Picker.Item label="Prefiro Não Opinar" value="Prefiro Não Opinar" keyboardType="" />
+        <Picker.Item label="Homem" value="Homem"/>
+        <Picker.Item label="Mulher" value="Mulher" />
+        <Picker.Item label="Prefiro Não Opinar" value="Prefiro Não Opinar"/>
       </Picker>
     
 
@@ -162,7 +161,6 @@ const Cadastro = () => {
       <TextInput
       style={styles.input}
       placeholder='SENHA'
-      keyboardType=""
       value={senha}
       onChangeText={setSenha}
       secureTextEntry={true}

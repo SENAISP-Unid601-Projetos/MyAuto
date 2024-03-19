@@ -3,21 +3,21 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Modal} from 'react-nat
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Agendamento from './Agendamento.js';
 import LoginScreen from './CADASTRO/Login.js';
+import CadastroCarroScreen from './CADASTRO/CadastroCarro.js'
 
 const HomeScreen = () => {
   const [agendamentoVisible, setAgendamentoVisible] = useState(false);
-  
+  const [carroVisible, setCarroVisible] = useState(false);
   const [loginVisible, setLoginVisible] = useState(true);
 
   return (
     <View style={styles.container}>
-      {/* Retângulo roxo como cabeçalho */}
+      {/*Cabeçalho */}
       <View style={styles.headerContainer}>
         <Image
-          source={{ uri: 'URL_DO_LOGO' }} // Insira a URL da imagem do logo aqui
+          source={{ uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true' }}
           style={styles.logo}
         />
-        <Text style={styles.headerText}>Bem-vindo ao MyAuto</Text>
       </View>
 
       {/* Foto de perfil e botão Perfil */}
@@ -44,6 +44,10 @@ const HomeScreen = () => {
 
       {/* Retângulo roxo como rodapé */}
       <View style={styles.footerContainer}>
+
+      <View style={styles.cadastroCarro}>
+        <Icon style={styles.icon} name='plus' size={30} color='white' onPress={()=> setCarroVisible(true)} />
+      </View>
               {/* Botão Agendar */}
       
 
@@ -87,6 +91,15 @@ const HomeScreen = () => {
       >
         <LoginScreen closeModal={() => setLoginVisible(false)} />
       </Modal>
+
+      <Modal
+      animationType="slide"
+      transparent={true}
+      visible={carroVisible}
+      onRequestClose={()=> setCarroVisible(false)}
+      >
+        <CadastroCarroScreen closeModal={()=> setCarroVisible(false)}/>
+      </Modal>
     </View>
   );
 };
@@ -101,22 +114,23 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     backgroundColor: '#0A0226',
-    //borderWidth: 4,
-    //padding: 10,
+    //borderWidth: 6,
+    padding: 10,
     width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 10,
+    //justifyContent: 'center',
+    //marginBottom: 14,
   },
-  headerText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
-  },
+  //headerText: {
+   // fontSize: 18,
+   // fontWeight: 'bold',
+    //color: 'white',
+ // },
   logo: {
+    marginTop: 13,
     width: 100, // Ajuste conforme necessário
     height: 100, // Ajuste conforme necessário
-    marginBottom: 10,
+    //marginBottom: 10,
   },
   alinhaBotao: {
     flexDirection:'row' ,
@@ -152,6 +166,11 @@ const styles = StyleSheet.create({
   icon: {
     margin: 10,
   },
+  cadastroCarro:{
+    position: 'relative',
+    backgroundColor : 'black',
+    borderRadius: 100
+  },
   botaologin:{
     backgroundColor: '#2196f3',
     alignItems: 'center',
@@ -177,7 +196,7 @@ const styles = StyleSheet.create({
   footerContainer: {
     backgroundColor: 'black',
     width: '100%',
-    position: 'relative',
+    //position: 'relative',
     alignItems: 'center',
   },
   footerText: {
