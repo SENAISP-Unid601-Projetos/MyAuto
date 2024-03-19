@@ -3,11 +3,21 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Modal} from 'react-nat
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Agendamento from './Agendamento.js';
 import LoginScreen from './CADASTRO/Login.js';
+import Notificacao from './TelaDeNotificacao.js';
 
 const HomeScreen = () => {
   const [agendamentoVisible, setAgendamentoVisible] = useState(false);
   
   const [loginVisible, setLoginVisible] = useState(true);
+  const [notificacaoVisible, setNotificacaoVisible] = useState(false); // Estado para controlar a visibilidade da tela de notificações
+
+  const abrirNotificacoes = () => {
+    setNotificacaoVisible(true);
+  };
+
+  const fecharNotificacoes = () => {
+    setNotificacaoVisible(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -58,7 +68,7 @@ const HomeScreen = () => {
       </View>
         {/* Botão Notificações */}
         <View style={styles.buttonRodape}>
-          <Icon name="bell" size={30} color="black" style={styles.icon} onPress={() => console.log('Botão Notificações pressionado')} />
+          <Icon name="bell" size={30} color="black" style={styles.icon} onPress={abrirNotificacoes} />
         </View>
 
         {/* Botão Relatórios */}
@@ -86,6 +96,14 @@ const HomeScreen = () => {
         onRequestClose={() => setLoginVisible(false)}
       >
         <LoginScreen closeModal={() => setLoginVisible(false)} />
+      </Modal>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={notificacaoVisible}
+        onRequestClose={fecharNotificacoes}
+      >
+        <Notificacao closeModal={fecharNotificacoes} />
       </Modal>
     </View>
   );
