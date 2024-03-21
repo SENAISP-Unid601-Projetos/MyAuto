@@ -3,18 +3,59 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Modal } fro
 import Cadastro from './Cadastro.js';
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState('');
-  const [senha, setPassword] = useState('');
-
+  const [confirmarEmail, setEmail] = useState('');
+  const [confirmarSenha, setPassword] = useState('');
   const [cadastroVisible, setCadastro] = useState(false);
+  const [erro, setErro] = useState('');
 
   const VerificarLogin =()=>{
-    if(email==='usuario@exemplo.com' && senha==='123456'){
+    setErro('');
+
+    if (!email || senha == 0) {
+      setErro('Senha ou Email estão incorretos.');
+      return;
+    }
+
+    validarData();
+
+    if (erro) {
+      return;
+    }
+
+    const dados = {
+      "email": email,
+      "senha": senha,
+    }
+  
+
+    fetch('http://10.110.12.3:8080/api/usuarios', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dados)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro ao tentar entar');
+      }
+      return response.json();
+    })
+    .then(dados => {
+      console.log('Usuário criado com sucesso:', dados);
+    })
+    .catch(error => {
+      console.error('Ocorreu um erro ao tentar criar usuário:', error);
+    });
+
+
+
+    if(confirmarEmail==email && confirmarSenha==senha){
       console.log('Login Bem Sucedido!!');
 
-      console.log('Email:', email);
+      console.log('Email:', confirmarEmail);
       
-      console.log('Password:', senha);
+      console.log('Password:', confirmarSenha);
     }else{
       Alert.alert('Senha e/ou Email errado.')
     };
@@ -28,13 +69,13 @@ const LoginScreen = () => {
         style={styles.input}
         placeholder="Email"
         onChangeText={text => setEmail(text)}
-        value={email}
+        value={confirmarEmail}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
         onChangeText={text => setPassword(text)}
-        value={senha}
+        value={confirmarSenha}
         secureTextEntry={true}
       />
       <TouchableOpacity style={styles.button} onPress={VerificarLogin}>
