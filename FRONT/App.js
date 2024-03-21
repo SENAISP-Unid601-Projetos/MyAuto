@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Modal} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Agendamento from './Agendamento.js';
 import LoginScreen from './CADASTRO/Login.js';
-import CadastroCarroScreen from './CADASTRO/CadastroCarro.js'
+import CadastroCarroScreen from './CADASTRO/CadastroCarro.js';
+
+import TelaDeNotificacao from './TelaDeNotificacao.js';
 
 const HomeScreen = () => {
   const [agendamentoVisible, setAgendamentoVisible] = useState(false);
   const [carroVisible, setCarroVisible] = useState(false);
   const [loginVisible, setLoginVisible] = useState(true);
+  const [notificationVisible, setNotificationVisible] = useState(false); // Novo estado para a tela de notificação
 
   return (
     <View style={styles.container}>
-      {/*Cabeçalho */}
+      {/* Cabeçalho */}
       <View style={styles.headerContainer}>
         <Image
           source={{ uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true' }}
@@ -22,55 +25,40 @@ const HomeScreen = () => {
 
       {/* Foto de perfil e botão Perfil */}
       <View style={styles.profileContainer}>
-        <View style= {styles.botaoImagemLogin}>
-        <Image
-          source={{ uri: 'https://e7.pngegg.com/pngimages/505/761/png-clipart-login-computer-icons-avatar-icon-monochrome-black-thumbnail.png' }}
-          style={styles.profileImage}
-        />
-        <View style={styles.buttonWithIcon}>
-
-      <TouchableOpacity onPress={() =>  setLoginVisible(true)}  style={styles.botaologin} >
-        <Text style={styles.ButtonText}>Login</Text>
-
-      </TouchableOpacity>
+        <View style={styles.botaoImagemLogin}>
+          <Image
+            source={{ uri: 'https://e7.pngegg.com/pngimages/505/761/png-clipart-login-computer-icons-avatar-icon-monochrome-black-thumbnail.png' }}
+            style={styles.profileImage}
+          />
+          <View style={styles.buttonWithIcon}>
+            <TouchableOpacity onPress={() => setLoginVisible(true)} style={styles.botaologin} >
+              <Text style={styles.ButtonText}>Login</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
-      </View>
-
-      </View>
-
-
-
-
 
       {/* Retângulo roxo como rodapé */}
       <View style={styles.footerContainer}>
-
-      <View style={styles.cadastroCarro}>
-        <Icon style={styles.icon} name='plus' size={30} color='white' onPress={()=> setCarroVisible(true)} />
-      </View>
-              {/* Botão Agendar */}
-      
-
-
-              {/* Restante dos botões */}
-      <View style={styles.alinhaBotao}>
-      
-      <View style={styles.buttonRodape}>
-      <Icon  style={styles.icon} name="calendar" size={30} color="black" onPress={() =>  setAgendamentoVisible(true)}
-      />
-
-      </View>
-        {/* Botão Notificações */}
-        <View style={styles.buttonRodape}>
-          <Icon name="bell" size={30} color="black" style={styles.icon} onPress={() => console.log('Botão Notificações pressionado')} />
+        <View style={styles.cadastroCarro}>
+          <Icon style={styles.icon} name='plus' size={30} color='white' onPress={() => setCarroVisible(true)} />
         </View>
 
-        {/* Botão Relatórios */}
-        <View style={styles.buttonRodape}>
-          <Icon name="car" size={30} color="black" style={styles.icon} onPress={() => console.log('Botão Informações pressionado')}/>
+        {/* Botão Agendar */}
+        {/* Restante dos botões */}
+        <View style={styles.alinhaBotao}>
+          <View style={styles.buttonRodape}>
+            <Icon style={styles.icon} name="calendar" size={30} color="black" onPress={() => setAgendamentoVisible(true)} />
+          </View>
+          {/* Botão Notificações */}
+          <View style={styles.buttonRodape}>
+            <Icon name="bell" size={30} color="black" style={styles.icon} onPress={() => setNotificationVisible(true)} />
+          </View>
+          {/* Botão Relatórios */}
+          <View style={styles.buttonRodape}>
+            <Icon name="car" size={30} color="black" style={styles.icon} onPress={() => console.log('Botão Informações pressionado')} />
+          </View>
         </View>
-      </View>
-
       </View>
 
       {/* Modal de Agendamento */}
@@ -83,6 +71,7 @@ const HomeScreen = () => {
         <Agendamento closeModal={() => setAgendamentoVisible(false)} />
       </Modal>
 
+      {/* Modal de Login */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -92,13 +81,24 @@ const HomeScreen = () => {
         <LoginScreen closeModal={() => setLoginVisible(false)} />
       </Modal>
 
+      {/* Modal de Cadastro de Carro */}
       <Modal
-      animationType="slide"
-      transparent={true}
-      visible={carroVisible}
-      onRequestClose={()=> setCarroVisible(false)}
+        animationType="slide"
+        transparent={true}
+        visible={carroVisible}
+        onRequestClose={() => setCarroVisible(false)}
       >
-        <CadastroCarroScreen closeModal={()=> setCarroVisible(false)}/>
+        <CadastroCarroScreen closeModal={() => setCarroVisible(false)} />
+      </Modal>
+
+      {/* Modal de Notificação */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={notificationVisible}
+        onRequestClose={() => setNotificationVisible(false)}
+      >
+        <TelaDeNotificacao closeModal={() => setNotificationVisible(false)} />
       </Modal>
     </View>
   );
