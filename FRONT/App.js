@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Agendamento from './Agendamento.js';
 import LoginScreen from './CADASTRO/Login.js';
 import CadastroCarroScreen from './CADASTRO/CadastroCarro.js';
-
 import TelaDeNotificacao from './TelaDeNotificacao.js';
 
 const HomeScreen = () => {

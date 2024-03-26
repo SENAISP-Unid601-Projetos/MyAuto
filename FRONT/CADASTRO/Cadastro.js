@@ -11,7 +11,6 @@ const Cadastro = () => {
   const [dia, setDia] = useState('');
   const [mes, setMes] = useState('');
   const [ano, setAno] = useState('');
-  //const [dataDeNascimento, setDataDeNascimento] = useState('');
   const [sexo, setSexo] = useState('');
   const [erro, setErro] = useState('');
 
@@ -46,8 +45,6 @@ const Cadastro = () => {
     }
 
     const formattedDate = formatarDataDeNascimento(dia,mes,ano);
-
-   // console.log(formattedDate);
 
     const dados = {
       "nome": nome,
