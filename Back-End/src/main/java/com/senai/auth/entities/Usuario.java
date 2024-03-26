@@ -2,6 +2,7 @@ package com.senai.auth.entities;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +17,10 @@ public class Usuario {
     
     private String nome;
     private String cpf;
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String senha;
     private Date dataDeNascimento;//Informações do usuario
     private String sexo;

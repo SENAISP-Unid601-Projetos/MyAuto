@@ -1,25 +1,46 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Modal } from 'react-native';
 import Cadastro from './Cadastro.js';
+import axios from 'axios';
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState('');
-  const [senha, setPassword] = useState('');
 
+  const [email] = useState('');
+  const [senha] = useState('');
+  const [logarEmail, setLogarEmail] = useState('');
+  const [logarSenha, setLogarSenha] = useState('');
   const [cadastroVisible, setCadastro] = useState(false);
+  const [erro, setErro] = useState('');
 
-  const VerificarLogin =()=>{
-    if(email==='usuario@exemplo.com' && senha==='123456'){
+  const VerificarLogin = async () => {
+    setErro('');
+
+    if (!logarEmail || !logarSenha) {
+      setErro('Senha ou Email estão incorretos.');
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://10.110.12.3:8080/api/usuarios/verificarDados', {
+        email: logarEmail,
+        senha: logarSenha
+      });
+
+      if (response.status !== 200) {
+        throw new Error('Erro ao tentar logar');
+      }
+
+      console.log('Logado:', response.data);
+
       console.log('Login Bem Sucedido!!');
+      console.log('Email:', logarEmail);
+      console.log('Senha:', logarSenha);
 
-      console.log('Email:', email);
-      
-      console.log('Password:', senha);
-    }else{
-      Alert.alert('Senha e/ou Email errado.')
-    };
+    } catch (error) {
+      console.error('Ocorreu um erro ao tentar logar:', error);
+      Alert.alert('Ocorreu um erro ao tentar logar:', error.message);
+    }
   };
-  
 
   return (
     <View style={styles.container}>
@@ -27,31 +48,31 @@ const LoginScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Email"
-        onChangeText={text => setEmail(text)}
-        value={email}
+        onChangeText={text => setLogarEmail(text)}
+        value={logarEmail}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
-        onChangeText={text => setPassword(text)}
-        value={senha}
+        onChangeText={text => setLogarSenha(text)}
+        value={logarSenha}
         secureTextEntry={true}
       />
       <TouchableOpacity style={styles.button} onPress={VerificarLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={()=> setCadastro(true)} style={styles.button}>
+      <TouchableOpacity onPress={() => { setCadastro(true) }} style={styles.button}>
         <Text style={styles.buttonText}>Criar uma conta</Text>
       </TouchableOpacity>
 
       <Modal
-       animationType="slide"
-       transparent={true}
-       visible={cadastroVisible}
-       onRequestClose={()=> setCadastro(false)}
+        animationType="slide"
+        transparent={true}
+        visible={cadastroVisible}
+        onRequestClose={() => setCadastro(false)}
       >
-        <Cadastro closeModal={()=> setCadastro(false)}/>
+        <Cadastro closeModal={() => setCadastro(false)} />
       </Modal>
     </View>
   );
