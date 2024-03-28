@@ -5,12 +5,12 @@ import axios from 'axios';
 
 const LoginScreen = () => {
 
-  const [email] = useState('');
-  const [senha] = useState('');
+  //const [email] = useState('');
+  //const [senha] = useState('');
   const [logarEmail, setLogarEmail] = useState('');
   const [logarSenha, setLogarSenha] = useState('');
   const [cadastroVisible, setCadastro] = useState(false);
-  const [erro, setErro] = useState('');
+  const [setErro] = useState('');
 
   const VerificarLogin = async () => {
     setErro('');
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 5,
+    marginTop: 8,
   },
   buttonText: {
     color: '#fff',

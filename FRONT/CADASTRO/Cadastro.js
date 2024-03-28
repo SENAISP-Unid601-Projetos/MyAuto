@@ -140,10 +140,10 @@ const Cadastro = () => {
         />
       </View>
 
-        <Text style={styles.label}>Digite o SEXO:</Text>
+        <Text style={styles.label}>QUAL É SEXO:</Text>
+        <View style={styles.input}>
         <Picker
         selectedValue={sexo}
-        style={styles.input}
         onValueChange={(itemValue) => setSexo(itemValue)}
       >
         <Picker.Item label='' value=''/>
@@ -151,7 +151,7 @@ const Cadastro = () => {
         <Picker.Item label="Mulher" value="Mulher" />
         <Picker.Item label="Prefiro Não Opinar" value="Prefiro Não Opinar"/>
       </Picker>
-    
+      </View>
 
 
       <Text style={styles.label}>Digite a SENHA:</Text>

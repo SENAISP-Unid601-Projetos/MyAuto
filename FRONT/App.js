@@ -39,9 +39,6 @@ const HomeScreen = () => {
 
       {/* Retângulo roxo como rodapé */}
       <View style={styles.footerContainer}>
-        <View style={styles.cadastroCarro}>
-          <Icon style={styles.icon} name='plus' size={30} color='white' onPress={() => setCarroVisible(true)} />
-        </View>
 
         {/* Botão Agendar */}
         {/* Restante dos botões */}
@@ -55,7 +52,7 @@ const HomeScreen = () => {
           </View>
           {/* Botão Relatórios */}
           <View style={styles.buttonRodape}>
-            <Icon name="car" size={30} color="black" style={styles.icon} onPress={() => console.log('Botão Informações pressionado')} />
+            <Icon name="car" size={30} color="black" style={styles.icon} onPress={() => setCarroVisible(true)} />
           </View>
         </View>
       </View>

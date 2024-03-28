@@ -5,12 +5,14 @@ const CadastroCarroScreen = () => {
   const [marca, setMarca] = useState('');
   const [modelo, setModelo] = useState('');
   const [ano, setAno] = useState('');
+  const [km, setKm] = useState('');
 
   const handleCadastro = () => {
     // Lógica para enviar os dados do carro para o backend ou realizar outras ações
     console.log('Marca:', marca);
     console.log('Modelo:', modelo);
     console.log('Ano:', ano);
+    console.log('KM:', km);
     // Aqui você pode enviar os dados para o backend.
   };
 
@@ -35,6 +37,13 @@ const CadastroCarroScreen = () => {
         onChangeText={text => setAno(text)}
         keyboardType="numeric"
       />
+      <Text style={styles.label}>KM:</Text>
+      <TextInput
+        style={styles.input}
+        value={km}
+        onChangeText={text => setKm(text)}
+        keyboardType="numeric"
+      />
       <Button title="Cadastrar" onPress={handleCadastro} />
     </View>
   );
@@ -43,6 +52,7 @@ const CadastroCarroScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
