@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Metadados -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da página -->
+    <title>MyAuto Agendamentos</title>
+    <!-- Estilos -->
+    <!-- Estilos do jQuery UI para o datepicker -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Bibliotecas jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/i18n/datepicker-pt-BR.min.js"></script>
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Cabeçalho da página -->
+    <header>
+        <!-- Logotipo da MyAuto -->
+        <img src="img/MYAUT.png" alt="Logotipo da MyAuto" id="logotipo">
+        <!-- Título da página -->
+        <p>MyAuto Oficinas</p>
+        <!-- Menu de navegação -->
+        <div class="menu">
+            <!-- Links para outras páginas -->
+            <a href="../TelaClientes/Index.html"><button>Clientes</button></a>
+            <a href="../TelaAgendamentos/TelasAgendamentos.html"><button>Agendamentos</button></a>
+            <a href="../TelaHistoricoServiços/index.html"><button>Histórico de Serviços</button></a>
+            <a href="../TelaInformações Oficina/index.html"><button>Informações da Oficina</button></a>
+        </div>
+    </header>
+    <!-- Corpo da página -->
+    <div class="container">
+        <!-- Seção de horários disponíveis -->
+        <div class="horarios">
+            <!-- Título da seção -->
+            <h2>Horários Disponíveis <span class="calendario-icon" id="calendario-icon">&#128197;</span></h2>
+            <!-- Lista de horários disponíveis -->
+            <div id="horarios-list"></div>
+        </div>
+        <!-- Seção de agendamento -->
+        <div class="agendamento">
+            <!-- Título da seção -->
+            <h2>Dados do Agendamento</h2>
+            <!-- Formulário de agendamento -->
+            <form>
+                <!-- Campos do formulário, inicialmente desabilitados -->
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" disabled><br>
+                <label for="veiculo">Veículo:</label>
+                <input type="text" id="veiculo" name="veiculo" disabled><br>
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" name="marca" disabled><br>
+                <label for="cor">Cor:</label>
+                <input type="text" id="cor" name="cor" disabled><br>
+                <label for="ano">Ano:</label>
+                <input type="text" id="ano" name="ano" disabled><br>
+                <label for="combustivel">Tipo de Combustível:</label>
+                <input type="text" id="combustivel" name="combustivel" disabled><br>
+                <label for="uso">Finalidade do Uso:</label>
+                <input type="text" id="uso" name="uso" disabled><br>
+                <label for="cambio">Tipo de Câmbio:</label>
+                <input type="text" id="cambio" name="cambio" disabled><br>
+                <label for="linha">Linha do Veículo:</label>
+                <input type="text" id="linha" name="linha" disabled><br>
+                <label for="objetivo">Objetivo do Agendamento:</label><br>
+                <textarea id="objetivo" name="objetivo" rows="4" cols="50" disabled></textarea><br>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script JavaScript -->
+    <script>
+        // Função executada quando o conteúdo do documento é carregado
+        document.addEventListener("DOMContentLoaded", function () {
+            // Array de horários disponíveis
+            var horarios = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
+            var horariosList = document.getElementById("horarios-list");
+
+            // Para cada horário disponível, cria um botão na lista
+            horarios.forEach(function (horario) {
+                var btn = document.createElement("button");
+                btn.textContent = horario;
+                btn.className = "btn-horario";
+                btn.addEventListener("click", function () {
+                    if (!btn.classList.contains("agendado")) {
+                        document.querySelectorAll('.btn-horario').forEach(function (element) {
+                            element.classList.remove('agendado');
+                        });
+                        agendarHorario(horario, btn);
+                    }
+                });
+                horariosList.appendChild(btn);
+            });
+
+            // Função para agendar um horário
+            function agendarHorario(horario, btn) {
+                // Preenche os campos do formulário com informações padrão
+                document.getElementById("nome").value = "Nome do Proprietário";
+                // Outros campos preenchidos
+                // ...
+                // Marca o botão como agendado
+                btn.classList.add("agendado");
+                // Exibe o formulário de agendamento
+                document.querySelector('.agendamento form').style.display = 'block';
+            }
+
+            // Inicialização do datepicker para o ícone do calendário
+            $("#calendario-icon").datepicker({
+                showOn: "button",
+                buttonImage: "https://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                buttonImageOnly: true,
+                buttonText: "Selecionar data",
+                onSelect: function (dateText, inst) {
+                    // Função a ser executada quando uma data é selecionada no datepicker
+                },
+                dateFormat: 'dd/mm/yy',
+                regional: 'pt-BR'
+            });
+
+            // Exibe o datepicker ao clicar no ícone do calendário
+            document.getElementById("calendario-icon").addEventListener("click", function () {
+                $("#calendario-icon").datepicker("show");
+            });
+        });
+    </script>
+</body>
+<footer>
+    © 2024 MyAuto Oficinas / TechLine Desenvolvimentos
+</footer>
+
+</html>

@@ -1,0 +1,105 @@
+p {
+    text-shadow: 2px 2px #F2B705;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 50px; /* Adicionado para descer o texto */
+    font-family: "Luminari", "fantasy";
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fbefcd;
+}
+
+header {
+    background-color: #0A0226;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+    position: relative;
+    height: 240px;
+}
+
+header img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 230px; /* Ajuste o tamanho da logo conforme necessário */
+    height: auto;
+}
+
+footer {
+    background-color: #0A0226;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    margin-top: 100px;
+}
+
+.navbar button {
+    background-image: linear-gradient(to right, #0A0226, #0798F2);
+    color: white;
+    border: 4px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    padding: 10px 80px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    
+}
+
+.content {
+    margin-top: 60px;
+    padding: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+    color: #0A0226;
+}
+
+th, td {
+    border: 1px solid #0f31ca;
+    padding: 8px;
+    text-align: left;
+    text-transform: uppercase;
+    color: #0A0226;
+}
+
+th {
+    background-color: #9ad9fd;
+}
+
+input[type="text"] {
+    padding: 6px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.search-container {
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 30%;
+    margin-left: 700px;
+}
+
+.search-container select {
+    
+    padding: 6px;
+    margin-bottom: 10px;
+}

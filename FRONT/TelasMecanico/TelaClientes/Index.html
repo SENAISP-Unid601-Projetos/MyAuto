@@ -1,0 +1,148 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyAuto Oficinas</title>
+   
+</head>
+<body>
+    <link rel="stylesheet" href="css/style.css">
+    <header>
+        <p> MyAuto Oficinas</p>
+        <img src="img/MYAUT.png" alt="Logo">
+        <div class="navbar">
+            <a href="../TelaClientes/Index.html"><button>Clientes</button></a>
+            <a href="../TelaAgendamentos/TelasAgendamentos.html"><button>Agendamentos</button></a>
+            <a href="../TelaHistoricoServiços/index.html"><button>Histórico de Serviços</button></a>
+            <a href="../TelaInformações Oficina/index.html"><button>Informações da Oficina</button></a>
+        </div>
+    </header>
+    <div class="content" id="content">
+        <div class="search-container">
+            <select id="searchColumn">
+                <option value="nome">Nome</option>
+                <option value="dataNascimento">Data de Nascimento</option>
+                <option value="sexo">Sexo</option>
+                <option value="telefone">Telefone</option>
+                <option value="endereco">Endereço</option>
+                <option value="cpfCnpj">CPF/CNPJ</option>
+                <option value="numeroResidencia">Número da Residência</option>
+                <option value="cep">CEP</option>
+                <option value="bairro">Bairro</option>
+            </select>
+        <div class="BarraPesquisa">
+            <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Pesquisar...">
+        </div>
+        </div>
+        <table id="dataTable"></table>
+    </div>
+    <footer>
+        © 2024 MyAuto Oficinas / TechLine Desenvolvimentos
+    </footer>
+
+    <script>
+        // Simulação de função para receber dados e exibir na tabela
+        function receberDados(dados) {
+            const dataTable = document.getElementById('dataTable');
+            dataTable.innerHTML = ''; // Limpa o conteúdo anterior
+
+            const table = document.createElement('table');
+            const headerRow = document.createElement('tr');
+            Object.keys(dados[0]).forEach(key => {
+                const th = document.createElement('th');
+                th.textContent = key.toUpperCase(); // Convertendo para uppercase
+                headerRow.appendChild(th);
+            });
+            table.appendChild(headerRow);
+
+            dados.forEach(cliente => {
+                const row = document.createElement('tr');
+                Object.values(cliente).forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value;
+                    row.appendChild(td);
+                });
+                table.appendChild(row);
+            });
+
+            dataTable.appendChild(table);
+        }
+
+        // Simulação de função para obter dados dos clientes (ou vir de uma requisição AJAX)
+        function getClientes() {
+            return [
+                {
+                    nome: 'Fulano de Tal',
+                    dataNascimento: '01/01/1990',
+                    sexo: 'Masculino',
+                    telefone: '(00) 1234-5678',
+                    endereco: 'Rua Exemplo, 123',
+                    cpfCnpj: '123.456.789-00',
+                    numeroResidencia: '123',
+                    cep: '12345-678',
+                    bairro: 'Bairro Exemplo'
+                },
+                {
+                    nome: 'Ciclana de Tal',
+                    dataNascimento: '05/05/1985',
+                    sexo: 'Feminino',
+                    telefone: '(00) 9876-5432',
+                    endereco: 'Avenida Teste, 456',
+                    cpfCnpj: '987.654.321-00',
+                    numeroResidencia: '456',
+                    cep: '54321-098',
+                    bairro: 'Outro Bairro'
+                },
+               
+            ];
+        }
+
+        // Função para mostrar os clientes
+        function showClientes() {
+            const clientes = getClientes();
+            receberDados(clientes);
+        }
+
+        // Funções para mostrar outros tipos de dados (ainda não implementadas)
+        function showHistorico() {
+            // Aqui seria implementada a lógica para exibir o histórico de serviços
+            console.log('Histórico de Serviços');
+        }
+
+        function showAgendamentos() {
+            // Aqui seria implementada a lógica para exibir os agendamentos
+            console.log('Agendamentos');
+        }
+
+        function showInformacoes() {
+            // Aqui seria implementada a lógica para exibir as informações da oficina
+            console.log('Informações da Oficina');
+        }
+
+        // Função para pesquisar na tabela
+        function searchTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toUpperCase();
+            const table = document.querySelector('table');
+            const column = document.getElementById('searchColumn').value;
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+                for (let j = 0; j < cells.length; j++) {
+                    const cellValue = cells[j].textContent.toUpperCase();
+                    if (cellValue.indexOf(filter) > -1 && j === Array.from(rows[0].getElementsByTagName('th')).findIndex(th => th.textContent.toUpperCase() === column.toUpperCase())) {
+                        found = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = found ? '' : 'none';
+            }
+        }
+
+        // Inicialmente, mostrar os clientes
+        showClientes();
+    </script>
+</body>
+</html>

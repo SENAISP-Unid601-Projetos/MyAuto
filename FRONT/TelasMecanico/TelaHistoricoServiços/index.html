@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyAuto Histórico de Serviços</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="img/MYAUT.png" alt="Logotipo da MyAuto" id="logotipo">
+        </div>
+        <p>MyAuto Oficinas</p>
+    </header>
+
+    <div class="nav-bar">
+        <a href="../TelaClientes/Index.html"><button>Clientes</button></a>
+            <a href="../TelaAgendamentos/TelasAgendamentos.html"><button>Agendamentos</button></a>
+            <a href="../TelaHistoricoServiços/index.html"><button>Histórico de Serviços</button></a>
+            <a href="../TelaInformações Oficina/index.html"><button>Informações da Oficina</button></a>
+    </div>
+
+    <div class="main-content">
+        <div class="info-container">
+            <!-- Conteúdo de informações da oficina (código anterior) -->
+
+            <!-- Conteúdo do quadro principal -->
+            <div class="search-container">
+                <label for="searchInput">Pesquisar por:</label>
+                <select id="searchFilter">
+                    <option value="nome">Nome</option>
+                    <option value="cpf">CPF</option>
+                    <option value="placa">Placa</option>
+                </select>
+                <br>
+                <input type="text" id="searchInput" placeholder="Digite aqui">
+            </div>
+
+            <div class="checkbox-container">
+                <label for="selectAll">Selecionar Todos</label>
+                <input type="checkbox" id="selectAll" onclick="selectAllServices()">
+            </div>
+
+            <div class="button-container">
+                <button id="btn-buscar" onclick="filterServices()">Buscar</button>
+                <button id="btn-baixar-pdf" onclick="downloadPDF()">Baixar PDF</button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Selecionar</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Placa</th>
+                            <th>Serviço</th>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" class="service-checkbox"></td>
+                            <td>João da Silva</td>
+                            <td>123.456.789-01</td>
+                            <td>ABC1234</td>
+                            <td>Troca de óleo</td>
+                            <td>2024-03-11</td>
+                            <td>14:30</td>
+                            <td><button class="view-button" onclick="viewPDF()">Visualizar Serviço</button></td>
+                        </tr>
+                        <!-- Adicione mais linhas conforme necessário -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+   
+
+    <script>
+        // Coloque seus scripts JavaScript aqui, se houver
+    </script>
+
+</body>
+<footer>
+    © 2024 MyAuto Oficinas / TechLine Desenvolvimentos
+</footer>
+</html>
+
