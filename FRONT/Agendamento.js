@@ -18,6 +18,32 @@ const Agendamento = () => {
     setModalVisible(false);
   };
 
+  const agendarHorario = () => {
+    // Verificar se o dia está selecionado
+    if (!selectedDay) {
+      console.log('Selecione um dia antes de agendar');
+      return;
+    }
+    //chamada para a API para agendar o horário
+    fetch('http://10.110.12.20:8080/api/agendamentos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data: selectedDay }), // Envie o dia selecionado como JSON
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log('Horário agendado com sucesso para o dia:', selectedDay);
+          setModalVisible(false);
+        } else {
+          console.error('Erro ao agendar horário');
+        }
+      })
+      .catch(error => {
+        console.error('Erro ao agendar horário:', error);
+      });
+  };
 
   const renderAvailableHours = () => {
     // Simulação de horários disponíveis (pode ser substituído por uma chamada à API)
@@ -61,9 +87,8 @@ const Agendamento = () => {
             
             <TouchableOpacity
               style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
-              onPress={() => {
-                setModalVisible(false),console.log("Dia Agendado: "+ selectedDay);
-              }}
+              onPress= {agendarHorario}
+              
             >
               <Text style={styles.textStyle}>Agendar</Text>
             </TouchableOpacity>

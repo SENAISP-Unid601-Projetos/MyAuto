@@ -45,15 +45,22 @@ const HomeScreen = () => {
         </View>
 
         {/* Botão Agendar */}
-        {/* Restante dos botões */}
         <View style={styles.alinhaBotao}>
           <View style={styles.buttonRodape}>
             <Icon style={styles.icon} name="calendar" size={30} color="black" onPress={() => setAgendamentoVisible(true)} />
           </View>
+
+
+
+
           {/* Botão Notificações */}
           <View style={styles.buttonRodape}>
             <Icon name="bell" size={30} color="black" style={styles.icon} onPress={() => setNotificationVisible(true)} />
           </View>
+
+
+
+          
           {/* Botão Relatórios */}
           <View style={styles.buttonRodape}>
             <Icon name="car" size={30} color="black" style={styles.icon} onPress={() => console.log('Botão Informações pressionado')} />
