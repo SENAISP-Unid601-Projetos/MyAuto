@@ -7,15 +7,17 @@ import CadastroCarroScreen from './CADASTRO/CadastroCarro.js';
 import TelaDeNotificacao from './TelaDeNotificacao.js';
 
 const HomeScreen = () => {
+  //Chamando as telas de cadastro, login e notificação
   const [agendamentoVisible, setAgendamentoVisible] = useState(false);
   const [carroVisible, setCarroVisible] = useState(false);
-  const [loginVisible, setLoginVisible] = useState(true);
+  const [loginVisible, setLoginVisible] = useState(true); //Deixar true para a tela de login primeiro
   const [notificationVisible, setNotificationVisible] = useState(false); // Novo estado para a tela de notificação
 
   return (
     <View style={styles.container}>
       {/* Cabeçalho */}
       <View style={styles.headerContainer}>
+        {/*Imagem da logo*/}
         <Image
           source={{ uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true' }}
           style={styles.logo}
@@ -25,6 +27,7 @@ const HomeScreen = () => {
       {/* Foto de perfil e botão Perfil */}
       <View style={styles.profileContainer}>
         <View style={styles.botaoImagemLogin}>
+          {/*Imagem de login*/}
           <Image
             source={{ uri: 'https://e7.pngegg.com/pngimages/505/761/png-clipart-login-computer-icons-avatar-icon-monochrome-black-thumbnail.png' }}
             style={styles.profileImage}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
 const CadastroCarroScreen = () => {
+  //Setando os metodos das informações do carro
   const [marca, setMarca] = useState('');
   const [modelo, setModelo] = useState('');
   const [ano, setAno] = useState('');
@@ -16,8 +17,10 @@ const CadastroCarroScreen = () => {
     return `${ano}`;
   };  
   
+  //Criando o carro no banco pelo Back End
   const Criar = () => {
 
+    //Mostra no console se a tela está pegando as informações
     console.log('Marca:', marca);
     console.log('Modelo:', modelo);
     console.log('Ano:', ano);
@@ -27,6 +30,7 @@ const CadastroCarroScreen = () => {
 
     const formattedDate = formatarData(ano);
 
+    //Dados do carro
     const dados = {
       "marca": marca,
       "modelo": modelo,
@@ -40,8 +44,8 @@ const CadastroCarroScreen = () => {
     //console.log(dados);
 
     
-    fetch('http://10.110.12.3:8080/api/carros', {
-      method: 'POST',
+    fetch('http://10.110.12.3:8080/api/carros', { //metodo para chamar a API usando o feth
+      method: 'POST', //Usamos o POST para postar no banco as informações
       headers: {
         'Content-Type': 'application/json'
       },
@@ -74,19 +78,23 @@ const CadastroCarroScreen = () => {
  // };
 
   return (
+    //Tela para Colocar as informações do carro
     <View style={styles.container}>
+      {/*Aba para colocar a marca*/}
       <Text style={styles.label}>Marca:</Text>
       <TextInput
         style={styles.input}
         value={marca}
         onChangeText={setMarca}
       />
+      {/*Aba para colocar a Modelo*/}
       <Text style={styles.label}>Modelo:</Text>
       <TextInput
         style={styles.input}
         value={modelo}
         onChangeText={setModelo}
       />
+      {/*Aba para colocar a Ano*/}
       <Text style={styles.label}>Ano:</Text>
       <TextInput
         style={styles.input}
@@ -94,6 +102,7 @@ const CadastroCarroScreen = () => {
         onChangeText={setAno}
         keyboardType="numeric"
       />
+      {/*Aba para colocar a KM*/}
       <Text style={styles.label}>KM:</Text>
       <TextInput
         style={styles.input}
@@ -101,21 +110,21 @@ const CadastroCarroScreen = () => {
         onChangeText={setKm}
         keyboardType="numeric"
       />
-
+      {/*Aba para colocar a USO*/}
       <Text style={styles.label}>USO:</Text>
       <TextInput
         style={styles.input}
         value={uso}
         onChangeText={setUso}
       />
-
+      {/*Aba para colocar a CAMBIO*/}
       <Text style={styles.label}>CAMBIO:</Text>
       <TextInput
         style={styles.input}
         value={cambio}
         onChangeText={setCambio}
       />
-
+      {/*Aba para colocar a COMBUSTIVEL*/}
       <Text style={styles.label}>COMBUSTIVEL:</Text>
       <TextInput
         style={styles.input}
