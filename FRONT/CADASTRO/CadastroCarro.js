@@ -6,53 +6,41 @@ const CadastroCarroScreen = () => {
   const [modelo, setModelo] = useState('');
   const [ano, setAno] = useState('');
   const [km, setKm] = useState('');
+  const [uso, setUso] = useState('');
+  const [cambio, setCambio] = useState('');
+  const [combustivel, setCombustivel] = useState('');
+  const [erro, setErro] = useState('');
 
 
-  const formatarDataDeNascimento = (dia, mes, ano) => {
-    return `${ano}-${mes}-${dia}`;
-  };
-
-  const validarData = (dia, mes, ano) => {
-    const dataRegex = /^(0?[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[012])[/](19\d{2}|20[01]\d|202[0-4])$/;
+  const formatarData = (ano) => {
+    return `${ano}`;
+  };  
   
-    if (dataRegex.test(`${dia}/${mes}/${ano}`)) {
-      return 'Data de nascimento inválida.';
-    } else {
-      return '';
-    }
-  };
-  
-  
-
   const Criar = () => {
+
+    console.log('Marca:', marca);
+    console.log('Modelo:', modelo);
+    console.log('Ano:', ano);
+    console.log('KM:', km);
+
     setErro('');
 
-    if (!email || senha == 0) {
-      setErro('Senha ou Email estão incorretos.');
-      return;
-    }
-
-    validarData();
-
-    if (erro) {
-      return;
-    }
-
-    const formattedDate = formatarDataDeNascimento(dia,mes,ano);
+    const formattedDate = formatarData(ano);
 
     const dados = {
-      "nome": nome,
-      "email": email,
-      "senha": senha,
-      "cpf": cpf,
-      "dataDeNascimento": formattedDate,
-      "sexo": sexo
+      "marca": marca,
+      "modelo": modelo,
+      "ano": formattedDate,
+      "km": km,
+      "uso": uso,
+      "cambio": cambio,
+      "combustivel": combustivel
     };
 
     //console.log(dados);
 
     
-    fetch('http://10.110.12.3:8080/api/usuarios', {
+    fetch('http://10.110.12.3:8080/api/carros', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -61,29 +49,29 @@ const CadastroCarroScreen = () => {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error('Erro ao tentar criar usuário');
+        throw new Error('Erro ao cadastrar seu carro');
       }
       return response.json();
     })
     .then(dados => {
-      console.log('Usuário criado com sucesso:', dados);
+      console.log('Carro cadastrado com sucesso:', dados);
     })
     .catch(error => {
-      console.error('Ocorreu um erro ao tentar criar usuário:', error);
+      console.error('Ocorreu um erro ao cadastrar seu Carro:', error);
     });
     
   };
 
 
 
-  const handleCadastro = () => {
+ // const handleCadastro = () => {
     // Lógica para enviar os dados do carro para o backend ou realizar outras ações
-    console.log('Marca:', marca);
-    console.log('Modelo:', modelo);
-    console.log('Ano:', ano);
-    console.log('KM:', km);
+ //   console.log('Marca:', marca);
+ //   console.log('Modelo:', modelo);
+ //   console.log('Ano:', ano);
+ //   console.log('KM:', km);
     // Aqui você pode enviar os dados para o backend.
-  };
+ // };
 
   return (
     <View style={styles.container}>
@@ -91,29 +79,51 @@ const CadastroCarroScreen = () => {
       <TextInput
         style={styles.input}
         value={marca}
-        onChangeText={text => setMarca(text)}
+        onChangeText={setMarca}
       />
       <Text style={styles.label}>Modelo:</Text>
       <TextInput
         style={styles.input}
         value={modelo}
-        onChangeText={text => setModelo(text)}
+        onChangeText={setModelo}
       />
       <Text style={styles.label}>Ano:</Text>
       <TextInput
         style={styles.input}
         value={ano}
-        onChangeText={text => setAno(text)}
+        onChangeText={setAno}
         keyboardType="numeric"
       />
       <Text style={styles.label}>KM:</Text>
       <TextInput
         style={styles.input}
         value={km}
-        onChangeText={text => setKm(text)}
+        onChangeText={setKm}
         keyboardType="numeric"
       />
-      <Button title="Cadastrar" onPress={handleCadastro} />
+
+      <Text style={styles.label}>USO:</Text>
+      <TextInput
+        style={styles.input}
+        value={uso}
+        onChangeText={setUso}
+      />
+
+      <Text style={styles.label}>CAMBIO:</Text>
+      <TextInput
+        style={styles.input}
+        value={cambio}
+        onChangeText={setCambio}
+      />
+
+      <Text style={styles.label}>COMBUSTIVEL:</Text>
+      <TextInput
+        style={styles.input}
+        value={combustivel}
+        onChangeText={setCombustivel}
+      />
+      <Button title="Cadastrar" onPress={Criar} />
+      {erro !== '' && <Text style={styles.error}>{erro}</Text>}
     </View>
   );
 };
