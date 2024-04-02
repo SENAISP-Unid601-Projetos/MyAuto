@@ -5,8 +5,7 @@ import axios from 'axios';
 
 const LoginScreen = () => {
 
-  //const [email] = useState('');
-  //const [senha] = useState('');
+  //Setando os metodos das informações do Usuário e a tela de Cadastro
   const [logarEmail, setLogarEmail] = useState('');
   const [logarSenha, setLogarSenha] = useState('');
   const [cadastroVisible, setCadastro] = useState(false);
@@ -21,7 +20,8 @@ const LoginScreen = () => {
     }
 
     try {
-      const response = await axios.post('http://10.110.12.3:8080/api/usuarios/verificarDados', {
+      //Método para verificar se o usuário existe no banco
+      const response = await axios.post('http://10.110.12.3:8080/api/usuarios/verificarDados', { 
         email: logarEmail,
         senha: logarSenha
       });
@@ -30,8 +30,8 @@ const LoginScreen = () => {
         throw new Error('Erro ao tentar logar');
       }
 
+      //Manda a mensagem para o Prompt pra verificar se a tela recebeu o usuário
       console.log('Logado:', response.data);
-
       console.log('Login Bem Sucedido!!');
       console.log('Email:', logarEmail);
       console.log('Senha:', logarSenha);
@@ -43,6 +43,7 @@ const LoginScreen = () => {
   };
 
   return (
+    //Tela para logar
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
       <TextInput
