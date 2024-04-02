@@ -1,6 +1,9 @@
 package com.senai.auth.entities;
 
 import java.sql.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +18,7 @@ public class Carro {
 	
 	private String marca;
 	private String modelo;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ano;
     @Column(nullable = false)
 	private Integer km;

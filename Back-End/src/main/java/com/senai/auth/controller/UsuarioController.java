@@ -1,4 +1,5 @@
 package com.senai.auth.controller;
+
 import com.senai.auth.entities.Usuario;
 import com.senai.auth.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
