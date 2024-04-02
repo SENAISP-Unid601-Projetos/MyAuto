@@ -7,6 +7,75 @@ const CadastroCarroScreen = () => {
   const [ano, setAno] = useState('');
   const [km, setKm] = useState('');
 
+
+  const formatarDataDeNascimento = (dia, mes, ano) => {
+    return `${ano}-${mes}-${dia}`;
+  };
+
+  const validarData = (dia, mes, ano) => {
+    const dataRegex = /^(0?[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[012])[/](19\d{2}|20[01]\d|202[0-4])$/;
+  
+    if (dataRegex.test(`${dia}/${mes}/${ano}`)) {
+      return 'Data de nascimento inválida.';
+    } else {
+      return '';
+    }
+  };
+  
+  
+
+  const Criar = () => {
+    setErro('');
+
+    if (!email || senha == 0) {
+      setErro('Senha ou Email estão incorretos.');
+      return;
+    }
+
+    validarData();
+
+    if (erro) {
+      return;
+    }
+
+    const formattedDate = formatarDataDeNascimento(dia,mes,ano);
+
+    const dados = {
+      "nome": nome,
+      "email": email,
+      "senha": senha,
+      "cpf": cpf,
+      "dataDeNascimento": formattedDate,
+      "sexo": sexo
+    };
+
+    //console.log(dados);
+
+    
+    fetch('http://10.110.12.3:8080/api/usuarios', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dados)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro ao tentar criar usuário');
+      }
+      return response.json();
+    })
+    .then(dados => {
+      console.log('Usuário criado com sucesso:', dados);
+    })
+    .catch(error => {
+      console.error('Ocorreu um erro ao tentar criar usuário:', error);
+    });
+    
+  };
+
+
+
   const handleCadastro = () => {
     // Lógica para enviar os dados do carro para o backend ou realizar outras ações
     console.log('Marca:', marca);

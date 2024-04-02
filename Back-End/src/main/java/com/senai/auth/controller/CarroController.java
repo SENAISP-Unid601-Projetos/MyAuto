@@ -17,7 +17,7 @@ import com.senai.auth.entities.Carro;
 import com.senai.auth.repository.CarroRepository;
 
 @RestController
-@RequestMapping("api/carros")
+@RequestMapping("/api/carros")
 public class CarroController {
 	@Autowired
 	private CarroRepository carroRepository;
