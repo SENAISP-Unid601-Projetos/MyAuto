@@ -1,8 +1,6 @@
 package com.senai.auth.entities;
 
-import java.sql.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,15 +9,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Carro {
+public class Carro  implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String marca;
 	private String modelo;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date ano;
+	private Integer ano;
     @Column(nullable = false)
 	private Integer km;
     @Column(nullable = false)
@@ -53,10 +50,10 @@ public class Carro {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-	public Date getAno() {
+	public Integer getAno() {
 		return ano;
 	}
-	public void setAno(Date ano) {
+	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
 	public Integer getKm() {
