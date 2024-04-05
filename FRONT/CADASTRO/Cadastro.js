@@ -156,7 +156,7 @@ const Cadastro = () => {
         selectedValue={sexo}
         onValueChange={(itemValue) => setSexo(itemValue)}
       >
-        <Picker.Item label='' value=''/>
+        <Picker.Item label='Celecionar' value={(false)}/>
         <Picker.Item label="Homem" value="Homem"/>
         <Picker.Item label="Mulher" value="Mulher" />
         <Picker.Item label="Prefiro Não Opinar" value="Prefiro Não Opinar"/>

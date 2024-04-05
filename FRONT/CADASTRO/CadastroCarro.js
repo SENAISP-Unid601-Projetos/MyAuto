@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 
 const CadastroCarroScreen = () => {
   //Setando os metodos das informações do carro
@@ -66,17 +67,6 @@ const CadastroCarroScreen = () => {
     
   };
 
-
-
- // const handleCadastro = () => {
-    // Lógica para enviar os dados do carro para o backend ou realizar outras ações
- //   console.log('Marca:', marca);
- //   console.log('Modelo:', modelo);
- //   console.log('Ano:', ano);
- //   console.log('KM:', km);
-    // Aqui você pode enviar os dados para o backend.
- // };
-
   return (
     //Tela para Colocar as informações do carro
     <View style={styles.container}>
@@ -98,6 +88,7 @@ const CadastroCarroScreen = () => {
       <Text style={styles.label}>Ano:</Text>
       <TextInput
         style={styles.input}
+        maxLength={4}
         value={ano}
         onChangeText={setAno}
         keyboardType="numeric"
@@ -107,30 +98,55 @@ const CadastroCarroScreen = () => {
       <TextInput
         style={styles.input}
         value={km}
+        maxLength={6}
         onChangeText={setKm}
         keyboardType="numeric"
       />
       {/*Aba para colocar a USO*/}
       <Text style={styles.label}>USO:</Text>
-      <TextInput
-        style={styles.input}
-        value={uso}
-        onChangeText={setUso}
-      />
+
+      <View style={styles.input}>
+      <Picker
+      selectedValue={uso}
+      onValueChange={(itemValue)=> setUso(itemValue)}
+      >
+        <Picker.Item label='Selecionar' value={(null)}/>
+        <Picker.Item label='Uber' value='Uber'/>
+        <Picker.Item label='Viagens' value='Viagens'/>
+        <Picker.Item label='Trabalho' value='Trabalho'/>
+        <Picker.Item label='Entregas' value='Entregas'/>
+        <Picker.Item label='Rural' value='Rural'/>
+        <Picker.Item label='Passeio' value='Passeio'/>
+      </Picker>
+      </View>
+
       {/*Aba para colocar a CAMBIO*/}
       <Text style={styles.label}>CAMBIO:</Text>
-      <TextInput
-        style={styles.input}
-        value={cambio}
-        onChangeText={setCambio}
-      />
+
+      <View style={styles.input}>
+      <Picker
+      selectedValue={cambio}
+      onValueChange={(itemValue)=> setCambio(itemValue)}
+      >
+        <Picker.Item label='Selecionar' value={(null)}/>
+        <Picker.Item label='Manual' value='Manual'/>
+        <Picker.Item label='Automático' value='Automatico'/>
+      </Picker>
+      </View>
       {/*Aba para colocar a COMBUSTIVEL*/}
       <Text style={styles.label}>COMBUSTIVEL:</Text>
-      <TextInput
-        style={styles.input}
-        value={combustivel}
-        onChangeText={setCombustivel}
-      />
+      <View style={styles.input}>
+      <Picker
+      selectedValue={combustivel}
+      onValueChange={(itemValue)=> setCombustivel(itemValue)}
+      >
+        <Picker.Item label='Selecionar' value={(null)}/>
+        <Picker.Item label='Gasolina' value='Gasolina'/>
+        <Picker.Item label='Diesel' value='Diesel'/>
+        <Picker.Item label='Etanol' value='Etanol'/>
+        <Picker.Item label='Flex' value='Flex'/>
+      </Picker>
+      </View>
       <Button title="Cadastrar" onPress={Criar} />
       {erro !== '' && <Text style={styles.error}>{erro}</Text>}
     </View>

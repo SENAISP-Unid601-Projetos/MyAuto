@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Modal } from 'react-native';
-import Cadastro from './Cadastro.js';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import axios from 'axios';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
+
+  const botaoCadastrar=()=>{
+    navigation.navigate('Cadastro');
+  }
+  const botaoTelaPrincipal=()=>{
+    navigation.navigate('HomeScreen');
+  }
 
   //Setando os metodos das informações do Usuário e a tela de Cadastro
   const [logarEmail, setLogarEmail] = useState('');
   const [logarSenha, setLogarSenha] = useState('');
-  const [cadastroVisible, setCadastro] = useState(false);
   const [setErro] = useState('');
 
   const VerificarLogin = async () => {
@@ -59,22 +64,14 @@ const LoginScreen = () => {
         value={logarSenha}
         secureTextEntry={true}
       />
-      <TouchableOpacity style={styles.button} onPress={VerificarLogin}>
+      <TouchableOpacity style={styles.button} onPress={botaoTelaPrincipal}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => { setCadastro(true) }} style={styles.button}>
+      <TouchableOpacity onPress={botaoCadastrar} style={styles.button}>
         <Text style={styles.buttonText}>Criar uma conta</Text>
       </TouchableOpacity>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={cadastroVisible}
-        onRequestClose={() => setCadastro(false)}
-      >
-        <Cadastro closeModal={() => setCadastro(false)} />
-      </Modal>
+      
     </View>
   );
 };
