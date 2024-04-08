@@ -1,5 +1,6 @@
 package com.senai.auth.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,11 @@ public class Agendamento {
 	    private Long id;
 	  	
 	    private String data;
+	    
+	    @Column(nullable = false)
 	    private String horario;
+	    
+	    
 		public Long getId() {
 			return id;
 		}

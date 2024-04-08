@@ -12,10 +12,10 @@ public class AgendamentoService {
     @Autowired
     private AgendamentoRepository agendamentoRepository;
 
-    public void agendarServico(String data, String horario) {
+    public Agendamento agendarServico(String data, String horario) {
         Agendamento agendamento = new Agendamento();
         agendamento.setData(data);
         agendamento.setHorario(horario);
-        agendamentoRepository.save(agendamento);
+        return agendamentoRepository.save(agendamento);
     }
 }
