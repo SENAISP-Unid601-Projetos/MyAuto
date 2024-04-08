@@ -1,5 +1,6 @@
 package com.senai.auth.controller;
 
+import com.senai.auth.DTO.UsuarioDTO;
 import com.senai.auth.entities.Usuario;
 import com.senai.auth.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,21 @@ public class UsuarioController {
     public ResponseEntity<Usuario> obterUsuario(@PathVariable Long id) {
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         return usuario != null ? ResponseEntity.ok(usuario) : ResponseEntity.notFound().build();
+    }
+    
+    @PostMapping("/verificarDados")
+    public ResponseEntity<Usuario> verificarDados(@RequestBody UsuarioDTO usuarioDto) {
+        String email = usuarioDto.getEmail();
+        String senha = usuarioDto.getSenha();
+        
+        Usuario usuarioBuscado = usuarioRepository.findByEmail(usuarioDto.getEmail());
+        
+    if (usuarioBuscado != null &&  usuarioBuscado.getEmail().equals(email) && usuarioBuscado.getSenha().equals(senha)) {
+            return ResponseEntity.ok(usuarioBuscado);
+        } else {
+        	
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping()

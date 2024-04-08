@@ -14,7 +14,7 @@ const LoginScreen = ({navigation}) => {
   //Setando os metodos das informações do Usuário e a tela de Cadastro
   const [logarEmail, setLogarEmail] = useState('');
   const [logarSenha, setLogarSenha] = useState('');
-  const [setErro] = useState('');
+  const [erro, setErro] = useState('');
 
   const VerificarLogin = async () => {
     setErro('');
@@ -34,7 +34,7 @@ const LoginScreen = ({navigation}) => {
       if (response.status !== 200) {
         throw new Error('Erro ao tentar logar');
       }
-
+      botaoTelaPrincipal();
       //Manda a mensagem para o Prompt pra verificar se a tela recebeu o usuário
       console.log('Logado:', response.data);
       console.log('Login Bem Sucedido!!');
@@ -64,7 +64,7 @@ const LoginScreen = ({navigation}) => {
         value={logarSenha}
         secureTextEntry={true}
       />
-      <TouchableOpacity style={styles.button} onPress={botaoTelaPrincipal}>
+      <TouchableOpacity style={styles.button} onPress={VerificarLogin} >
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
