@@ -63,8 +63,10 @@ const Cadastro = () => {
     //console.log(dados);
 
     
+
     fetch('http://10.110.12.3:8080/api/usuarios', { //metodo para chamar a API usando o feth
       method: 'POST', //Usamos o POST para postar no banco as informações
+
       headers: {
         'Content-Type': 'application/json'
       },

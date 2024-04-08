@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const TelaDeNotificacao = ({ closeModal }) => {
   const [selectedTab, setSelectedTab] = useState('realizados');
+  const [agendamentosFuturos, setAgendamentosFuturos] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('http://10.110.12.20:8080/api/agendamentos')
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Erro ao obter os agendamentos');
+        }
+      })
+      .then(data => {
+        setAgendamentosFuturos(data);
+      })
+      .catch(error => {
+        console.error('Erro ao obter os agendamentos:', error);
+        setError(error.message); // Define o erro no estado de erro
+      });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -29,13 +49,20 @@ const TelaDeNotificacao = ({ closeModal }) => {
       </View>
 
       {/* Conteúdo da Tab selecionada */}
-      {selectedTab === 'realizados' ? (
+      {error ? ( // Renderiza o erro se ocorrer
+        <View>
+          <Text>Erro ao carregar os agendamentos: {error}</Text>
+        </View>
+      ) : selectedTab === 'realizados' ? (
         <View>
           <Text>Conteúdo dos Serviços Realizados</Text>
         </View>
       ) : (
         <View>
           <Text>Conteúdo dos Serviços Futuros</Text>
+          {agendamentosFuturos.map((agendamento, index) => (
+            <Text key={index}>{agendamento.data} - {agendamento.horario}</Text>
+          ))}
         </View>
       )}
     </View>
