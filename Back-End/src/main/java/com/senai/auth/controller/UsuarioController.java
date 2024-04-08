@@ -30,13 +30,13 @@ public class UsuarioController {
     }
     
     @PostMapping("/verificarDados")
-    public ResponseEntity<Usuario> verificarDados(@RequestBody UsuarioDTO usuarioDto) {
+    public ResponseEntity<UsuarioDTO> verificarDados(@RequestBody UsuarioDTO usuarioDto) {
         String email = usuarioDto.getEmail();
         String senha = usuarioDto.getSenha();
         
         Usuario usuarioBuscado = usuarioRepository.findByEmail(usuarioDto.getEmail());
         
-    if (usuarioBuscado != null &&  usuarioBuscado.getEmail().equals(email) && usuarioBuscado.getSenha().equals(senha)) {
+        if (usuarioBuscado != null &&  usuarioBuscado.getEmail().equals(email) && usuarioBuscado.getSenha().equals(senha)) {
             return ResponseEntity.ok(usuarioBuscado);
         } else {
         	

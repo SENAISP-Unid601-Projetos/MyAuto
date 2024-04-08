@@ -113,7 +113,7 @@ const Cadastro = () => {
         style={styles.input}
         placeholder="CPF"
         keyboardType="numeric"
-        maxLength={8}
+        maxLength={11}
         value={cpf}
         onChangeText={setCpf} 
       />

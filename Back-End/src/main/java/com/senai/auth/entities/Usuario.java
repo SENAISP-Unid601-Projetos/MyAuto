@@ -1,6 +1,9 @@
 package com.senai.auth.entities;
 
 import java.sql.Date;
+
+import com.senai.auth.DTO.UsuarioDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -84,6 +87,11 @@ public class Usuario {
 		this.senha = senha;
 	}
     
-    
+    public UsuarioDTO of() {
+    	UsuarioDTO usuario = new UsuarioDTO();
+    	usuario.setEmail(this.email);
+    	usuario.setSenha(this.senha);
+    	return usuario;
+	}
     
 }
