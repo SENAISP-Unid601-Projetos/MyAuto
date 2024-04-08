@@ -1,0 +1,89 @@
+p {
+    text-shadow: 2px 2px #a9a8a8;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 90px; /* Adicionado para descer o texto */
+    font-family: "Luminari", "fantasy";
+    text-transform: uppercase;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(45deg, #010315, #1423ca, #090c32, #0b0f42, #1423ca, #050b54, #010315 );
+    background-size: 300% 300%;
+    animation: colors 8s  linear infinite;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@keyframes colors{
+    0%{
+        background-position:0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    background: linear-gradient(65deg, #e8e085, #fbefcd);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px; /* Reduzi o tamanho da fonte para caber melhor nos campos */
+}
+.container h2 {
+    margin-bottom: 20px;
+}
+.container input[type="text"],
+.container input[type="password"],
+.container input[type="email"],
+.container input[type="tel"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+}
+.container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #1a0a46;
+    color: #fff;
+    cursor: pointer;
+}
+.container input[type="submit"]:hover {
+    background-color: #0d20c4;
+    border-radius: 20px;
+}
+.container .signup-link {
+    margin-top: 10px;
+    font-size: 14px;
+}
+.container .signup-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+.logo {
+    width: 120px;
+    height: 120px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+}

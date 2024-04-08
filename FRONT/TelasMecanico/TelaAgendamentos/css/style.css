@@ -1,0 +1,156 @@
+p {
+    text-shadow: 2px 2px #F2B705;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 50px; /* Adicionado para descer o texto */
+    font-family: "Luminari", "fantasy";
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fbefcd;
+}
+
+header {
+    background-color: #0A0226;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+    position: relative;
+    height: 240px;
+}
+
+header img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 230px; /* Ajuste o tamanho da logo conforme necessário */
+    height: auto;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu {
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    margin-top: 100px;
+}
+
+.menu button {
+    background-image: linear-gradient(to right, #0A0226, #0798F2);
+    color: white;
+    border: 4px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    padding: 10px 80px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.horarios {
+    flex: 1;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.agendamento {
+    flex: 1;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.agendamento form {
+    display: none;
+}
+
+.agendamento label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.agendamento input[type="text"],
+.agendamento textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.agendamento button {
+    padding: 8px 12px;
+    background-color: #0A0226;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    max-width: 350px;
+    height: 50px;
+    margin: 0 auto 5px;
+}
+
+.agendamento button:hover {
+    background-color: #1e2730;
+}
+
+.btn-horario {
+    width: 120px;
+    height: 80px;
+    background-color: #0A0226;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    color: #f1f1f1;
+    font-size: 20px;
+    transition: background-color 0.3s;
+}
+
+.btn-horario.agendado,
+.btn-horario.agendado:hover {
+    background-color: #ff6666;
+}
+
+/* Estilo para o ícone do calendário */
+.calendario-icon {
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 24px; /* Ajuste o tamanho conforme necessário */
+}
+
+/* Media queries para responsividade */
+@media only screen and (max-width: 768px) {
+    header img {
+        width: 180px;
+    }
+    .menu button {
+        padding: 10px 40px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    header img {
+        width: 150px;
+    }
+    .menu button {
+        padding: 10px 30px;
+        font-size: 16px;
+    }
+}

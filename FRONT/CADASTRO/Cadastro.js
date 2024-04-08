@@ -4,6 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 
 
 const Cadastro = () => {
+  //Setando os metodos das informações do usuário
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [nome, setNome] = useState('');
@@ -11,15 +12,16 @@ const Cadastro = () => {
   const [dia, setDia] = useState('');
   const [mes, setMes] = useState('');
   const [ano, setAno] = useState('');
-  //const [dataDeNascimento, setDataDeNascimento] = useState('');
   const [sexo, setSexo] = useState('');
   const [erro, setErro] = useState('');
 
+  //Formatando a data de nacimento para o banco aceitar de forma normal
   const formatarDataDeNascimento = (dia, mes, ano) => {
     return `${ano}-${mes}-${dia}`;
   };
 
   const validarData = (dia, mes, ano) => {
+    //Valida a data se a pessoa pasar o ano, mês e dia assim = dd/mm/aaaa
     const dataRegex = /^(0?[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[012])[/](19\d{2}|20[01]\d|202[0-4])$/;
   
     if (dataRegex.test(`${dia}/${mes}/${ano}`)) {
@@ -30,7 +32,7 @@ const Cadastro = () => {
   };
   
   
-
+  //Cria o usuario no banco passando pelo Back End
   const Criar = () => {
     setErro('');
 
@@ -39,6 +41,7 @@ const Cadastro = () => {
       return;
     }
 
+    //Regex sendo chamada
     validarData();
 
     if (erro) {
@@ -47,8 +50,7 @@ const Cadastro = () => {
 
     const formattedDate = formatarDataDeNascimento(dia,mes,ano);
 
-   // console.log(formattedDate);
-
+    //setando os dados
     const dados = {
       "nome": nome,
       "email": email,
@@ -61,8 +63,10 @@ const Cadastro = () => {
     //console.log(dados);
 
     
-    fetch('http://10.110.12.20:8080/api/usuarios', {
-      method: 'POST',
+
+    fetch('http://10.110.12.3:8080/api/usuarios', { //metodo para chamar a API usando o feth
+      method: 'POST', //Usamos o POST para postar no banco as informações
+
       headers: {
         'Content-Type': 'application/json'
       },
@@ -84,6 +88,7 @@ const Cadastro = () => {
   };
 
   return (
+    //Tela para Colocar as informações do usuário
     <View style={styles.container}>
        <Text style={styles.label}>Digite o EMAIL:</Text>
       <TextInput
@@ -112,9 +117,10 @@ const Cadastro = () => {
         value={cpf}
         onChangeText={setCpf} 
       />
-
+      {/*Botão para setar a data*/}
       <Text style={styles.label}>DATA DE NASCIMENTO:</Text>
       <View style={styles.dataNascimentoInput}>
+        {/*Dia*/}
         <TextInput
           style={[styles.input, { width: '30%' }]}
           placeholder="DD"
@@ -124,6 +130,7 @@ const Cadastro = () => {
           onChangeText={setDia}
         />
         <Text style={{ paddingHorizontal: 5 }}>/</Text>
+        {/*Mês*/}
         <TextInput
           style={[styles.input, { width: '30%' }]}
           placeholder="MM"
@@ -133,6 +140,7 @@ const Cadastro = () => {
           onChangeText={setMes}
         />
         <Text style={{ paddingHorizontal: 5 }}>/</Text>
+        {/*Ano*/}
         <TextInput
           style={[styles.input, { width: '40%' }]}
           placeholder="AAAA"
@@ -143,18 +151,19 @@ const Cadastro = () => {
         />
       </View>
 
-        <Text style={styles.label}>Digite o SEXO:</Text>
+        <Text style={styles.label}>QUAL É SEXO:</Text>
+        {/*Lista para escolher o sexo da pessoa*/}
+        <View style={styles.input}>
         <Picker
         selectedValue={sexo}
-        style={styles.input}
         onValueChange={(itemValue) => setSexo(itemValue)}
       >
-        <Picker.Item label='' value=''/>
+        <Picker.Item label='Celecionar' value={(false)}/>
         <Picker.Item label="Homem" value="Homem"/>
         <Picker.Item label="Mulher" value="Mulher" />
         <Picker.Item label="Prefiro Não Opinar" value="Prefiro Não Opinar"/>
       </Picker>
-    
+      </View>
 
 
       <Text style={styles.label}>Digite a SENHA:</Text>

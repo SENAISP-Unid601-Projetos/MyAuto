@@ -1,0 +1,221 @@
+p {
+    text-shadow: 2px 2px #F2B705;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 50px; /* Adicionado para descer o texto */
+    font-family: "Luminari", "fantasy";
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fbefcd;
+}
+
+header {
+    background-color: #0A0226;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+    position: relative;
+    height: 240px;
+    z-index: 2; /* Garantindo que o cabeçalho fique sobre os outros elementos */
+}
+
+.logo img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 230px; /* Ajuste o tamanho da logo conforme necessário */
+    height: auto;
+}
+
+h1 {
+    margin-top: 5px; /* Ajuste para o espaçamento entre o logo e o título */
+}
+
+.nav-bar {
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    position: relative; /* Adicionado para definir a posição da barra de navegação */
+    margin-top: -83px; /* Ajuste para mover a nav bar para cima sobre o header */
+    z-index: 3; /* Garantindo que a nav bar fique sobreposta ao conteúdo */
+}
+
+.nav-bar button {
+    background-image: linear-gradient(to right, #0A0226, #0798F2);
+    color: white;
+    border: 4px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    padding: 10px 80px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.main-content {
+    background-color: #fbefcd;
+    padding: 20px;
+    text-align: center;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+.info-container {
+    max-width: 400px;
+    text-align: left;
+    margin: 0 auto;
+}
+
+.search-container {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.search-container label {
+    margin-right: 10px;
+    color: #333;
+}
+
+.search-container input[type="text"],
+.search-container select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    margin-left: -50px;
+    margin-top: 20px;
+    width: 500px;
+    height: 40px;
+}
+
+.button-container {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 18px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #135ea9;
+    color: #fff;
+}
+
+.button-container button:hover {
+    background-color: transparent;
+    background-image: linear-gradient(to right, #1308b0, #140c7c, #23b1d1, #2e83e4, #140c7c, #1308b0);
+    background-size: 300% 300%;
+    animation: btnVisualizar 10s linear infinite;
+    border-radius: 18px;
+}
+
+footer {
+    background-color: #0A0226;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+}
+
+.table-container {
+    width: calc(100% - -700px); /* Ajuste para a largura da borda */
+    overflow-x: auto; /* Adiciona rolagem horizontal */
+    margin-left: -350px; /* Ajuste para alinhar à esquerda */
+    background-color: #fff;
+}
+
+.main-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.main-content table, th, td {
+    border: 1px solid #ddd;
+}
+
+.main-content th, .main-content td {
+    padding: 15px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.main-content th {
+    background-color: #333;
+    color: #fff;
+}
+
+.checkbox-container {
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.checkbox-container label {
+    margin-right: 10px;
+}
+
+.view-button {
+    background-color: #1cc621;
+    color: #fff;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.view-button:hover {
+    background-image: linear-gradient(to right, #03411b, #42b16c, #42a467, #17a84f, #89d4a6, #03411b);
+    background-size: 300% 300%;
+    animation: btnVisualizar 10s linear infinite;
+    background-color: transparent;
+}
+
+@keyframes btnVisualizar {
+    0%{
+        background-position: 0% 50% ;
+    }
+    
+    50%{
+        background-position: 100% 50%;
+    }
+    
+    100%{
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes btnBuscarBaixarPDf {
+    0%{
+        background-position: 0% 50% ;
+    }
+    
+    50%{
+        background-position: 100% 50%;
+    }
+    
+    100%{
+        background-position: 0% 50%;
+    }
+}

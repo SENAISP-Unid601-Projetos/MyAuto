@@ -1,58 +1,77 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Modal } from 'react-native';
-import Cadastro from './Cadastro.js';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import axios from 'axios';
 
-const LoginScreen = () => {
-  const [email, setEmail] = useState('');
-  const [senha, setPassword] = useState('');
+const LoginScreen = ({navigation}) => {
 
-  const [cadastroVisible, setCadastro] = useState(false);
+  const botaoCadastrar=()=>{
+    navigation.navigate('Cadastro');
+  }
+  const botaoTelaPrincipal=()=>{
+    navigation.navigate('HomeScreen');
+  }
 
-  const VerificarLogin =()=>{
-    if(email==='usuario@exemplo.com' && senha==='123456'){
+  //Setando os metodos das informações do Usuário e a tela de Cadastro
+  const [logarEmail, setLogarEmail] = useState('');
+  const [logarSenha, setLogarSenha] = useState('');
+  const [setErro] = useState('');
+
+  const VerificarLogin = async () => {
+    setErro('');
+
+    if (!logarEmail || !logarSenha) {
+      setErro('Senha ou Email estão incorretos.');
+      return;
+    }
+
+    try {
+      //Método para verificar se o usuário existe no banco
+      const response = await axios.post('http://10.110.12.3:8080/api/usuarios/verificarDados', { 
+        email: logarEmail,
+        senha: logarSenha
+      });
+
+      if (response.status !== 200) {
+        throw new Error('Erro ao tentar logar');
+      }
+
+      //Manda a mensagem para o Prompt pra verificar se a tela recebeu o usuário
+      console.log('Logado:', response.data);
       console.log('Login Bem Sucedido!!');
+      console.log('Email:', logarEmail);
+      console.log('Senha:', logarSenha);
 
-      console.log('Email:', email);
-      
-      console.log('Password:', senha);
-    }else{
-      Alert.alert('Senha e/ou Email errado.')
-    };
+    } catch (error) {
+      console.error('Ocorreu um erro ao tentar logar:', error);
+      Alert.alert('Ocorreu um erro ao tentar logar:', error.message);
+    }
   };
-  
 
   return (
+    //Tela para logar
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
-        onChangeText={text => setEmail(text)}
-        value={email}
+        onChangeText={text => setLogarEmail(text)}
+        value={logarEmail}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
-        onChangeText={text => setPassword(text)}
-        value={senha}
+        onChangeText={text => setLogarSenha(text)}
+        value={logarSenha}
         secureTextEntry={true}
       />
-      <TouchableOpacity style={styles.button} onPress={VerificarLogin}>
+      <TouchableOpacity style={styles.button} onPress={botaoTelaPrincipal}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={()=> setCadastro(true)} style={styles.button}>
+      <TouchableOpacity onPress={botaoCadastrar} style={styles.button}>
         <Text style={styles.buttonText}>Criar uma conta</Text>
       </TouchableOpacity>
-
-      <Modal
-       animationType="slide"
-       transparent={true}
-       visible={cadastroVisible}
-       onRequestClose={()=> setCadastro(false)}
-      >
-        <Cadastro closeModal={()=> setCadastro(false)}/>
-      </Modal>
+      
     </View>
   );
 };
@@ -81,6 +100,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 5,
+    marginTop: 8,
   },
   buttonText: {
     color: '#fff',
