@@ -87,11 +87,11 @@ public class Usuario {
 		this.senha = senha;
 	}
     
-    public UsuarioDTO of() {
-    	UsuarioDTO usuario = new UsuarioDTO();
-    	usuario.setEmail(this.email);
-    	usuario.setSenha(this.senha);
-    	return usuario;
+    public static Usuario of(UsuarioDTO usuario) {
+    	Usuario u = new Usuario();
+    	usuario.setEmail(usuario.getEmail());
+    	usuario.setSenha(usuario.getSenha());
+    	return u;
 	}
     
 }
