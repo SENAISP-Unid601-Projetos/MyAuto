@@ -3,10 +3,14 @@ import { View, Text, TouchableOpacity, Modal, StyleSheet, Alert } from 'react-na
 import { Calendar } from 'react-native-calendars';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Agendamento = () => {
+const Agendamento = ({navigation}) => {
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+
+  const botaoVoltar=()=>{
+    navigation.goBack();
+  }
 
   const handleDayPress = (day) => {
     setSelectedDay(day.dateString);
@@ -69,10 +73,19 @@ const Agendamento = () => {
   };
 
   return (
-    <View style={{ flex: 1, marginTop: 50 }}>
+    <View style={{ flex: 1 }}>
+
+      <View style={styles.header}>
+        <TouchableOpacity onPress={botaoVoltar}>
+          <Icon name="arrow-left" size={24} top={35} paddingHorizontal={20} color="white" />
+        </TouchableOpacity>
+
+      </View>
       <Calendar
+        style={styles.calendario}
         onDayPress={handleDayPress}
       />
+      
       <Modal
         animationType="slide"
         transparent={true}
@@ -103,8 +116,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    //marginTop: 22,
   },
+
+  header:{
+    height: '9%',
+    backgroundColor: '#0A0226',
+  },
+  calendario:{
+    top:20
+    },
   modalView: {
     margin: 20,
     backgroundColor: 'white',

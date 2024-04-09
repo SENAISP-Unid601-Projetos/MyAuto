@@ -30,7 +30,7 @@ public class UsuarioController {
     }
     
     @PostMapping("/verificarDados")
-    public ResponseEntity<UsuarioDTO> verificarDados(@RequestBody UsuarioDTO usuarioDto) {
+    public ResponseEntity<Usuario> verificarDados(@RequestBody UsuarioDTO usuarioDto) {
         String email = usuarioDto.getEmail();
         String senha = usuarioDto.getSenha();
         

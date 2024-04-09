@@ -77,9 +77,10 @@ const CadastroCarroScreen = ({navigation}) => {
 
       <View style={styles.botaoVoltar}>
         <TouchableOpacity>
-          <Icon name="arrow-left" size={24} color="black" onPress={botaoVoltar} />
+          <Icon name="arrow-left" size={24} color="white" onPress={botaoVoltar} style={styles.voltar} />
         </TouchableOpacity>
       </View>
+      <View style={styles.obcaoDeCelecao}>
       {/*Aba para colocar a marca*/}
       <Text style={styles.label}>Marca:</Text>
       <TextInput
@@ -157,8 +158,11 @@ const CadastroCarroScreen = ({navigation}) => {
         <Picker.Item label='Flex' value='Flex'/>
       </Picker>
       </View>
-      <Button title="Cadastrar" onPress={Criar} />
+      <View>
+      <Button title="Cadastrar" onPress={Criar}/>
+      </View>
       {erro !== '' && <Text style={styles.error}>{erro}</Text>}
+      </View>
     </View>
   );
 };
@@ -167,16 +171,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    marginTop: 35,
     //justifyContent: 'center',
     //alignItems: 'center',
+    //paddingHorizontal: 20,
+  },
+
+  obcaoDeCelecao:{
+    top: 50,
+    //justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F4F3FF',
+    borderRadius: 60,
+  },
+
+  botaoCadastro:{
+    borderRadius: 90,
+    margin: 0
+  },
+  voltar:{
+    marginBottom: 20,
+    top: 35,
     paddingHorizontal: 20,
   },
 
   botaoVoltar:{
-    marginBottom: 55,
-    top:5,
- //   backgroundColor: 'blue'
+    //marginTop: '8%',
+    height: '9%',
+    backgroundColor: '#0A0226'
   },
   label: {
     //marginHorizontal: 110,
@@ -184,13 +205,15 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   input: {
-    width: '100%',
-    height: 40,
+    width: '90%',
+    height: 50,
     borderColor: 'gray',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 50,
     marginBottom: 10,
     paddingHorizontal: 10,
+    backgroundColor: 'white',
+
   },
 });
 

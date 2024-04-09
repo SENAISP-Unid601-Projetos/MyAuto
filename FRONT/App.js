@@ -16,11 +16,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginScreen">
-        {/* <Stack.Screen
+         <Stack.Screen
           name="LoginScreen"
           component={LoginScreen}
           options={{ headerShown: false }}
-        /> */}
+        /> 
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
