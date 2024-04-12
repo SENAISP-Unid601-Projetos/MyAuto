@@ -1,12 +1,14 @@
+//Aqui onde são colocadas todas as telas e onde são chamadas
+
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./CADASTRO/Login";
 import HomeScreen from "./NavegacaoDasTelas/telaPrincipal";
 import Cadastro from "./CADASTRO/Cadastro.js";
-import Agendamento from "./Agendamento.js";
+import Agendamento from "./NavegacaoDasTelas/Agendamento.js";
 import CadastroCarroScreen from "./CADASTRO/CadastroCarro.js";
-import TelaDeNotificacao from "./TelaDeNotificacao.js";
+import TelaDeNotificacao from "./NavegacaoDasTelas/TelaDeNotificacao.js";
 
 const Stack = createStackNavigator();
 
@@ -14,11 +16,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginScreen">
-        <Stack.Screen
+         <Stack.Screen
           name="LoginScreen"
           component={LoginScreen}
           options={{ headerShown: false }}
-        />
+        /> 
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
@@ -39,7 +41,6 @@ const App = () => {
           component={CadastroCarroScreen}
           options={{ headerShown: false }}
         />
-        {/* ---------------------------------------------------------------------------------------------------------------------------- */}
         <Stack.Screen
           name="TelaDeNotificacao"
           component={TelaDeNotificacao}
@@ -51,4 +52,5 @@ const App = () => {
   );
 };
 
-export default App;
+
+export default App; 

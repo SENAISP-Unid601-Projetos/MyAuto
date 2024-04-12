@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Picker } from '@react-native-picker/picker';
 
-const CadastroCarroScreen = () => {
+const CadastroCarroScreen = ({navigation}) => {
   //Setando os metodos das informações do carro
   const [marca, setMarca] = useState('');
   const [modelo, setModelo] = useState('');
@@ -13,6 +14,9 @@ const CadastroCarroScreen = () => {
   const [combustivel, setCombustivel] = useState('');
   const [erro, setErro] = useState('');
 
+  const botaoVoltar=()=>{
+    navigation.goBack();
+  }
 
   const formatarData = (ano) => {
     return `${ano}`;
@@ -70,6 +74,13 @@ const CadastroCarroScreen = () => {
   return (
     //Tela para Colocar as informações do carro
     <View style={styles.container}>
+
+      <View style={styles.botaoVoltar}>
+        <TouchableOpacity>
+          <Icon name="arrow-left" size={24} color="white" onPress={botaoVoltar} style={styles.voltar} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.obcaoDeCelecao}>
       {/*Aba para colocar a marca*/}
       <Text style={styles.label}>Marca:</Text>
       <TextInput
@@ -147,8 +158,11 @@ const CadastroCarroScreen = () => {
         <Picker.Item label='Flex' value='Flex'/>
       </Picker>
       </View>
-      <Button title="Cadastrar" onPress={Criar} />
+      <View>
+      <Button title="Cadastrar" onPress={Criar}/>
+      </View>
       {erro !== '' && <Text style={styles.error}>{erro}</Text>}
+      </View>
     </View>
   );
 };
@@ -157,22 +171,49 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    justifyContent: 'center',
+    //justifyContent: 'center',
+    //alignItems: 'center',
+    //paddingHorizontal: 20,
+  },
+
+  obcaoDeCelecao:{
+    top: 50,
+    //justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F4F3FF',
+    borderRadius: 60,
+  },
+
+  botaoCadastro:{
+    borderRadius: 90,
+    margin: 0
+  },
+  voltar:{
+    marginBottom: 20,
+    top: 35,
     paddingHorizontal: 20,
   },
+
+  botaoVoltar:{
+    //marginTop: '8%',
+    height: '9%',
+    backgroundColor: '#0A0226'
+  },
   label: {
+    //marginHorizontal: 110,
     fontSize: 18,
     marginBottom: 5,
   },
   input: {
-    width: '100%',
-    height: 40,
+    width: '90%',
+    height: 50,
     borderColor: 'gray',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 50,
     marginBottom: 10,
     paddingHorizontal: 10,
+    backgroundColor: 'white',
+
   },
 });
 

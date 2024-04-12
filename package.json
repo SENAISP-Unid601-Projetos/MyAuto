@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "install": "^0.13.0",
+    "npm": "^10.5.1",
+    "react-native-push-notification": "^8.1.1"
+  }
+}
