@@ -3,7 +3,7 @@ import { View, Text, TextInput,Button, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 
-const Cadastro = () => {
+const Cadastro = ({navigation}) => {
   //Setando os metodos das informações do usuário
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -14,6 +14,10 @@ const Cadastro = () => {
   const [ano, setAno] = useState('');
   const [sexo, setSexo] = useState('');
   const [erro, setErro] = useState('');
+
+  const botaologin=()=>{
+    navigation.navigate('LoginScreen');
+  }
 
   //Formatando a data de nacimento para o banco aceitar de forma normal
   const formatarDataDeNascimento = (dia, mes, ano) => {
@@ -79,6 +83,7 @@ const Cadastro = () => {
       return response.json();
     })
     .then(dados => {
+      botaologin();
       console.log('Usuário criado com sucesso:', dados);
     })
     .catch(error => {
