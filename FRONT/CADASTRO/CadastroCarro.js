@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Picker } from '@react-native-picker/picker';
 
@@ -158,8 +158,10 @@ const CadastroCarroScreen = ({navigation}) => {
         <Picker.Item label='Flex' value='Flex'/>
       </Picker>
       </View>
-      <View>
-      <Button title="Cadastrar" onPress={Criar}/>
+      <View style={styles.btncadastro}>
+        <Pressable  onPress={Criar} style={styles.btn}>
+          <Text style={styles.texto}>Cadastrar</Text>
+        </Pressable>
       </View>
       {erro !== '' && <Text style={styles.error}>{erro}</Text>}
       </View>
@@ -177,11 +179,13 @@ const styles = StyleSheet.create({
   },
 
   obcaoDeCelecao:{
-    top: 50,
-    //justifyContent: 'center',
+    top: "2.5%",
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F4F3FF',
+    backgroundColor: '#0A0226',
     borderRadius: 60,
+    marginHorizontal:15,
+    padding: '11%'
   },
 
   botaoCadastro:{
@@ -203,6 +207,9 @@ const styles = StyleSheet.create({
     //marginHorizontal: 110,
     fontSize: 18,
     marginBottom: 5,
+    //backgroundColor: 'white',
+    color: 'white'
+    //fontStyle: ''
   },
   input: {
     width: '90%',
@@ -212,9 +219,32 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginBottom: 10,
     paddingHorizontal: 10,
-    backgroundColor: 'white',
+    backgroundColor: '#FFF9C4',
 
   },
+  btncadastro:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    //marginBottom: 16,
+    top:"5%",
+    //bottom:'0%',
+    //borderRadius: '10%'
+  },
+  btn:{
+    //alignItems: 'center',
+    backgroundColor: '#2196f3',
+    color: 'white',
+    alignItems: 'center',
+    borderRadius: 20,
+    width: 115,
+    height:40,
+    justifyContent: 'center',
+  },
+  texto:{
+    fontSize: 18,
+    color: 'white',
+    fontFamily: "Roboto"
+  }
 });
 
 export default CadastroCarroScreen;
