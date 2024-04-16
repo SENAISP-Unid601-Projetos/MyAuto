@@ -1,5 +1,5 @@
 //import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, Pressable  } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable, TouchableOpacity  } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -43,9 +43,9 @@ const HomeScreen = ({navigation}) => {
             style={styles.profileImage}
           />
           <View style={styles.buttonWithIcon}>
-           <Pressable onPress={botaologin}  style={styles.botaologin}>
+           <TouchableOpacity onPress={botaologin}  style={styles.botaologin}>
             <Text style={styles.ButtonText}>Login</Text>
-           </Pressable>
+           </TouchableOpacity>
           </View>
         </View>
       </View>

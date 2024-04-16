@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
+import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Picker } from '@react-native-picker/picker';
 
@@ -76,9 +76,13 @@ const CadastroCarroScreen = ({navigation}) => {
     <View style={styles.container}>
 
       <View style={styles.botaoVoltar}>
-        <TouchableOpacity>
-          <Icon name="arrow-left" size={24} color="white" onPress={botaoVoltar} style={styles.voltar} />
+        <TouchableOpacity  style={styles.voltar} >
+          <Icon name="arrow-left" size={24} color="white" onPress={botaoVoltar}/>
         </TouchableOpacity>
+        <Image
+          source={{ uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true' }}
+          style={styles.logo}
+        />
       </View>
       <View style={styles.obcaoDeCelecao}>
       {/*Aba para colocar a marca*/}
@@ -179,28 +183,24 @@ const styles = StyleSheet.create({
   },
 
   obcaoDeCelecao:{
-    top: "2.5%",
+    top: "1.5%",
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#0A0226',
     borderRadius: 60,
     marginHorizontal:15,
-    padding: '11%'
+    padding: '6%'
   },
 
-  botaoCadastro:{
-    borderRadius: 90,
-    margin: 0
-  },
   voltar:{
-    marginBottom: 20,
-    top: 35,
+    marginHorizontal: 10,
+    top: 45,
     paddingHorizontal: 20,
   },
 
   botaoVoltar:{
     //marginTop: '8%',
-    height: '9%',
+    height: '14%',
     backgroundColor: '#0A0226'
   },
   label: {
@@ -213,12 +213,12 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '90%',
-    height: 50,
+    height:50,
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 50,
     marginBottom: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 11,
     backgroundColor: '#FFF9C4',
 
   },
@@ -244,7 +244,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
     fontFamily: "Roboto"
-  }
+  },
+  logo: {
+    marginTop: '-1.1%',
+    width: 100, // Ajuste conforme necessário
+    height: 100, // Ajuste conforme necessário
+    margin:'37%',
+  },
 });
 
 export default CadastroCarroScreen;
