@@ -3,11 +3,11 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import LoginScreen from "./CADASTRO/Login";
+import LoginScreen from "./NavegacaoDasTelas/CADASTRO/Login";
 import HomeScreen from "./NavegacaoDasTelas/telaPrincipal";
-import Cadastro from "./CADASTRO/Cadastro.js";
+import Cadastro from "./NavegacaoDasTelas/CADASTRO/Cadastro.js";
 import Agendamento from "./NavegacaoDasTelas/Agendamento.js";
-import CadastroCarroScreen from "./CADASTRO/CadastroCarro.js";
+import CadastroCarroScreen from "./NavegacaoDasTelas/CADASTRO/CadastroCarro.js";
 import TelaDeNotificacao from "./NavegacaoDasTelas/TelaDeNotificacao.js";
 
 const Stack = createStackNavigator();
