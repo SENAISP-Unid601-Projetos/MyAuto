@@ -3,6 +3,7 @@ import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Pressable }
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Picker } from '@react-native-picker/picker';
 
+
 const CadastroCarroScreen = ({navigation}) => {
   //Setando os metodos das informações do carro
   const [marca, setMarca] = useState('');
