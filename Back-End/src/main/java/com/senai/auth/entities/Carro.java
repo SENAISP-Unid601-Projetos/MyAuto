@@ -7,8 +7,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Data;
 
 @Entity
+@Data
 public class Carro  implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,59 +22,14 @@ public class Carro  implements Serializable {
     @Column(nullable = false)
 	private Integer km;
     @Column(nullable = false)
+	private Integer mediaKm;
+	@Column(nullable = false)
 	private String uso;
     @Column(nullable = false)
 	private String cambio;
     @Column(nullable = false)
     private String combustivel;
-	
-	public String getCombustivel() {
-		return combustivel;
-	}
-	public void setCombustivel(String combustivel) {
-		this.combustivel = combustivel;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getMarca() {
-		return marca;
-	}
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-	public String getModelo() {
-		return modelo;
-	}
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
-	public Integer getAno() {
-		return ano;
-	}
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-	public Integer getKm() {
-		return km;
-	}
-	public void setKm(Integer km) {
-		this.km = km;
-	}
-	public String getUso() {
-		return uso;
-	}
-	public void setUso(String uso) {
-		this.uso = uso;
-	}
-	public String getCambio() {
-		return cambio;
-	}
-	public void setCambio(String cambio) {
-		this.cambio = cambio;
-	}
+    @Column(nullable = true)
+    private Integer calc;
 
 }

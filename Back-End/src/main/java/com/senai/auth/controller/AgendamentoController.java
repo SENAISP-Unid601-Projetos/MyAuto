@@ -19,7 +19,7 @@ public class AgendamentoController {
     @Autowired // Adicione esta anotação para injetar o AgendamentoRepository
     private AgendamentoRepository agendamentoRepository;
 
-    @PostMapping("/agendamentos")
+    @PostMapping("/agendamento")
     public ResponseEntity<Agendamento> agendarServico(@RequestBody Agendamento request) {
         try {
             Agendamento novoAgendamento = agendamentoService.agendarServico(request.getData(), request.getHorario());
@@ -29,7 +29,7 @@ public class AgendamentoController {
         }
     }
     
-    @GetMapping("/agendamentos")
+    @GetMapping("/agendamento")
     public Iterable<Agendamento> findAllAgendamentos() {
         return agendamentoRepository.findAll();
     }
