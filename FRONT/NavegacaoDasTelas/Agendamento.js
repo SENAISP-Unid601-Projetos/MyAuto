@@ -2,13 +2,22 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet, Alert } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import * as Notifications from 'expo-notifications';
 
-const Agendamento = ({navigation}) => {
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
+
+const Agendamento = ({ navigation }) => {
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const botaoVoltar=()=>{
+  const botaoVoltar = () => {
     navigation.goBack();
   }
 
@@ -42,20 +51,38 @@ const Agendamento = ({navigation}) => {
       },
       body: JSON.stringify(novoAgendamento),
     })
-    .then(response => {
-      if (response.ok) {
-        Alert.alert('Sucesso', 'Agendamento realizado com sucesso.');
-        setModalVisible(false);
-      } else {
-        throw new Error('Erro ao agendar');
-      }
-    })
-    .catch(error => {
-      console.error('Erro ao agendar:', error);
-      Alert.alert(
-        'Erro',
-        'Erro ao agendar. Por favor, tente novamente mais tarde.'
-      );
+      .then(response => {
+        if (response.ok) {
+          // Agendamento bem-sucedido, agora agendar a notificação
+          schedulePushNotification(selectedDay, selectedHour);
+          Alert.alert('Sucesso', 'Agendamento realizado com sucesso.');
+          setModalVisible(false);
+        } else {
+          throw new Error('Erro ao agendar');
+        }
+      })
+      .catch(error => {
+        console.error('Erro ao agendar:', error);
+        Alert.alert(
+          'Erro',
+          'Erro ao agendar. Por favor, tente novamente mais tarde.'
+        );
+      });
+  };
+
+  const schedulePushNotification = (selectedDay, selectedHour) => {
+    // Concatenando a data e hora selecionadas para formar um objeto Date
+    const [year, month, day] = selectedDay.split('-').map(Number);
+    const [hour, minute] = selectedHour.split(':').map(Number);
+    const notificationDate = new Date(year, month - 1, day, hour, minute);
+
+    // Agendando a notificação
+    Notifications.scheduleNotificationAsync({
+      content: {
+        title: 'Notificação Agendada',
+        body: `Seu agendamento está marcado para ${selectedDay} às ${selectedHour}`,
+      },
+      trigger: { date: notificationDate },
     });
   };
 
@@ -85,7 +112,7 @@ const Agendamento = ({navigation}) => {
         style={styles.calendario}
         onDayPress={handleDayPress}
       />
-      
+
       <Modal
         animationType="slide"
         transparent={true}
@@ -119,13 +146,13 @@ const styles = StyleSheet.create({
     //marginTop: 22,
   },
 
-  header:{
+  header: {
     height: '9%',
     backgroundColor: '#0A0226',
   },
-  calendario:{
-    top:20
-    },
+  calendario: {
+    top: 20
+  },
   modalView: {
     margin: 20,
     backgroundColor: 'white',

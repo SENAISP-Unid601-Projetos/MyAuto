@@ -3,7 +3,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import LoginScreen from "./NavegacaoDasTelas/CADASTRO/Login";
+//import LoginScreen from "./NavegacaoDasTelas/CADASTRO/Login";
 import HomeScreen from "./NavegacaoDasTelas/telaPrincipal";
 import Cadastro from "./NavegacaoDasTelas/CADASTRO/Cadastro.js";
 import Agendamento from "./NavegacaoDasTelas/Agendamento.js";
