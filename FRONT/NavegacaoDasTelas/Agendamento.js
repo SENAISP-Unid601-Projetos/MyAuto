@@ -42,7 +42,7 @@ const Agendamento = ({ navigation }) => {
     };
 
     // Endpoint da API
-    const endpoint = 'http://10.110.12.20:8080/api/agendamentos';
+    const endpoint = 'http://10.110.12.3:8080/api/agendamento';
 
     fetch(endpoint, {
       method: 'POST',

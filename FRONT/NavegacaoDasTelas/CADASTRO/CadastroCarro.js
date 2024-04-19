@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
+import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Pressable, Alert, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Picker } from '@react-native-picker/picker';
 
@@ -9,10 +9,16 @@ const CadastroCarroScreen = ({navigation}) => {
   const [modelo, setModelo] = useState('');
   const [ano, setAno] = useState('');
   const [km, setKm] = useState('');
+  const [mediaKm, setMediaKm] = useState('');
   const [uso, setUso] = useState('');
+  const [frequencia, setFrequencia] = useState('');
   const [cambio, setCambio] = useState('');
   const [combustivel, setCombustivel] = useState('');
   const [erro, setErro] = useState('');
+
+  const calc=()=>{
+    return 10000/ mediaKm;
+  }
 
   const botaoVoltar=()=>{
     navigation.goBack();
@@ -34,6 +40,7 @@ const CadastroCarroScreen = ({navigation}) => {
     setErro('');
 
     const formattedDate = formatarData(ano);
+    const media = calc();
 
     //Dados do carro
     const dados = {
@@ -41,9 +48,11 @@ const CadastroCarroScreen = ({navigation}) => {
       "modelo": modelo,
       "ano": formattedDate,
       "km": km,
+      "mediaKm": mediaKm,
       "uso": uso,
       "cambio": cambio,
-      "combustivel": combustivel
+      "combustivel": combustivel,
+      "calc":  media
     };
 
     //console.log(dados);
@@ -64,6 +73,8 @@ const CadastroCarroScreen = ({navigation}) => {
     })
     .then(dados => {
       console.log('Carro cadastrado com sucesso:', dados);
+      Alert.alert("Sucesso","Carro cadastrado com sucesso!");
+      botaoVoltar();
     })
     .catch(error => {
       console.error('Ocorreu um erro ao cadastrar seu Carro:', error);
@@ -73,6 +84,7 @@ const CadastroCarroScreen = ({navigation}) => {
 
   return (
     //Tela para Colocar as informações do carro
+    <ScrollView>
     <View style={styles.container}>
 
       <View style={styles.botaoVoltar}>
@@ -109,12 +121,21 @@ const CadastroCarroScreen = ({navigation}) => {
         keyboardType="numeric"
       />
       {/*Aba para colocar a KM*/}
-      <Text style={styles.label}>KM:</Text>
+      <Text style={styles.label}>KM DO RELOGIO ATUALMENTE:</Text>
       <TextInput
         style={styles.input}
         value={km}
         maxLength={6}
         onChangeText={setKm}
+        keyboardType="numeric"
+      />
+      {/*Aba para colocar a KM*/}
+      <Text style={styles.label}>MEDIA DE KM DIÁRIO:</Text>
+      <TextInput
+        style={styles.input}
+        value={mediaKm}
+        maxLength={6}
+        onChangeText={setMediaKm}
         keyboardType="numeric"
       />
       {/*Aba para colocar a USO*/}
@@ -132,6 +153,21 @@ const CadastroCarroScreen = ({navigation}) => {
         <Picker.Item label='Entregas' value='Entregas'/>
         <Picker.Item label='Rural' value='Rural'/>
         <Picker.Item label='Passeio' value='Passeio'/>
+      </Picker>
+      </View>
+      {/*Aba para colocar a USO*/}
+      <Text style={styles.label}>FREQUENCIA:</Text>
+
+      <View style={styles.input}>
+      <Picker
+      selectedValue={frequencia}
+      onValueChange={(itemValue)=> setFrequencia(itemValue)}
+      >
+        <Picker.Item label='Selecionar' value={(null)}/>
+        <Picker.Item label='Frequentemente' value={1.5}/>
+        <Picker.Item label='Razoavel' value={1}/>
+        <Picker.Item label='Ocasionalmente' value={1.3}/>
+
       </Picker>
       </View>
 
@@ -170,6 +206,7 @@ const CadastroCarroScreen = ({navigation}) => {
       {erro !== '' && <Text style={styles.error}>{erro}</Text>}
       </View>
     </View>
+    </ScrollView>
   );
 };
 
@@ -200,7 +237,7 @@ const styles = StyleSheet.create({
 
   botaoVoltar:{
     //marginTop: '8%',
-    height: '14%',
+    height: '12%',
     backgroundColor: '#0A0226'
   },
   label: {

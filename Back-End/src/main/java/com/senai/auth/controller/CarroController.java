@@ -44,7 +44,7 @@ public class CarroController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Carro> atualizarCarro(@PathVariable Long id, @Valid @RequestBody Carro carroAtualizado){
+	public ResponseEntity<Carro> calcKmCarro(@PathVariable Long id, @Valid @RequestBody Carro carroAtualizado){
 		Carro carroExistente = carroRepository.findById(id).orElse(null);
 		
 		if(carroExistente!= null) {
