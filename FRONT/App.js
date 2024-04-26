@@ -1,5 +1,4 @@
 //Aqui onde são colocadas todas as telas e onde são chamadas
-
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
