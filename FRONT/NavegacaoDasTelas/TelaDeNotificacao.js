@@ -12,7 +12,6 @@ const TelaDeNotificacao = ({ navigation }) => {
   }
 
   useEffect(() => {
-    fetch('http://10.110.12.31:8080/api/agendamento')
       .then(response => {
         if (response.ok) {
           return response.json();

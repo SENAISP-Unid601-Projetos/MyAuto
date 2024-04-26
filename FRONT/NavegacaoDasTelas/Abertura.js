@@ -27,7 +27,7 @@ const Abertura = ({ navigation }) => {
         useNativeDriver: false, // A animação de cor de fundo não suporta o driver nativo
       }
     ).start(() => {
-      navigation.replace('HomeScreen'); // Navega para a tela principal após 3 segundos
+      navigation.replace('LoginScreen'); // Navega para a tela principal após 3 segundos
     });
   }, [navigation, rotateYValue, backgroundColorValue]);
 
