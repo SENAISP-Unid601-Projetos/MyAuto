@@ -7,17 +7,18 @@ import Cadastro from "./NavegacaoDasTelas/CADASTRO/Cadastro.js";
 import Agendamento from "./NavegacaoDasTelas/Agendamento.js";
 import CadastroCarroScreen from "./NavegacaoDasTelas/CADASTRO/CadastroCarro.js";
 import TelaDeNotificacao from "./NavegacaoDasTelas/TelaDeNotificacao.js";
-import SplashScreen from "./NavegacaoDasTelas/CADASTRO/Abertura.js"; // Importe a tela de abertura
+import Abertura from "./NavegacaoDasTelas/Abertura.js";
+//import SplashScreen from "./NavegacaoDasTelas/CADASTRO/Abertura.js"; // Importe a tela de abertura
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Navigator initialRouteName="Abertura">
         <Stack.Screen
-          name="SplashScreen"
-          component={SplashScreen}
+          name="Abertura"
+          component={Abertura}
           options={{ headerShown: false }}
         />
         <Stack.Screen
