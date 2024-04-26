@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Modal, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, StyleSheet, Alert, TextInput } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as Notifications from 'expo-notifications';
@@ -16,6 +16,7 @@ const Agendamento = ({ navigation }) => {
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedService, setSelectedService] = useState('');
 
   const botaoVoltar = () => {
     navigation.goBack();
@@ -28,21 +29,27 @@ const Agendamento = ({ navigation }) => {
 
   const handleHourPress = (hour) => {
     setSelectedHour(hour);
+    setModalVisible(false); // Esconde a modal ao selecionar um horário
+  };
+
+  const handleServiceChange = (text) => {
+    setSelectedService(text);
   };
 
   const agendarHorario = () => {
-    if (!selectedDay || !selectedHour) {
-      Alert.alert('Erro', 'Selecione um dia e horário antes de agendar');
+    if (!selectedDay || !selectedHour || !selectedService) {
+      Alert.alert('Erro', 'Preencha todos os campos antes de agendar');
       return;
     }
 
     const novoAgendamento = {
       data: selectedDay,
-      horario: selectedHour
+      horario: selectedHour,
+      servico: selectedService
     };
 
     // Endpoint da API
-    const endpoint = 'http://10.110.12.3:8080/api/agendamento';
+    const endpoint = 'http://10.110.12.31:8080/api/agendamento';
 
     fetch(endpoint, {
       method: 'POST',
@@ -86,31 +93,70 @@ const Agendamento = ({ navigation }) => {
     });
   };
 
-  const renderAvailableHours = () => {
-    // Horários disponíveis (pode ser substituído por uma chamada à API)
-    const availableHours = [
-      '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'
-    ];
+  const availableHours = [
+    ['09:00', '10:00', '11:00'],
+    ['12:00', '13:00', '14:00'],
+    ['15:00', '16:00', '17:00']
+  ];
 
-    return availableHours.map((hour, index) => (
-      <TouchableOpacity key={index} style={{ padding: 10, borderBottomWidth: 1, borderColor: '#ccc' }} onPress={() => handleHourPress(hour)}>
-        <Text>{hour}</Text>
-      </TouchableOpacity>
-    ));
+  const renderAvailableHours = () => {
+    return (
+      availableHours.map((row, rowIndex) => (
+        <View key={rowIndex} style={styles.row}>
+          {row.map((hour, colIndex) => (
+            <TouchableOpacity key={`${rowIndex}-${colIndex}`} style={styles.hourButton} onPress={() => handleHourPress(hour)}>
+              <Text style={styles.hourText}>{hour}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      ))
+    );
   };
 
   return (
-    <View style={{ flex: 1 }}>
-
+    <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={botaoVoltar}>
-          <Icon name="arrow-left" size={24} top={35} paddingHorizontal={20} color="white" />
+        <TouchableOpacity onPress={botaoVoltar} style={styles.backButton}>
+          <Icon name="arrow-left" size={24} color="white" />
         </TouchableOpacity>
-
+        <Text style={styles.headerText}>Agendamento</Text>
       </View>
-      <Calendar
-        style={styles.calendario}
-        onDayPress={handleDayPress}
+
+      <View style={styles.chooseDayContainer}>
+        <View>
+          <Text style={styles.chooseDayText}>Escolha o melhor dia:</Text>
+        </View>
+      </View>
+
+      <View style={styles.calendarContainer}>
+        <Calendar
+          style={styles.calendario}
+          onDayPress={handleDayPress}
+          // Modificações para alterar a ordem da data para dia, mês e ano
+          dayFormat={'D'}
+          monthFormat={'M'}
+          yearFormat={'YYYY'}
+        />
+      </View>
+
+      {selectedHour && (
+        <View style={styles.selectedDateTimeContainer}>
+          <Text style={styles.selectedDateTime}>
+            {selectedDay && `Data: ${selectedDay}`}
+            {selectedHour && `, Horário: ${selectedHour}`}
+          </Text>
+        </View>
+      )}
+
+      {/* Texto orientativo sobre o input */}
+      <Text style={styles.inputLabel}>Descreva o objetivo do Agendamento: (Revisão, troca de Óleo... )</Text>
+
+      {/* Input para o serviço */}
+      <TextInput
+        style={styles.input}
+        placeholder="EX: O CARRO ESTÁ FALHANDO."
+        onChangeText={handleServiceChange}
+        value={selectedService}
       />
 
       <Modal
@@ -121,64 +167,140 @@ const Agendamento = ({ navigation }) => {
           setModalVisible(false);
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
             <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
               <Icon name="close" size={30} color="black" />
             </TouchableOpacity>
-            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Horários disponíveis para: {selectedDay}:</Text>
+            <Text style={styles.modalTitle}>Horários disponíveis para: {selectedDay}:</Text>
             {renderAvailableHours()}
-            <TouchableOpacity style={styles.button} onPress={agendarHorario}>
-              <Text style={styles.buttonText}>Agendar</Text>
-            </TouchableOpacity>
           </View>
         </View>
       </Modal>
+
+      {/* Botão Agendar */}
+      <TouchableOpacity style={styles.button} onPress={agendarHorario}>
+        <Text style={styles.buttonText}>Agendar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  centeredView: {
+  container: {
+    flex: 1,
+    backgroundColor: 'white', // Background branco
+  },
+  header: {
+    height: '10%',
+    backgroundColor: '#0A0226',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: '5%',
+    flexDirection: 'row', // Para alinhar o texto e o botão na mesma linha
+  },
+  backButton: {
+    marginRight: 10, // Adicionando margem à direita para separar o botão do texto
+  },
+  headerText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  chooseDayContainer: {
+    alignItems: 'center',
+    marginTop: 20, // Aumentando a margem superior
+  },
+  chooseDayText: {
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  calendarContainer: {
+    marginVertical: '5%',
+    width: '90%',
+    alignSelf: 'center',
+  },
+  selectedDateTimeContainer: {
+    backgroundColor: '#001F3D',
+    borderRadius: 10,
+    marginHorizontal: 12,
+    marginVertical: 8,
+    padding: 10,
+  },
+  selectedDateTime: {
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  calendario: {
+    width: '100%',
+  },
+  inputLabel: {
+    marginHorizontal: 12,
+    marginTop: 8,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  input: {
+    height: 40,
+    marginHorizontal: 12,
+    marginTop: 10,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 10,
+  },
+  modalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    //marginTop: 22,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-
-  header: {
-    height: '9%',
-    backgroundColor: '#0A0226',
-  },
-  calendario: {
-    top: 20
-  },
-  modalView: {
-    margin: 20,
+  modalContent: {
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
+    padding: '5%',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
+    width: '80%',
   },
   closeButton: {
     position: 'absolute',
-    top: 10,
-    right: 10,
+    top: '2%',
+    right: '2%',
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: '5%',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-around', // Alterado de 'space-between' para 'space-around'
+    alignItems: 'center',
+    marginBottom: '5%',
+  },
+  hourButton: {
+    width: '65%', // Ajuste de tamanho para acomodar os botões em uma fila
+    aspectRatio: 1, // Mantém a proporção 1:1 para os botões
+    backgroundColor: '#0A0226',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginRight:'3%'
+  },
+  hourText: {
+    fontSize: 16,
+    color: 'white',
   },
   button: {
-    marginTop: 20,
-    backgroundColor: '#2196F3',
-    borderRadius: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    marginTop: '5%',
+    backgroundColor: '#41B06E', // Cor verde
+    borderRadius: 30, // Aumentando a borda para deixar o botão mais arredondado
+    paddingVertical: '5%', // Aumentando o padding vertical para deixar o botão maior
+    paddingHorizontal: '15%', // Aumentando o padding horizontal para deixar o botão maior
+    alignSelf: 'center', // Para alinhar o botão ao centro
   },
   buttonText: {
     color: 'white',
