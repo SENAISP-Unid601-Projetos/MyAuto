@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {  StyleSheet, Animated, Easing } from 'react-native';
 
-const SplashScreen = ({ navigation }) => {
+const Abertura = ({ navigation }) => {
   const rotateYValue = new Animated.Value(0);
   const backgroundColorValue = new Animated.Value(0);
 
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SplashScreen;
+export default Abertura;

@@ -7,12 +7,11 @@ const TelaDeNotificacao = ({ navigation }) => {
   const [agendamentosFuturos, setAgendamentosFuturos] = useState([]);
   const [error, setError] = useState(null);
 
-  const botaoVoltar=()=>{
+  const botaoVoltar = () => {
     navigation.goBack();
   }
 
   useEffect(() => {
-    fetch('http://10.110.12.3:8080/api/agendamento')
       .then(response => {
         if (response.ok) {
           return response.json();
