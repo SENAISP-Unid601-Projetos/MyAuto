@@ -16,8 +16,10 @@ const CadastroCarroScreen = ({navigation}) => {
   const [combustivel, setCombustivel] = useState('');
   const [erro, setErro] = useState('');
 
+  const result = 10000 / mediaKm;
+
   const calc=()=>{
-    return 10000/ mediaKm;
+    return result / frequencia;
   }
 
   const botaoVoltar=()=>{
@@ -73,7 +75,7 @@ const CadastroCarroScreen = ({navigation}) => {
     })
     .then(dados => {
       console.log('Carro cadastrado com sucesso:', dados);
-      Alert.alert("Sucesso","Carro cadastrado com sucesso!");
+      Alert.alert("Sucesso!","Prosima troca de oleo em: "+calc()+" dias.");
       botaoVoltar();
     })
     .catch(error => {
@@ -125,7 +127,7 @@ const CadastroCarroScreen = ({navigation}) => {
       <TextInput
         style={styles.input}
         value={km}
-        maxLength={6}
+        maxLength={5}
         onChangeText={setKm}
         keyboardType="numeric"
       />
@@ -162,6 +164,7 @@ const CadastroCarroScreen = ({navigation}) => {
       <Picker
       selectedValue={frequencia}
       onValueChange={(itemValue)=> setFrequencia(itemValue)}
+      keyboardType="numeric"
       >
         <Picker.Item label='Selecionar' value={(null)}/>
         <Picker.Item label='Frequentemente' value={1.5}/>
