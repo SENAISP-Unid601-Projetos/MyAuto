@@ -1,6 +1,7 @@
 //import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity  } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+//import Ionicons from '@expo/vector-icons/Ionicons';
+import { AntDesign } from '@expo/vector-icons';
 
 
 const HomeScreen = ({navigation}) => {
@@ -52,20 +53,20 @@ const HomeScreen = ({navigation}) => {
 
       {/* Retângulo roxo como rodapé */}
       <View style={styles.footerContainer}>
-        <View style={styles.alinhaBotao}>
-          {/* Botão Agendar */}
-          <View style={styles.buttonRodape}>
-            <Icon name="calendar" size={30} color="black" style={styles.icon} onPress={botaoAgendar} />
-          </View>
 
+        {/* Botão Agendar */}
+        {/* Restante dos botões */}
+        <View style={styles.alinhaBotao}>
+          <View style={styles.buttonRodape}>
+            <AntDesign style={styles.icon} name="calendar" size={30} color="black" onPress={botaoAgendar} />
+          </View>
           {/* Botão Notificações */}
           <View style={styles.buttonRodape}>
-            <Icon name="bell" size={30} color="black" style={styles.icon} onPress={botaoNotificacao} />
+            <AntDesign name="bells" size={30} color="black" style={styles.icon} onPress={botaoNotificacao} />
           </View>
-
           {/* Botão Relatórios */}
           <View style={styles.buttonRodape}>
-            <Icon name="car" size={30} color="black" style={styles.icon} onPress={botaoCarro} />
+            <AntDesign name="car" size={30} color="black" style={styles.icon} onPress={botaoCarro} />
           </View>
         </View>
       </View>
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     //padding: 16,
     //justifyContent: 'center',
-    //alignItems: 'center',
+    alignItems: 'center',
   },
   headerContainer: {
     backgroundColor: '#0A0226',
@@ -90,11 +91,11 @@ const styles = StyleSheet.create({
     //justifyContent: 'center',
     //marginBottom: 14,
   },
-  headerText: {
+  //headerText: {
    // fontSize: 18,
    // fontWeight: 'bold',
-   //color: 'white',
-  },
+    //color: 'white',
+ // },
   logo: {
     marginTop: 13,
     width: 100, // Ajuste conforme necessário
@@ -103,9 +104,8 @@ const styles = StyleSheet.create({
   },
   alinhaBotao: {
     flexDirection:'row' ,
-    height: 70,
-    borderWidth: 4,
-    //alignItems:''
+    //borderWidth: 4,
+    //alignSelf:"stretch"
   },
   profileContainer: {
     //paddingLeft: -50,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderWidth: 1,
     alignItems: 'center',
-    //marginBottom: 10,
+    marginBottom: 10,
     width: '34%',
   },
   icon: {
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   cadastroCarro:{
     position: 'relative',
     backgroundColor : 'black',
-    //borderRadius: 100
+    borderRadius: 100
   },
   botaologin:{
     backgroundColor: '#2196f3',
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   footerContainer: {
     backgroundColor: 'black',
     width: '100%',
-    position: 'relative',
+    //position: 'relative',
     alignItems: 'center',
   },
   footerText: {
