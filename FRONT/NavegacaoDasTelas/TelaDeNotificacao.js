@@ -11,21 +11,41 @@ const TelaDeNotificacao = ({ navigation }) => {
     navigation.goBack();
   }
 
-  fetch('https://api.example.com/data')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-    // Faça algo com os dados recebidos
-  })
-  .catch(error => {
-    console.error('Houve um problema ao buscar os dados:', error);
-  });
+  useEffect(() => {
+    // Substitua a URL abaixo pela URL da sua API
+    fetch('http://10.110.12.20:8080/api/agendamento')
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Erro ao obter os agendamentos');
+        }
+      })
+      .then(data => {
+        setAgendamentosFuturos(data);
+      })
+      .catch(error => {
+        console.error('Erro ao obter os agendamentos:', error);
+        setError(error.message); // Define o erro no estado de erro
+      });
+  }, []);
 
+  // useEffect(() => {
+  //     .then(response => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+  //         throw new Error('Erro ao obter os agendamentos');
+  //       }
+  //     })
+  //     .then(data => {
+  //       setAgendamentosFuturos(data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Erro ao obter os agendamentos:', error);
+  //       setError(error.message); // Define o erro no estado de erro
+  //     });
+  //   },  []);
 
   return (
     <View style={styles.container}>
