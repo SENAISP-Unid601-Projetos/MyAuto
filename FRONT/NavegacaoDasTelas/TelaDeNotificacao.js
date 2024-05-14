@@ -12,7 +12,7 @@ const TelaDeNotificacao = ({ navigation }) => {
   }
 
   useEffect(() => {
-      .then(response => {
+      then(response => {
         if (response.ok) {
           return response.json();
         } else {
