@@ -1,6 +1,7 @@
 //import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, Pressable, TouchableOpacity  } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, Text, Image, StyleSheet, TouchableOpacity  } from 'react-native';
+//import Ionicons from '@expo/vector-icons/Ionicons';
+import { AntDesign } from '@expo/vector-icons';
 
 
 const HomeScreen = ({navigation}) => {
@@ -57,15 +58,15 @@ const HomeScreen = ({navigation}) => {
         {/* Restante dos botões */}
         <View style={styles.alinhaBotao}>
           <View style={styles.buttonRodape}>
-            <Icon style={styles.icon} name="calendar" size={30} color="black" onPress={botaoAgendar} />
+            <AntDesign style={styles.icon} name="calendar" size={30} color="black" onPress={botaoAgendar} />
           </View>
           {/* Botão Notificações */}
           <View style={styles.buttonRodape}>
-            <Icon name="bell" size={30} color="black" style={styles.icon} onPress={botaoNotificacao} />
+            <AntDesign name="bells" size={30} color="black" style={styles.icon} onPress={botaoNotificacao} />
           </View>
           {/* Botão Relatórios */}
           <View style={styles.buttonRodape}>
-            <Icon name="car" size={30} color="black" style={styles.icon} onPress={botaoCarro} />
+            <AntDesign name="car" size={30} color="black" style={styles.icon} onPress={botaoCarro} />
           </View>
         </View>
       </View>
