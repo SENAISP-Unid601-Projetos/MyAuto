@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Pressable, Alert, ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { AntDesign } from '@expo/vector-icons';
 import { Picker } from '@react-native-picker/picker';
 
 const CadastroCarroScreen = ({navigation}) => {
@@ -74,8 +74,8 @@ const CadastroCarroScreen = ({navigation}) => {
       return response.json();
     })
     .then(dados => {
-      console.log('Carro cadastrado com sucesso:', dados);
-      Alert.alert("Sucesso!","Prosima troca de oleo em: "+calc()+" dias.");
+      console.log('Carro cadastrado com sucesso: ', dados);
+      Alert.alert("Sucesso!","Próxima troca de óleo em: "+calc()+" dias.");
       botaoVoltar();
     })
     .catch(error => {
@@ -90,8 +90,8 @@ const CadastroCarroScreen = ({navigation}) => {
     <View style={styles.container}>
 
       <View style={styles.botaoVoltar}>
-        <TouchableOpacity  style={styles.voltar} >
-          <Icon name="arrow-left" size={24} color="white" onPress={botaoVoltar}/>
+        <TouchableOpacity  style={styles.voltar}  onPress={botaoVoltar} >
+          <AntDesign name="arrowleft" size={30} color="white" />
         </TouchableOpacity>
         <Image
           source={{ uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true' }}
