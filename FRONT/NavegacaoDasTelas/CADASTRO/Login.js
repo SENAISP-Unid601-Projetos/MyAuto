@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import axios from 'axios';
 
+
 const LoginScreen = ({ navigation }) => {
 
   const botaoCadastrar = () => {

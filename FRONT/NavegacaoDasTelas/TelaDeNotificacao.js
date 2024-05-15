@@ -14,38 +14,21 @@ const TelaDeNotificacao = ({ navigation }) => {
   useEffect(() => {
     // Substitua a URL abaixo pela URL da sua API
     fetch('http://10.110.12.20:8080/api/agendamento')
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Erro ao obter os agendamentos');
-        }
-      })
-      .then(data => {
-        setAgendamentosFuturos(data);
-      })
-      .catch(error => {
-        console.error('Erro ao obter os agendamentos:', error);
-        setError(error.message); // Define o erro no estado de erro
-      });
-  }, []);
-
-  // useEffect(() => {
-  //     .then(response => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         throw new Error('Erro ao obter os agendamentos');
-  //       }
-  //     })
-  //     .then(data => {
-  //       setAgendamentosFuturos(data);
-  //     })
-  //     .catch(error => {
-  //       console.error('Erro ao obter os agendamentos:', error);
-  //       setError(error.message); // Define o erro no estado de erro
-  //     });
-  //   },  []);
+       .then(response => {
+         if (response.ok) {
+           return response.json();
+         } else {
+           throw new Error('Erro ao obter os agendamentos');
+         }
+       })
+       .then(data => {
+         setAgendamentosFuturos(data);
+       })
+       .catch(error => {
+         console.error('Erro ao obter os agendamentos:', error);
+         setError(error.message); // Define o erro no estado de erro
+       });
+     },  []);
 
   return (
     <View style={styles.container}>
