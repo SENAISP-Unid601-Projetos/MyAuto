@@ -1,4 +1,4 @@
-//import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity  } from 'react-native';
 //import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons';
@@ -23,6 +23,29 @@ const HomeScreen = ({navigation}) => {
         navigation.navigate('Agendamento');
         
     }
+
+    
+  const [agendamentosFuturos, setAgendamentosFuturos] = useState([]);
+    
+  useEffect(() => {
+    // Substitua a URL abaixo pela URL da sua API
+    fetch('http://10.110.12.17:8080/api/agendamento')
+       .then(response => {
+         if (response.ok) {
+           return response.json();
+         } else {
+           throw new Error('Erro ao obter os agendamentos');
+         }
+       })
+       .then(data => {
+         setAgendamentosFuturos(data);
+       })
+       .catch(error => {
+         console.error('Erro ao obter os agendamentos:', error);
+         setError(error.message); // Define o erro no estado de erro
+       });
+     },  []);
+
 
   return (
     <View style={styles.container}>
@@ -49,6 +72,13 @@ const HomeScreen = ({navigation}) => {
            </TouchableOpacity>
           </View>
         </View>
+      </View>
+
+      <View>
+          <Text>Conteúdo dos Serviços Futuros</Text>
+          {agendamentosFuturos.map((agendamento, index) => (
+            <Text key={index}>{agendamento.data} - {agendamento.horario}</Text>
+          ))}
       </View>
 
       {/* Retângulo roxo como rodapé */}
