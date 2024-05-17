@@ -26,6 +26,8 @@ const HomeScreen = ({navigation}) => {
 
     
   const [agendamentosFuturos, setAgendamentosFuturos] = useState([]);
+  const [error, setError] = useState(null);
+  const [selectedTab, setSelectedTab] = useState('realizados');
     
   useEffect(() => {
     // Substitua a URL abaixo pela URL da sua API
@@ -74,11 +76,22 @@ const HomeScreen = ({navigation}) => {
         </View>
       </View>
 
-      <View>
-          <Text>Conteúdo dos Serviços Futuros</Text>
+      <View style={styles.servisoRealizado}>
+      {error  ? (
+        // Renderiza o erro se ocorrer
+        <View>
+          <Text>Ocorreu um erro ao carregar os serviços realizados.</Text>
+        </View>
+      ) :  (
+        <View>
+          <Text style={styles.texto}>Serviços Futuros</Text>
+          <View  style={styles.diasAgendados}>
           {agendamentosFuturos.map((agendamento, index) => (
             <Text key={index}>{agendamento.data} - {agendamento.horario}</Text>
           ))}
+          </View>
+        </View>
+      )}
       </View>
 
       {/* Retângulo roxo como rodapé */}
@@ -111,6 +124,19 @@ const styles = StyleSheet.create({
     //padding: 16,
     //justifyContent: 'center',
     alignItems: 'center',
+  },
+  diasAgendados:{
+    //position:"absolute",
+    //alignItems:"flex-start"
+    marginTop:20,
+    marginRight:260
+  },
+  texto:{
+    //position:'static',
+   // backgroundColor:'blue',
+//    height:50,
+    textAlign:"center",
+    fontSize:30
   },
   headerContainer: {
     backgroundColor: '#0A0226',
@@ -149,7 +175,10 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     //marginBottom: 10,
-    
+  },
+  servisoRealizado:{
+    position: "absolute",
+    marginTop:"35%",
   },
   buttonWithIcon: {
     flexDirection: 'row',
