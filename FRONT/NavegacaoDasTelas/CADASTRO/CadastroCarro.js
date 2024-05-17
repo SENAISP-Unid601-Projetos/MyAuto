@@ -60,7 +60,7 @@ const CadastroCarroScreen = ({navigation}) => {
     //console.log(dados);
 
     
-    fetch('http://10.110.12.3:8080/api/carros', { //metodo para chamar a API usando o feth
+    fetch('http://10.110.12.17:8080/api/carros', { //metodo para chamar a API usando o feth
       method: 'POST', //Usamos o POST para postar no banco as informações
       headers: {
         'Content-Type': 'application/json'
