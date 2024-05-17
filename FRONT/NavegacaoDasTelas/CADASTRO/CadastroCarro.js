@@ -19,7 +19,7 @@ const CadastroCarroScreen = ({navigation}) => {
   const result = 10000 / mediaKm;
 
   const calc=()=>{
-    return result / frequencia;
+    return parseInt(result / frequencia);
   }
 
   const botaoVoltar=()=>{
