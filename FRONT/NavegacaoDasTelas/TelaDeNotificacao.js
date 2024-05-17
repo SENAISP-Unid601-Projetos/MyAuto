@@ -39,18 +39,6 @@ const TelaDeNotificacao = ({ navigation }) => {
       </View>
 
       <View style={styles.tabContainer}>
-        <TouchableOpacity
-          style={[styles.tab, selectedTab === 'realizados' && styles.selectedTab]}
-          onPress={() => setSelectedTab('realizados')}
-        >
-          <Text style={styles.tabText}>Serviços Realizados</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.tab, selectedTab === 'futuros' && styles.selectedTab]}
-          onPress={() => setSelectedTab('futuros')}
-        >
-          <Text style={styles.tabText}>Serviços Futuros</Text>
-        </TouchableOpacity>
       </View>
 
       {/* Conteúdo da Tab selecionada */}
@@ -61,13 +49,13 @@ const TelaDeNotificacao = ({ navigation }) => {
       ) : selectedTab === 'realizados' ? (
         <View>
           <Text>Conteúdo dos Serviços Realizados</Text>
-        </View>
-      ) : (
-        <View>
-          <Text>Conteúdo dos Serviços Futuros</Text>
           {agendamentosFuturos.map((agendamento, index) => (
             <Text key={index}>{agendamento.data} - {agendamento.horario}</Text>
           ))}
+        </View>
+      ) : (
+        <View>
+          <Text>Conteúdo dos Serviços Realizados</Text>
         </View>
       )}
     </View>
