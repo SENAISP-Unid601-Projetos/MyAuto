@@ -32,12 +32,12 @@ const Agendamento = ({ navigation }) => {
     setModalVisible(false); // Esconde a modal ao selecionar um horário
   };
 
-  const handleServiceChange = (text) => {
-    setSelectedService(text);
-  };
+  // const handleServiceChange = (text) => {
+  //   setSelectedService(text);
+  // };
 
   const agendarHorario = () => {
-    if (!selectedDay || !selectedHour || !selectedService) {
+    if (!selectedDay || !selectedHour ) {
       Alert.alert('Erro', 'Preencha todos os campos antes de agendar');
       return;
     }
@@ -49,7 +49,7 @@ const Agendamento = ({ navigation }) => {
     };
 
     // Endpoint da API
-    const endpoint = 'http://10.110.12.20:8080/api/agendamento';
+    const endpoint = 'http://10.110.12.28:8080/api/agendamento';
 
     fetch(endpoint, {
       method: 'POST',
@@ -149,15 +149,15 @@ const Agendamento = ({ navigation }) => {
       )}
 
       {/* Texto orientativo sobre o input */}
-      <Text style={styles.inputLabel}>Descreva o objetivo do Agendamento: (Revisão, troca de Óleo... )</Text>
+      {/* <Text style={styles.inputLabel}>Descreva o objetivo do Agendamento: (Revisão, troca de Óleo... )</Text>
 
-      {/* Input para o serviço */}
+     
       <TextInput
         style={styles.input}
         placeholder="EX: O CARRO ESTÁ FALHANDO."
         onChangeText={handleServiceChange}
         value={selectedService}
-      />
+      /> */}
 
       <Modal
         animationType="slide"
