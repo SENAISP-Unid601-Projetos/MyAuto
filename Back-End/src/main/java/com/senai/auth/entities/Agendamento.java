@@ -5,7 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Agendamento {
 
@@ -15,29 +21,18 @@ public class Agendamento {
 	    private Long id;
 	  	
 	    private String data;
+
+		private String local;
+
+		private String nomeOficina;
+
+		private String tipoServico;
+
+		private String imagem;
 	    
 	    @Column(nullable = false)
 	    private String horario;
-	    
-	    
-		public Long getId() {
-			return id;
-		}
-		public void setId(Long id) {
-			this.id = id;
-		}
-		public String getData() {
-			return data;
-		}
-		public void setData(String data) {
-			this.data = data;
-		}
-		public String getHorario() {
-			return horario;
-		}
-		public void setHorario(String horario) {
-			this.horario = horario;
-		}
+
 
 	    
 	}
