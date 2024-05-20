@@ -7,13 +7,19 @@ import Cadastro from "./NavegacaoDasTelas/CADASTRO/Cadastro.js";
 import Agendamento from "./NavegacaoDasTelas/Agendamento.js";
 import CadastroCarroScreen from "./NavegacaoDasTelas/CADASTRO/CadastroCarro.js";
 import TelaDeNotificacao from "./NavegacaoDasTelas/TelaDeNotificacao.js";
+import Abertura from "./NavegacaoDasTelas/Abertura.js";
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="LoginScreen">
+      <Stack.Navigator initialRouteName="Abertura">
+        <Stack.Screen
+        name="Abertura"
+        component={Abertura}
+        options={{headerShown: false}}
+        />
         <Stack.Screen
           name="LoginScreen"
           component={LoginScreen}
