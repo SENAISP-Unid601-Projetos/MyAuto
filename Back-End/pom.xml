@@ -14,7 +14,7 @@
 	<name>auth</name>
 	<description>Projeto de demonstração de login e senha</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>19</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
