@@ -28,7 +28,7 @@ const LoginScreen = ({ navigation }) => {
     try {
       //Método para verificar se o usuário existe no banco
 
-      const response = await axios.post('http://10.110.12.3:8080/api/usuarios/verificarDados', { 
+      const response = await axios.post('http://10.110.12.28:8080/api/usuarios/verificarDados', { 
         email: logarEmail,
         senha: logarSenha
       });
@@ -67,7 +67,7 @@ const LoginScreen = ({ navigation }) => {
           placeholder="Email"
         />
 
-        <View style={styles.inputContainer}>
+        <View style={styles.inputContainer2}>
           <Text style={styles.inputText}>Senha</Text>
         </View>
 
@@ -163,16 +163,26 @@ const styles = StyleSheet.create({
   inputContainer: {
     backgroundColor: '#0B0020',
     borderRadius: 20,
-    padding: 8,
+    padding: 10,
+    width: 293,
+    marginLeft: -30,
+    marginBottom: 5,    
+
+  },
+  inputContainer2: {
+    backgroundColor: '#0B0020',
+    borderRadius: 20,
+    padding: 10,
     width: '100%',
-    marginLeft: '-10%'
+    margin: 5
 
   },
   inputText: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
+    
   },
 });
 
