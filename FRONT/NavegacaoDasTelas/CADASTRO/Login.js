@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import axios from 'axios';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const LoginScreen = ({ navigation }) => {
@@ -8,14 +9,40 @@ const LoginScreen = ({ navigation }) => {
   const botaoCadastrar = () => {
     navigation.navigate('Cadastro');
   }
-  const botaoTelaPrincipal = () => {
-    navigation.navigate('HomeScreen');
-  }
 
   //Setando os metodos das informações do Usuário e a tela de Cadastro
   const [logarEmail, setLogarEmail] = useState('');
   const [logarSenha, setLogarSenha] = useState('');
   const [erro, setErro] = useState('');
+
+  const getCookie = async () => {
+    const valorDoCookie = await AsyncStorage.getItem("logarEmail");
+    return valorDoCookie;
+  };
+
+  const verificaLogado = async () => {
+    try {
+      const cookie = await getCookie("logarEmail");
+      if (cookie) {
+        navigation.navigate('HomeScreen');
+      }
+    } catch (error) {
+      console.error("Erro ao verificar se está logado:", error);
+    }
+  };
+
+  useEffect(() => {
+    verificaLogado();
+  }, []);
+  
+  const setCookie = async (logarEmail) => {
+    try {
+      await AsyncStorage.setItem("logarEmail", logarEmail);
+      console.log("Cookie definido com sucesso");
+    } catch (error) {
+      console.error("Erro ao definir o cookie:", error);
+    }
+  };
 
   const VerificarLogin = async () => {
     setErro('');
@@ -25,18 +52,21 @@ const LoginScreen = ({ navigation }) => {
       return;
     }
 
+
     try {
       //Método para verificar se o usuário existe no banco
 
-      const response = await axios.post('http://10.110.12.28:8080/api/usuarios/verificarDados', { 
+      const response = await axios.post('http://10.110.12.3:8080/api/usuarios/verificarDados', { 
         email: logarEmail,
         senha: logarSenha
       });
 
-      if (response.status !== 200) {
-        throw new Error('Erro ao tentar logar');
+      if (response.status === 200) {
+        //throw new Error('Erro ao tentar logar');
+        navigation.navigate('HomeScreen');
+        setCookie(logarEmail);
       }
-      botaoTelaPrincipal();
+
       //Manda a mensagem para o Prompt pra verificar se a tela recebeu o usuário
       console.log('Logado:', response.data);
       console.log('Login Bem Sucedido!!');

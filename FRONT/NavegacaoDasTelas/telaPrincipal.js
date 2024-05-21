@@ -31,7 +31,7 @@ const HomeScreen = ({navigation}) => {
     
   useEffect(() => {
     // Substitua a URL abaixo pela URL da sua API
-    fetch('http://10.110.12.28:8080/api/agendamento')
+    fetch('http://10.110.12.3:8080/api/agendamento')
        .then(response => {
          if (response.ok) {
            return response.json();
@@ -86,7 +86,7 @@ const HomeScreen = ({navigation}) => {
           <Text style={styles.texto}>Serviços Futuros</Text>
           <View  style={styles.diasAgendados}>
           {agendamentosFuturos.map((agendamento, index) => (
-            <Text style={styles.diaAgendado} key={index}>{agendamento.data} - {agendamento.horario}</Text>
+            <Text style={styles.diaAgendado} key={index}> dia: {agendamento.data} - {agendamento.horario}</Text>
           ))}
           </View>
         </View>
@@ -125,15 +125,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   diasAgendados:{
-    //position:"absolute",
-    //alignItems:"flex-start"
     marginTop:20,
-    marginRight:260
+    width:"100%",
+    backgroundColor:'#fafba7',
+    //marginHorizontal:'33%'
+    marginRight:"58%",
   },
   diaAgendado:{
     borderWidth :1,
-    marginBottom:2
-
+    //marginVertical:2,
+    borderRadius:10,
+    height:"100%",
+    //justifyContent: 'center',
+    //alignItems:"center",
+    //position:"absolute",
+    //marginEnd:'0%'
   },
   texto:{
     //position:'static',
