@@ -267,19 +267,29 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
-    top: '2%',
+    top: '0%',
     right: '2%',
+    zIndex: 1,
+    padding:2
   },
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: '5%',
+    marginTop:10,
+    backgroundColor:'#fafba7',
+    borderRadius:15,
+    padding:20,
+    width:'100%'
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-around', // Alterado de 'space-between' para 'space-around'
+   //justifyContent: 'space-evenly', // Alterado de 'space-between' para 'space-around'
     alignItems: 'center',
-    marginBottom: '5%',
+    margin: '5%',
+    width:"50%",
+    marginEnd:'55%'
+    //display:'flex'
   },
   hourButton: {
     width: '65%', // Ajuste de tamanho para acomodar os botões em uma fila

@@ -57,8 +57,20 @@ const Cadastro = ({ navigation }) => {
       "sexo": sexo
     };
 
+<<<<<<< HEAD
     fetch('http://10.110.12.3:8080/api/usuarios', {
       method: 'POST',
+=======
+    //console.log(dados);
+
+    
+
+
+    fetch('http://10.110.12.3:8080/api/usuarios', { //metodo para chamar a API usando o feth
+
+      method: 'POST', //Usamos o POST para postar no banco as informações
+
+>>>>>>> ec4afffbc53a3d27f8342f1a76b54c7a1919f11f
       headers: {
         'Content-Type': 'application/json'
       },

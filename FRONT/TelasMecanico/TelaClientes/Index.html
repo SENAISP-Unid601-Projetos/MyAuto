@@ -1,14 +1,14 @@
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyAuto Oficinas</title>
-   
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <link rel="stylesheet" href="css/style.css">
     <header>
-        <p> MyAuto Oficinas</p>
+        <p>MyAuto Oficinas</p>
         <img src="img/MYAUT.png" alt="Logo">
         <div class="navbar">
             <a href="../TelaClientes/Index.html"><button>Clientes</button></a>
@@ -30,9 +30,9 @@
                 <option value="cep">CEP</option>
                 <option value="bairro">Bairro</option>
             </select>
-        <div class="BarraPesquisa">
-            <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Pesquisar...">
-        </div>
+            <div class="BarraPesquisa">
+                <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Pesquisar...">
+            </div>
         </div>
         <table id="dataTable"></table>
     </div>
@@ -41,7 +41,7 @@
     </footer>
 
     <script>
-        // Simulação de função para receber dados e exibir na tabela
+        // Função para receber dados e exibir na tabela
         function receberDados(dados) {
             const dataTable = document.getElementById('dataTable');
             dataTable.innerHTML = ''; // Limpa o conteúdo anterior
@@ -68,55 +68,14 @@
             dataTable.appendChild(table);
         }
 
-        // Simulação de função para obter dados dos clientes (ou vir de uma requisição AJAX)
-        function getClientes() {
-            return [
-                {
-                    nome: 'Fulano de Tal',
-                    dataNascimento: '01/01/1990',
-                    sexo: 'Masculino',
-                    telefone: '(00) 1234-5678',
-                    endereco: 'Rua Exemplo, 123',
-                    cpfCnpj: '123.456.789-00',
-                    numeroResidencia: '123',
-                    cep: '12345-678',
-                    bairro: 'Bairro Exemplo'
-                },
-                {
-                    nome: 'Ciclana de Tal',
-                    dataNascimento: '05/05/1985',
-                    sexo: 'Feminino',
-                    telefone: '(00) 9876-5432',
-                    endereco: 'Avenida Teste, 456',
-                    cpfCnpj: '987.654.321-00',
-                    numeroResidencia: '456',
-                    cep: '54321-098',
-                    bairro: 'Outro Bairro'
-                },
-               
-            ];
-        }
-
-        // Função para mostrar os clientes
-        function showClientes() {
-            const clientes = getClientes();
-            receberDados(clientes);
-        }
-
-        // Funções para mostrar outros tipos de dados (ainda não implementadas)
-        function showHistorico() {
-            // Aqui seria implementada a lógica para exibir o histórico de serviços
-            console.log('Histórico de Serviços');
-        }
-
-        function showAgendamentos() {
-            // Aqui seria implementada a lógica para exibir os agendamentos
-            console.log('Agendamentos');
-        }
-
-        function showInformacoes() {
-            // Aqui seria implementada a lógica para exibir as informações da oficina
-            console.log('Informações da Oficina');
+        // Função para buscar dados dos clientes do backend
+        function fetchClientes() {
+            fetch('http://10.110.12.31:8080/api/usuarios')
+                .then(response => response.json())
+                .then(data => {
+                    receberDados(data);
+                })
+                .catch(error => console.error('Erro ao buscar dados dos clientes:', error));
         }
 
         // Função para pesquisar na tabela
@@ -141,8 +100,8 @@
             }
         }
 
-        // Inicialmente, mostrar os clientes
-        showClientes();
+        // Inicialmente, buscar os clientes ao carregar a página
+        window.onload = fetchClientes;
     </script>
 </body>
 </html>
