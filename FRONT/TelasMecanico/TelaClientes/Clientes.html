@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="css/style.2css">
+</head>
+
+<body>
+    <header>
+        <img src="img/MYAUT.png" alt="Logotipo da MyAuto" id="logotipo">
+        <p>MyAuto Oficinas</p>
+        <div class="menu">
+            <a href="../TelaClientes/clientes.html"><button>Clientes</button></a>
+            <a href="../TelaAgendamentos/TelasAgendamentos.html"><button>Agendamentos</button></a>
+            <a href="../TelaHistoricoServiços/index.html"><button>Histórico de Serviços</button></a>
+            <a href="../TelaInformações Oficina/index.html"><button>Informações da Oficina</button></a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Lista de Clientes</h2>
+        <table id="clientesTable">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>CPF</th>
+                    <th>Data de Nascimento</th>
+                    <th>Sexo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dados dos clientes serão inseridos aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('http://10.110.12.20:8080/api/usuarios')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('clientesTable').getElementsByTagName('tbody')[0];
+                    data.forEach(cliente => {
+                        const row = tableBody.insertRow();
+                        row.insertCell(0).textContent = cliente.nome;
+                        row.insertCell(1).textContent = cliente.email;
+                        row.insertCell(2).textContent = cliente.cpf;
+                        row.insertCell(3).textContent = cliente.dataDeNascimento;
+                        row.insertCell(4).textContent = cliente.sexo;
+                    });
+                })
+                .catch(error => console.error('Erro ao buscar clientes:', error));
+        });
+    </script>
+</body>
+
+<footer>
+    © 2024 MyAuto Oficinas / TechLine Desenvolvimentos
+</footer>
+
+</html>
