@@ -1,22 +1,29 @@
 package com.senai.auth.entities;
 
-import java.sql.Date;
 
-import com.senai.auth.DTO.UsuarioDTO;
+import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    
     private String nome;
     @Column(nullable = false, unique = true)
     private String cpf;
@@ -24,74 +31,9 @@ public class Usuario {
     private String email;
     @Column(nullable = false)
     private String senha;
-    private Date dataDeNascimento;//Informações do usuario
+    private Date dataDeNascimento;
     private String sexo;
-  
 
-    
-    
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-	public String getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-
-	public Date getDataDeNascimento() {
-		return dataDeNascimento;
-	}
-
-	public void setDataDeNascimento(Date dataDeNascimento) {
-		this.dataDeNascimento = dataDeNascimento;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-    
-    public static Usuario of(UsuarioDTO usuario) {
-    	Usuario u = new Usuario();
-    	usuario.setEmail(usuario.getEmail());
-    	usuario.setSenha(usuario.getSenha());
-    	return u;
-	}
-    
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Carro> carros;
 }
