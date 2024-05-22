@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     height:"40%",
     backgroundColor:'#fafba7',
     fontSize:18,
-    shadowRadius:5,
+    //shadowRadius:5,
     //justifyContent: 'center',
     //alignItems:"center",
     //position:"absolute",
