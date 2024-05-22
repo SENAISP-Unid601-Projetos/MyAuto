@@ -125,9 +125,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   diasAgendados:{
-    marginTop:20,
+    marginTop:'8%',
     width:"100%",
-    backgroundColor:'#fafba7',
     //marginHorizontal:'33%'
     marginRight:"58%",
   },
@@ -135,11 +134,13 @@ const styles = StyleSheet.create({
     borderWidth :1,
     //marginVertical:2,
     borderRadius:10,
-    height:"100%",
+    height:"40%",
+    backgroundColor:'#fafba7',
+    //fontSize:15,
     //justifyContent: 'center',
     //alignItems:"center",
     //position:"absolute",
-    //marginEnd:'0%'
+    marginBottom:'2%'
   },
   texto:{
     //position:'static',
