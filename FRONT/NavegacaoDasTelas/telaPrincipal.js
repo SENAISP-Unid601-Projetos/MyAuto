@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     marginTop:'8%',
     width:"100%",
     //marginHorizontal:'33%'
-    marginRight:"58%",
+    marginRight:"49%",
   },
   diaAgendado:{
     borderWidth :1,
@@ -136,7 +136,8 @@ const styles = StyleSheet.create({
     borderRadius:10,
     height:"40%",
     backgroundColor:'#fafba7',
-    //fontSize:15,
+    fontSize:18,
+    shadowRadius:5,
     //justifyContent: 'center',
     //alignItems:"center",
     //position:"absolute",
