@@ -196,8 +196,9 @@ const styles = StyleSheet.create({
   inputContainer: {
     backgroundColor: '#0B0020',
     borderRadius: 20,
-    padding: 8,
+    padding: 10,
     width: '100%',
+    margin: 5,
     //marginLeft: '-10%'
   },
   inputContainer2: {
