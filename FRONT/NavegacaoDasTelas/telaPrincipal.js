@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity  } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView  } from 'react-native';
 //import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -84,8 +84,11 @@ const HomeScreen = ({navigation}) => {
       ) :  (
         <View>
           <Text style={styles.texto}>Serviços Futuros</Text>
+
           <View  style={styles.diasAgendados}>
+            
           {agendamentosFuturos.map((agendamento, index) => (
+            
             <Text style={styles.diaAgendado} key={index}> dia: {agendamento.data} - {agendamento.horario}</Text>
           ))}
           </View>
@@ -134,7 +137,7 @@ const styles = StyleSheet.create({
     borderWidth :1,
     //marginVertical:2,
     borderRadius:10,
-    height:"40%",
+    height:"20%",
     backgroundColor:'#fafba7',
     fontSize:18,
     //shadowRadius:5,
