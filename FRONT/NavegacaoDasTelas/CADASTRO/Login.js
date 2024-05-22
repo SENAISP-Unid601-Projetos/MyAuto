@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const LoginScreen = ({ navigation }) => {
 
@@ -16,13 +16,13 @@ const LoginScreen = ({ navigation }) => {
   const [erro, setErro] = useState('');
 
   const getCookie = async () => {
-    const valorDoCookie = await AsyncStorage.getItem("logarEmail");
+    const valorDoCookie = await AsyncStorage.getItem("id_usuario");
     return valorDoCookie;
   };
 
   const verificaLogado = async () => {
     try {
-      const cookie = await getCookie("logarEmail");
+      const cookie = await getCookie("id_usuario");
       if (cookie) {
         navigation.navigate('HomeScreen');
       }
@@ -35,10 +35,10 @@ const LoginScreen = ({ navigation }) => {
     verificaLogado();
   }, []);
   
-  const setCookie = async (logarEmail) => {
+  const setCookie = async (id) => {
     try {
-      await AsyncStorage.setItem("logarEmail", logarEmail);
-      console.log("Cookie definido com sucesso");
+      await AsyncStorage.setItem("id_usuario", id);
+      console.log("Cookie definido com sucesso" + id);
     } catch (error) {
       console.error("Erro ao definir o cookie:", error);
     }
@@ -63,7 +63,7 @@ const LoginScreen = ({ navigation }) => {
 
       if (response.status === 200) {
         //throw new Error('Erro ao tentar logar');
-        setCookie(logarEmail);
+        setCookie(response.data.id + "");
       }
 
       //Manda a mensagem para o Prompt pra verificar se a tela recebeu o usuário
@@ -87,6 +87,7 @@ const LoginScreen = ({ navigation }) => {
 
       <View style={styles.userPassContainer}>
         <View style={styles.inputContainer}>
+        <Icon name="lock" size={20} color="white" marginLeft={30} />
           <Text style={styles.inputText}>Usuário</Text>
         </View>
         </View>
@@ -97,7 +98,8 @@ const LoginScreen = ({ navigation }) => {
           placeholder="Email"
         />
 
-        <View style={styles.inputContainer}>
+        <View style={styles.inputContainer2}>
+        <Icon name="lock" size={20} color="white" marginLeft={30} />
           <Text style={styles.inputText}>Senha</Text>
         </View>
 
@@ -145,6 +147,7 @@ const styles = StyleSheet.create({
     width: '80%',
     alignItems: 'center',
   },
+
   input: {
     width: '100%',
     height: 40,
@@ -195,8 +198,15 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 8,
     width: '100%',
-    marginLeft: '-10%'
-
+    //marginLeft: '-10%'
+  },
+  inputContainer2: {
+    backgroundColor: '#0B0020',
+    borderRadius: 20,
+    padding: 10,
+    width: '100%',
+    margin: 5,
+   // flexDirection:2
   },
   inputText: {
     color: 'white',

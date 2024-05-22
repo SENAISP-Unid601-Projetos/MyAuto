@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Pressable, Alert, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Picker } from '@react-native-picker/picker';
 
 const CadastroCarroScreen = ({navigation}) => {
@@ -15,8 +16,20 @@ const CadastroCarroScreen = ({navigation}) => {
   const [cambio, setCambio] = useState('');
   const [combustivel, setCombustivel] = useState('');
   const [erro, setErro] = useState('');
+  const [valorCookie, setValorCookie] = useState('');
 
   const result = 10000 / mediaKm;
+
+  const getCookie = async () => {
+    const valorDoCookie = await AsyncStorage.getItem("id_usuario");
+    console.log("esse ", valorDoCookie)
+    setValorCookie(valorDoCookie);
+    return valorDoCookie;
+  };
+
+  useEffect(() => {
+    setValorCookie(getCookie());
+  }, []);
 
   const calc=()=>{
     return result / frequencia;
@@ -54,10 +67,12 @@ const CadastroCarroScreen = ({navigation}) => {
       "uso": uso,
       "cambio": cambio,
       "combustivel": combustivel,
-      "calc":  media
+      "calc":  media,
+      "usuario": valorCookie
     };
 
-    //console.log(dados);
+    console.log(dados);
+
 
     
     fetch('http://10.110.12.3:8080/api/carros', { //metodo para chamar a API usando o feth

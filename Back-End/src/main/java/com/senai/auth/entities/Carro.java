@@ -3,6 +3,8 @@ package com.senai.auth.entities;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.senai.auth.DTO.CarroDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,8 +40,27 @@ public class Carro implements Serializable {
 	private String combustivel;
 	@Column(nullable = true)
 	private Integer calc;
-
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "usuario_id", nullable = false)
 	private Usuario usuario;
+
+
+	public static Carro fromCarroDTO(CarroDTO carroDTO) {
+		Carro carro = new Carro();
+		carro.setId(carroDTO.getId());
+		carro.setMarca(carroDTO.getMarca());
+		carro.setModelo(carroDTO.getModelo());
+		carro.setAno(carroDTO.getAno());
+		carro.setKm(carroDTO.getKm());
+		carro.setMediaKm(carroDTO.getMediaKm());
+		carro.setUso(carroDTO.getUso());
+		carro.setCambio(carroDTO.getCambio());
+		carro.setCombustivel(carroDTO.getCombustivel());
+		carro.setCalc(carroDTO.getCalc());
+		Usuario user = new Usuario();
+		user.setId(carroDTO.getUsuario());
+		carro.setUsuario(user);
+			return carro;
+	}
 }
