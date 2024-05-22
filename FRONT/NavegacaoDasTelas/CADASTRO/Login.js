@@ -68,7 +68,7 @@ const LoginScreen = ({ navigation }) => {
       }
 
       //Manda a mensagem para o Prompt pra verificar se a tela recebeu o usuário
-      console.log('Logado:', response.data);
+      //console.log('Logado:', response.data);
       console.log('Login Bem Sucedido!!');
       console.log('Email:', logarEmail);
       console.log('Senha:', logarSenha);
