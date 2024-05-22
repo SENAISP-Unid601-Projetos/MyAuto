@@ -63,12 +63,12 @@ const LoginScreen = ({ navigation }) => {
 
       if (response.status === 200) {
         //throw new Error('Erro ao tentar logar');
-        navigation.navigate('HomeScreen');
         setCookie(logarEmail);
       }
 
       //Manda a mensagem para o Prompt pra verificar se a tela recebeu o usuário
       //console.log('Logado:', response.data);
+      navigation.navigate('HomeScreen');
       console.log('Login Bem Sucedido!!');
       console.log('Email:', logarEmail);
       console.log('Senha:', logarSenha);
