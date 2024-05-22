@@ -2,6 +2,8 @@ package com.senai.auth.controller;
 
 import java.util.List;
 import javax.validation.Valid;
+
+import com.senai.auth.DTO.CarroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +36,9 @@ public class CarroController {
 	}
 	
 	@PostMapping()
-	public ResponseEntity<Carro> criarCarro(@Valid @RequestBody Carro carro){
+	public ResponseEntity<Carro> criarCarro(@Valid @RequestBody CarroDTO carro){
         try {
-            Carro novoCarro = carroRepository.save(carro);
+            Carro novoCarro = carroRepository.save(Carro.fromCarroDTO(carro));
             return ResponseEntity.status(HttpStatus.CREATED).body(novoCarro);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
