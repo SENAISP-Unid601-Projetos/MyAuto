@@ -32,6 +32,10 @@ const TelaDeNotificacao = ({ navigation }) => {
     console.log(agendamentosFuturos)
   }, [])
 
+  const visualizarServico =()=>{
+    
+  }
+
   return (
     <View style={styles.screen}>
       <View style={styles.header}>
