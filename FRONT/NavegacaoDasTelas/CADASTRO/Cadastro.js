@@ -68,7 +68,7 @@ const Cadastro = ({navigation}) => {
 
     
 
-    fetch('http://10.110.12.3:8080/api/usuarios', { //metodo para chamar a API usando o feth
+    fetch('http://10.110.12.15:8080/api/usuarios', { //metodo para chamar a API usando o feth
       method: 'POST', //Usamos o POST para postar no banco as informações
 
       headers: {

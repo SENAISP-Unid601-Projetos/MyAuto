@@ -18,8 +18,6 @@ const CadastroCarroScreen = ({navigation}) => {
   const [erro, setErro] = useState('');
   const [valorCookie, setValorCookie] = useState('');
 
-  const result = 10000 / mediaKm;
-
   const getCookie = async () => {
     const valorDoCookie = await AsyncStorage.getItem("id_usuario");
     console.log("esse ", valorDoCookie)
@@ -32,7 +30,7 @@ const CadastroCarroScreen = ({navigation}) => {
   }, []);
 
   const calc=()=>{
-    return result / frequencia;
+    return parseInt((10000 / mediaKm) / frequencia);
   }
 
   const botaoVoltar=()=>{
@@ -75,7 +73,7 @@ const CadastroCarroScreen = ({navigation}) => {
 
 
     
-    fetch('http://10.110.12.3:8080/api/carros', { //metodo para chamar a API usando o feth
+    fetch('http://10.110.12.15:8080/api/carros', { //metodo para chamar a API usando o feth
       method: 'POST', //Usamos o POST para postar no banco as informações
       headers: {
         'Content-Type': 'application/json'
@@ -90,7 +88,7 @@ const CadastroCarroScreen = ({navigation}) => {
     })
     .then(dados => {
       console.log('Carro cadastrado com sucesso:', dados);
-      Alert.alert("Sucesso!","Prosima troca de oleo em: "+calc()+" dias.");
+      Alert.alert("Sucesso!","Próxima troca de óleo em: "+calc()+" dias.");
       botaoVoltar();
     })
     .catch(error => {
