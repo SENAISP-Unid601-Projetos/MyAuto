@@ -230,9 +230,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    //justifyContent: 'center',
-    //alignItems: 'center',
-    //paddingHorizontal: 20,
   },
 
   obcaoDeCelecao:{
@@ -252,17 +249,13 @@ const styles = StyleSheet.create({
   },
 
   botaoVoltar:{
-    //marginTop: '8%',
     height: '12%',
     backgroundColor: '#0A0226'
   },
   label: {
-    //marginHorizontal: 110,
     fontSize: 18,
     marginBottom: 5,
-    //backgroundColor: 'white',
     color: 'white'
-    //fontStyle: ''
   },
   input: {
     width: '90%',
@@ -278,13 +271,9 @@ const styles = StyleSheet.create({
   btncadastro:{
     flexDirection: 'row',
     alignItems: 'center',
-    //marginBottom: 16,
     top:"5%",
-    //bottom:'0%',
-    //borderRadius: '10%'
   },
   btn:{
-    //alignItems: 'center',
     backgroundColor: '#2196f3',
     color: 'white',
     alignItems: 'center',
