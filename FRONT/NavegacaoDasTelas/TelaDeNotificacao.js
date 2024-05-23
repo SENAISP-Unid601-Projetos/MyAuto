@@ -32,10 +32,6 @@ const TelaDeNotificacao = ({ navigation }) => {
     console.log(agendamentosFuturos)
   }, [])
 
-  const visualizarServico = () => {
-    // Lógica para visualizar o serviço
-  }
-
   return (
     <View style={styles.screen}>
       <View style={styles.header}>
@@ -154,9 +150,6 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 16,
-  },
-  footer: {
-    // Estilos do rodapé
   },
   agendamentoContainer: {
     flexDirection: 'row',

@@ -144,17 +144,6 @@ const Agendamento = ({ navigation }) => {
         </View>
       )}
 
-      {/* Texto orientativo sobre o input */}
-      {/* <Text style={styles.inputLabel}>Descreva o objetivo do Agendamento: (Revisão, troca de Óleo... )</Text>
-
-     
-      <TextInput
-        style={styles.input}
-        placeholder="EX: O CARRO ESTÁ FALHANDO."
-        onChangeText={handleServiceChange}
-        value={selectedService}
-      /> */}
-
       <Modal
         animationType="slide"
         transparent={true}
@@ -280,12 +269,10 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-   //justifyContent: 'space-evenly', // Alterado de 'space-between' para 'space-around'
     alignItems: 'center',
     margin: '5%',
     width:"50%",
     marginEnd:'55%'
-    //display:'flex'
   },
   hourButton: {
     width: '65%', // Ajuste de tamanho para acomodar os botões em uma fila
