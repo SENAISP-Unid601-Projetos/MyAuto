@@ -103,6 +103,7 @@ const CadastroCarroScreen = ({navigation}) => {
     //Tela para Colocar as informações do carro
     <ScrollView>
     <View style={styles.container}>
+    
 
       <View style={styles.botaoVoltar}>
         <TouchableOpacity  style={styles.voltar} >
@@ -112,6 +113,9 @@ const CadastroCarroScreen = ({navigation}) => {
           source={{ uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true' }}
           style={styles.logo}
         />
+      </View>
+      <View style={styles.Titulo}>
+      <Text style={styles.FraseTitulo}>Cadastar Veículo:</Text>
       </View>
       <View style={styles.obcaoDeCelecao}>
       {/*Aba para colocar a marca*/}
@@ -246,6 +250,14 @@ const styles = StyleSheet.create({
     marginHorizontal:15,
     padding: '6%'
   },
+  FraseTitulo:{
+    color:'green',
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginLeft: '25%',
+    marginTop: '8%',
+    marginBottom: '5%'
+  },
 
   voltar:{
     marginHorizontal: 10,
@@ -301,7 +313,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto"
   },
   logo: {
-    marginTop: '-1.1%',
+    marginTop: '5%',
     width: 100, // Ajuste conforme necessário
     height: 100, // Ajuste conforme necessário
     margin:'37%',
