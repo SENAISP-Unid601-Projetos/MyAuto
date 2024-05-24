@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Modal, StyleSheet, Alert, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, StyleSheet, Alert } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as Notifications from 'expo-notifications';
@@ -31,10 +31,6 @@ const Agendamento = ({ navigation }) => {
     setSelectedHour(hour);
     setModalVisible(false); // Esconde a modal ao selecionar um horário
   };
-
-  // const handleServiceChange = (text) => {
-  //   setSelectedService(text);
-  // };
 
   const agendarHorario = () => {
     if (!selectedDay || !selectedHour ) {
@@ -87,10 +83,15 @@ const Agendamento = ({ navigation }) => {
     Notifications.scheduleNotificationAsync({
       content: {
         title: 'Notificação Agendada',
-        body: `Seu agendamento está marcado para ${selectedDay} às ${selectedHour}`,
+        body: `Seu agendamento está marcado para ${formatDate(selectedDay)} às ${selectedHour}`,
       },
       trigger: { date: notificationDate },
     });
+  };
+
+  const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
   };
 
   const availableHours = [
@@ -132,9 +133,9 @@ const Agendamento = ({ navigation }) => {
         <Calendar
           style={styles.calendario}
           onDayPress={handleDayPress}
-          // Modificações para alterar a ordem da data para dia, mês e ano
-          dayFormat={'D'}
-          monthFormat={'M'}
+          // Configuração para exibir as datas no formato dd/mm/aaaa
+          dayFormat={'DD'}
+          monthFormat={'MM'}
           yearFormat={'YYYY'}
         />
       </View>
@@ -142,22 +143,11 @@ const Agendamento = ({ navigation }) => {
       {selectedHour && (
         <View style={styles.selectedDateTimeContainer}>
           <Text style={styles.selectedDateTime}>
-            {selectedDay && `Data: ${selectedDay}`}
+            {selectedDay && `Data: ${formatDate(selectedDay)}`}
             {selectedHour && `, Horário: ${selectedHour}`}
           </Text>
         </View>
       )}
-
-      {/* Texto orientativo sobre o input */}
-      {/* <Text style={styles.inputLabel}>Descreva o objetivo do Agendamento: (Revisão, troca de Óleo... )</Text>
-
-     
-      <TextInput
-        style={styles.input}
-        placeholder="EX: O CARRO ESTÁ FALHANDO."
-        onChangeText={handleServiceChange}
-        value={selectedService}
-      /> */}
 
       <Modal
         animationType="slide"
@@ -178,7 +168,6 @@ const Agendamento = ({ navigation }) => {
         </View>
       </Modal>
 
-      {/* Botão Agendar */}
       <TouchableOpacity style={styles.button} onPress={agendarHorario}>
         <Text style={styles.buttonText}>Agendar</Text>
       </TouchableOpacity>
@@ -189,33 +178,40 @@ const Agendamento = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white', // Background branco
+    backgroundColor: 'white',
   },
   header: {
-    height: '10%',
+    height: '20%',
     backgroundColor: '#0A0226',
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: '5%',
-    flexDirection: 'row', // Para alinhar o texto e o botão na mesma linha
+    flexDirection: 'row',
+    marginTop: '-1%'
   },
   backButton: {
-    marginRight: 10, // Adicionando margem à direita para separar o botão do texto
+    marginLeft: -90,
+    marginRight: 100,
+    marginTop: '10%',
   },
   headerText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 27,
     fontWeight: 'bold',
+    marginTop: '10%'
   },
   chooseDayContainer: {
     alignItems: 'center',
-    marginTop: 20, // Aumentando a margem superior
+    marginTop: 20,
   },
   chooseDayText: {
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginTop: 10,
+    marginTop: 35,
+    color: 'red',
+    marginBottom: 30
+   
   },
   calendarContainer: {
     marginVertical: '5%',
@@ -284,16 +280,14 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-   //justifyContent: 'space-evenly', // Alterado de 'space-between' para 'space-around'
     alignItems: 'center',
     margin: '5%',
     width:"50%",
     marginEnd:'55%'
-    //display:'flex'
   },
   hourButton: {
-    width: '65%', // Ajuste de tamanho para acomodar os botões em uma fila
-    aspectRatio: 1, // Mantém a proporção 1:1 para os botões
+    width: '65%',
+    aspectRatio: 1,
     backgroundColor: '#0A0226',
     justifyContent: 'center',
     alignItems: 'center',
@@ -305,16 +299,17 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   button: {
-    marginTop: '5%',
-    backgroundColor: '#41B06E', // Cor verde
-    borderRadius: 30, // Aumentando a borda para deixar o botão mais arredondado
-    paddingVertical: '5%', // Aumentando o padding vertical para deixar o botão maior
-    paddingHorizontal: '15%', // Aumentando o padding horizontal para deixar o botão maior
-    alignSelf: 'center', // Para alinhar o botão ao centro
+    marginTop: '13%',
+    backgroundColor: '#41B06E',
+    borderRadius: 30,
+    paddingVertical: '3%',
+    paddingHorizontal: '20%',
+    alignSelf: 'center',
   },
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
+    fontSize: 25
   },
 });
 
