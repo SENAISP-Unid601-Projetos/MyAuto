@@ -18,8 +18,6 @@ const CadastroCarroScreen = ({navigation}) => {
   const [erro, setErro] = useState('');
   const [valorCookie, setValorCookie] = useState('');
 
-  const result = 10000 / mediaKm;
-
   const getCookie = async () => {
     const valorDoCookie = await AsyncStorage.getItem("id_usuario");
     console.log("esse ", valorDoCookie)
@@ -32,7 +30,7 @@ const CadastroCarroScreen = ({navigation}) => {
   }, []);
 
   const calc=()=>{
-    return result / frequencia;
+    return parseInt((10000 / mediaKm) / frequencia);
   }
 
   const botaoVoltar=()=>{
@@ -75,7 +73,7 @@ const CadastroCarroScreen = ({navigation}) => {
 
 
     
-    fetch('http://10.110.12.3:8080/api/carros', { //metodo para chamar a API usando o feth
+    fetch('http://10.110.12.15:8080/api/carros', { //metodo para chamar a API usando o feth
       method: 'POST', //Usamos o POST para postar no banco as informações
       headers: {
         'Content-Type': 'application/json'
@@ -90,7 +88,7 @@ const CadastroCarroScreen = ({navigation}) => {
     })
     .then(dados => {
       console.log('Carro cadastrado com sucesso:', dados);
-      Alert.alert("Sucesso!","Prosima troca de oleo em: "+calc()+" dias.");
+      Alert.alert("Sucesso!","Próxima troca de óleo em: "+calc()+" dias.");
       botaoVoltar();
     })
     .catch(error => {
@@ -236,9 +234,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    //justifyContent: 'center',
-    //alignItems: 'center',
-    //paddingHorizontal: 20,
   },
 
   obcaoDeCelecao:{
@@ -266,17 +261,13 @@ const styles = StyleSheet.create({
   },
 
   botaoVoltar:{
-    //marginTop: '8%',
     height: '12%',
     backgroundColor: '#0A0226'
   },
   label: {
-    //marginHorizontal: 110,
     fontSize: 18,
     marginBottom: 5,
-    //backgroundColor: 'white',
     color: 'white'
-    //fontStyle: ''
   },
   input: {
     width: '90%',
@@ -292,13 +283,9 @@ const styles = StyleSheet.create({
   btncadastro:{
     flexDirection: 'row',
     alignItems: 'center',
-    //marginBottom: 16,
     top:"5%",
-    //bottom:'0%',
-    //borderRadius: '10%'
   },
   btn:{
-    //alignItems: 'center',
     backgroundColor: '#2196f3',
     color: 'white',
     alignItems: 'center',

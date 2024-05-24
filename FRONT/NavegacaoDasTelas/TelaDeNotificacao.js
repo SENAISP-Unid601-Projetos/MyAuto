@@ -16,7 +16,7 @@ const TelaDeNotificacao = ({ navigation }) => {
 
   const fetchAgendamentos = async () => {
     try {
-      const response = await axios.get('http://10.110.12.3:8080/api/agendamento')
+      const response = await axios.get('http://10.110.12.15:8080/api/agendamento')
       console.log(response.data)
       setAgendamentosFuturos(response.data) // Aqui, use `response.data` para acessar os dados reais
     } catch (error) {
@@ -31,10 +31,6 @@ const TelaDeNotificacao = ({ navigation }) => {
     fetchAgendamentos()
     console.log(agendamentosFuturos)
   }, [])
-
-  const visualizarServico = () => {
-    // Lógica para visualizar o serviço
-  }
 
   return (
     <View style={styles.screen}>
@@ -154,9 +150,6 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 16,
-  },
-  footer: {
-    // Estilos do rodapé
   },
   agendamentoContainer: {
     flexDirection: 'row',

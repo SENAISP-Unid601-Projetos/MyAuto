@@ -30,8 +30,7 @@ const HomeScreen = ({navigation}) => {
   const [selectedTab, setSelectedTab] = useState(null);
     
   useEffect(() => {
-    // Substitua a URL abaixo pela URL da sua API
-    fetch('http://10.110.12.3:8080/api/agendamento')
+    fetch('http://10.110.12.15:8080/api/agendamento')
        .then(response => {
          if (response.ok) {
            return response.json();
@@ -47,7 +46,6 @@ const HomeScreen = ({navigation}) => {
          setError(error.message); // Define o erro no estado de erro
        });
      },  []);
-
 
   return (
     <View style={styles.container}>

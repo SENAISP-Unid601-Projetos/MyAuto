@@ -56,18 +56,16 @@ const LoginScreen = ({ navigation }) => {
     try {
       //Método para verificar se o usuário existe no banco
 
-      const response = await axios.post('http://10.110.12.3:8080/api/usuarios/verificarDados', { 
+      const response = await axios.post('http://10.110.12.15:8080/api/usuarios/verificarDados', { 
         email: logarEmail,
         senha: logarSenha
       });
 
       if (response.status === 200) {
-        //throw new Error('Erro ao tentar logar');
         setCookie(response.data.id + "");
       }
 
       //Manda a mensagem para o Prompt pra verificar se a tela recebeu o usuário
-      //console.log('Logado:', response.data);
       navigation.navigate('HomeScreen');
       console.log('Login Bem Sucedido!!');
       console.log('Email:', logarEmail);
@@ -198,7 +196,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 8,
     width: '100%',
-    //marginLeft: '-10%'
   },
   inputContainer2: {
     backgroundColor: '#0B0020',
@@ -206,7 +203,6 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '100%',
     margin: 5,
-   // flexDirection:2
   },
   inputText: {
     color: 'white',
