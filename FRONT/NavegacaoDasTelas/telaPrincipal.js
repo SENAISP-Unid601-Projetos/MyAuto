@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView  } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity  } from 'react-native';
+//import { ScrollArea } from "@/components/ui/scroll-area"
+
 //import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -30,7 +32,7 @@ const HomeScreen = ({navigation}) => {
   const [selectedTab, setSelectedTab] = useState(null);
     
   useEffect(() => {
-    fetch('http://10.110.12.15:8080/api/agendamento')
+    fetch('http://10.110.12.3:8080/api/agendamento')
        .then(response => {
          if (response.ok) {
            return response.json();
@@ -74,7 +76,8 @@ const HomeScreen = ({navigation}) => {
         </View>
       </View>
 
-      <View style={styles.servisoRealizado}>
+    {/* <ScrollArea> */}
+    <View  style={styles.servisoRealizado}>
       {error  ? (
         <View>
           <Text>Ocorreu um erro ao carregar os serviços realizados.</Text>
@@ -93,6 +96,8 @@ const HomeScreen = ({navigation}) => {
         </View>
       )}
       </View>
+    {/* </ScrollArea> */}
+
 
       {/* Retângulo roxo como rodapé */}
       <View style={styles.footerContainer}>
@@ -126,10 +131,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   diasAgendados:{
-    marginTop:'8%',
+    marginTop:'10%',
     width:"100%",
-    //marginHorizontal:'33%'
-    marginRight:"49%",
+    height:'50%',
+    marginRight:"45%",
   },
   diaAgendado:{
     borderWidth :1,
@@ -190,6 +195,7 @@ const styles = StyleSheet.create({
     //marginBottom: 10,
   },
   servisoRealizado:{
+    flexGrow: 1,
     position: "absolute",
     marginTop:"35%",
   },
