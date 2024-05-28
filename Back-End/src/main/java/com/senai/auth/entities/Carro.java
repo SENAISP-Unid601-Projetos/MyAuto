@@ -25,6 +25,7 @@ public class Carro implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	private String placa;
 	private String marca;
 	private String modelo;
 	private Integer ano;
@@ -49,6 +50,7 @@ public class Carro implements Serializable {
 	public static Carro fromCarroDTO(CarroDTO carroDTO) {
 		Carro carro = new Carro();
 		carro.setId(carroDTO.getId());
+		carro.setPlaca(carroDTO.getPlaca());
 		carro.setMarca(carroDTO.getMarca());
 		carro.setModelo(carroDTO.getModelo());
 		carro.setAno(carroDTO.getAno());

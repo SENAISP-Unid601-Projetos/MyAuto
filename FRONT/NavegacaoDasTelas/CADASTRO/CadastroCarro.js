@@ -6,6 +6,7 @@ import { Picker } from '@react-native-picker/picker';
 
 const CadastroCarroScreen = ({navigation}) => {
   //Setando os metodos das informações do carro
+  const [placa, setPlaca] = useState('');
   const [marca, setMarca] = useState('');
   const [modelo, setModelo] = useState('');
   const [ano, setAno] = useState('');
@@ -57,6 +58,7 @@ const CadastroCarroScreen = ({navigation}) => {
 
     //Dados do carro
     const dados = {
+      "placa": "placa",
       "marca": marca,
       "modelo": modelo,
       "ano": formattedDate,
@@ -116,6 +118,13 @@ const CadastroCarroScreen = ({navigation}) => {
       <Text style={styles.FraseTitulo}>Cadastar Veículo:</Text>
       </View>
       <View style={styles.obcaoDeCelecao}>
+      <Text style={styles.label}>Placa:</Text>
+      <TextInput
+        style={styles.input}
+        value={placa}
+        maxLength={6} //Deixa digitar apenas 6 números
+        onChangeText={setPlaca}
+      />
       {/*Aba para colocar a marca*/}
       <Text style={styles.label}>Marca:</Text>
       <TextInput
