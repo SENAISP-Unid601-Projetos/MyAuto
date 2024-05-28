@@ -13,13 +13,13 @@ const TelaDeNotificacao = ({ navigation }) => {
     navigation.goBack()
   }
 
-  const visualizarServico = () => {
+//  const visualizarServico = () => {
     
-  }
+//  }
 
   const fetchAgendamentos = async () => {
     try {
-      const response = await axios.get('http://10.110.12.20:8080/api/agendamento')
+      const response = await axios.get('http://10.110.12.3:8080/api/agendamento')
       console.log(response.data)
       setAgendamentosFuturos(response.data) // Aqui, use `response.data` para acessar os dados reais
     } catch (error) {
@@ -32,7 +32,7 @@ const TelaDeNotificacao = ({ navigation }) => {
 
   useEffect(() => {
     fetchAgendamentos()
-    console.log(agendamentosFuturos)
+    //console.log(agendamentosFuturos)
   }, [])
 
   return (
@@ -83,7 +83,7 @@ const TelaDeNotificacao = ({ navigation }) => {
                     <Text>Hora: {agendamento.horario}</Text>
                     <Text>Local: {agendamento.local}</Text>
                     <TouchableOpacity
-                      onPress={visualizarServico}
+                      //onPress={visualizarServico}
                       style={styles.visualizarButton}
                     >
                       <Text style={styles.buttonText}>Visualizar Serviço</Text>

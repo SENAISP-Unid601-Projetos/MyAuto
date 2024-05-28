@@ -51,7 +51,7 @@ const LoginScreen = ({ navigation }) => {
     }
   
     try {
-      const response = await axios.post('http://10.110.12.20:8080/api/usuarios/verificarDados', {
+      const response = await axios.post('http://10.110.12.3:8080/api/usuarios/verificarDados', {
         email: logarEmail,
         senha: logarSenha
       });

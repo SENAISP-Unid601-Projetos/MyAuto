@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView  } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 //import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons';
+import axios from 'axios';
 
 
 const HomeScreen = ({navigation}) => {
@@ -27,26 +28,26 @@ const HomeScreen = ({navigation}) => {
     
   const [agendamentosFuturos, setAgendamentosFuturos] = useState([]);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
   const [selectedTab, setSelectedTab] = useState(null);
-    
-  useEffect(() => {
-    fetch('http://10.110.12.20:8080/api/agendamento')
-       .then(response => {
-         if (response.ok) {
-           return response.json();
-         } else {
-           throw new Error('Erro ao obter os agendamentos');
-         }
-       })
-       .then(data => {
-         setAgendamentosFuturos(data);
-       })
-       .catch(error => {
-         console.error('Erro ao obter os agendamentos:', error);
-         setError(error.message); // Define o erro no estado de erro
-       });
-     },  []);
 
+  const fetchAgendamentos = async () => {
+    try {
+      const response = await axios.get('http://10.110.12.3:8080/api/agendamento')
+      console.log(response.data)
+      setAgendamentosFuturos(response.data) // Aqui, use `response.data` para acessar os dados reais
+    } catch (error) {
+      console.error('Erro ao obter os agendamentos:', error)
+      setError(error.message)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchAgendamentos()
+    //console.log(agendamentosFuturos)
+  }, [])
   return (
     <View style={styles.container}>
       {/* Cabeçalho */}
