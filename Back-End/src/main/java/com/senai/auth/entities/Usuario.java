@@ -31,7 +31,7 @@ public class Usuario {
     private String email;
     @Column(nullable = false)
     private String senha;
-    private Date dataDeNascimento;
+    private String dataDeNascimento;
     private String sexo;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)

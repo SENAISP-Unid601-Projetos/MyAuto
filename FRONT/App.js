@@ -8,6 +8,7 @@ import Agendamento from "./NavegacaoDasTelas/Agendamento.js";
 import CadastroCarroScreen from "./NavegacaoDasTelas/CADASTRO/CadastroCarro.js";
 import TelaDeNotificacao from "./NavegacaoDasTelas/TelaDeNotificacao.js";
 import Abertura from "./NavegacaoDasTelas/Abertura.js";
+import Perfil from "./NavegacaoDasTelas/Perfil.js";
 
 const Stack = createStackNavigator();
 
@@ -35,6 +36,11 @@ const App = () => {
           component={Cadastro}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="Perfil"
+          component={Perfil}
+          options={{ headerShown: false }}
+        /> 
         <Stack.Screen
           name="Agendamento"
           component={Agendamento}

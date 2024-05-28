@@ -6,8 +6,8 @@ import { AntDesign } from '@expo/vector-icons';
 
 const HomeScreen = ({navigation}) => {
   //Chamando as telas de cadastro, login e notificação
-    const botaologin =()=>{
-        navigation.navigate('LoginScreen');
+    const botaoPerfil =()=>{
+        navigation.navigate('Perfil');
     }
 
     const botaoCarro =()=>{
@@ -30,7 +30,7 @@ const HomeScreen = ({navigation}) => {
   const [selectedTab, setSelectedTab] = useState(null);
     
   useEffect(() => {
-    fetch('http://10.110.12.15:8080/api/agendamento')
+    fetch('http://10.110.12.20:8080/api/agendamento')
        .then(response => {
          if (response.ok) {
            return response.json();
@@ -67,8 +67,8 @@ const HomeScreen = ({navigation}) => {
             style={styles.profileImage}
           />
           <View style={styles.buttonWithIcon}>
-           <TouchableOpacity onPress={botaologin}  style={styles.botaologin}>
-            <Text style={styles.ButtonText}>Login</Text>
+           <TouchableOpacity onPress={botaoPerfil}  style={styles.botaologin}>
+            <Text style={styles.ButtonText}>Perfil</Text>
            </TouchableOpacity>
           </View>
         </View>
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     borderWidth :1,
     //marginVertical:2,
     borderRadius:10,
-    height:"20%",
+    height:"13%",
     backgroundColor:'#fafba7',
     fontSize:18,
     //shadowRadius:5,

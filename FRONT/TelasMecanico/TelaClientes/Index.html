@@ -70,7 +70,7 @@
 
         // Função para buscar dados dos clientes do backend
         function fetchClientes() {
-            fetch('http://10.110.12.31:8080/api/usuarios')
+            fetch('http://10.110.12.20:8080/api/usuarios')
                 .then(response => response.json())
                 .then(data => {
                     receberDados(data);

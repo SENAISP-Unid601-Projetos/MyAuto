@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Button, Platform,  Modal, selectedValue, modalVisible, handlePickerChange,confirmarEscolha } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Button, Platform, Modal, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -20,11 +20,10 @@ const Cadastro = ({ navigation }) => {
     setSexo(itemValue);
   };
 
-    const confirmarEscolha = () => {
-      setSelectedValue(sexo);
-      setModalVisible(false);
-      navigation.navigate('Cadastro');
-    };
+  const confirmarEscolha = () => {
+    setSelectedValue(sexo);
+    setModalVisible(false);
+  };
 
   const botaologin = () => {
     navigation.navigate('LoginScreen');
@@ -34,29 +33,28 @@ const Cadastro = ({ navigation }) => {
     return `${ano}-${mes}-${dia}`;
   };
 
-
   const validarData = (dia, mes, ano) => {
     const dataRegex = /^(0?[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[012])[/](19\d{2}|20[01]\d|202[0-4])$/;
 
-    if (dataRegex.test(`${dia}/${mes}/${ano}`)) {
+    if (!dataRegex.test(`${dia}/${mes}/${ano}`)) {
       return 'Data de nascimento inválida.';
     } else {
       return '';
     }
   };
-    
-  
+
   const Criar = () => {
     setErro('');
 
-    if (!email || senha == 0) {
-      setErro('Senha ou Email estão incorretos.');
+    if (!email || !senha || !nome || !cpf || !dia || !mes || !ano || !sexo) {
+      setErro('Todos os campos são obrigatórios.');
       return;
     }
 
-    validarData();
+    const dataError = validarData(dia, mes, ano);
 
-    if (erro) {
+    if (dataError) {
+      setErro(dataError);
       return;
     }
 
@@ -71,10 +69,8 @@ const Cadastro = ({ navigation }) => {
       "sexo": sexo
     };
 
-
-    fetch('http://10.110.12.11:8080/api/usuarios', {
+    fetch('http://10.110.12.20:8080/api/usuarios', {
       method: 'POST',
-
       headers: {
         'Content-Type': 'application/json'
       },
@@ -92,9 +88,9 @@ const Cadastro = ({ navigation }) => {
     })
     .catch(error => {
       console.error('Ocorreu um erro ao tentar criar usuário:', error);
+      Alert.alert('Erro', 'Ocorreu um erro ao tentar criar usuário. Por favor, tente novamente.');
     });
   };
- 
 
   return (
     <View style={styles.container}>
@@ -121,7 +117,7 @@ const Cadastro = ({ navigation }) => {
       <TextInput
         style={styles.input}
         placeholder="NOME"
-        keyboardType="name-phone-pad"
+        keyboardType="default"
         value={nome}
         onChangeText={setNome}
       />
@@ -129,7 +125,8 @@ const Cadastro = ({ navigation }) => {
       <View style={styles.containerText}>
         <Text style={styles.label}>CPF:</Text>
       </View>
-      <TextInput style={styles.input}
+      <TextInput
+        style={styles.input}
         placeholder="CPF"
         keyboardType="numeric"
         maxLength={11}
@@ -168,9 +165,8 @@ const Cadastro = ({ navigation }) => {
         />
       </View>
       
-      <View style={styles.container}>
       <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.input2}>
-        <Text style={styles.pickerText}>{selectedValue || 'Selecionar'}</Text>
+        <Text style={styles.pickerText}>{selectedValue || 'Sexo'}</Text>
       </TouchableOpacity>
 
       <Modal
@@ -199,8 +195,6 @@ const Cadastro = ({ navigation }) => {
           </View>
         </View>
       </Modal>
-    </View>
-      
 
       <View style={styles.containerText}>
         <Text style={styles.label}>Defina uma senha:</Text>
@@ -222,6 +216,7 @@ const Cadastro = ({ navigation }) => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
@@ -264,13 +259,14 @@ const styles = StyleSheet.create({
   },
   input2: {
     height: 40,
-    width: 370,
+    width: '100%',
     borderColor: 'gray',
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
     borderRadius:30,
-    backgroundColor: '#FAFBA7'
+    backgroundColor: '#FAFBA7',
+    justifyContent: 'center'
   },
   resultContainer: {
     marginTop: 20,
@@ -316,7 +312,7 @@ const styles = StyleSheet.create({
   pickerText: {
     fontSize: 20,
     alignItems: 'center',
-    marginLeft: '40%',
+    textAlign: 'center',
     marginTop: 8,
     color: 'black'
   },

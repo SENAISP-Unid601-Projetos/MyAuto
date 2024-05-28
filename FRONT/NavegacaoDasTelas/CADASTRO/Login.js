@@ -5,12 +5,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const LoginScreen = ({ navigation }) => {
-
   const botaoCadastrar = () => {
     navigation.navigate('Cadastro');
-  }
+  };
 
-  //Setando os metodos das informações do Usuário e a tela de Cadastro
   const [logarEmail, setLogarEmail] = useState('');
   const [logarSenha, setLogarSenha] = useState('');
   const [erro, setErro] = useState('');
@@ -22,7 +20,7 @@ const LoginScreen = ({ navigation }) => {
 
   const verificaLogado = async () => {
     try {
-      const cookie = await getCookie("id_usuario");
+      const cookie = await getCookie();
       if (cookie) {
         navigation.navigate('HomeScreen');
       }
@@ -34,11 +32,11 @@ const LoginScreen = ({ navigation }) => {
   useEffect(() => {
     verificaLogado();
   }, []);
-  
+
   const setCookie = async (id) => {
     try {
       await AsyncStorage.setItem("id_usuario", id);
-      console.log("Cookie definido com sucesso" + id);
+      console.log("Cookie definido com sucesso " + id);
     } catch (error) {
       console.error("Erro ao definir o cookie:", error);
     }
@@ -46,83 +44,71 @@ const LoginScreen = ({ navigation }) => {
 
   const VerificarLogin = async () => {
     setErro('');
-
+  
     if (!logarEmail || !logarSenha) {
       setErro('Senha ou Email estão incorretos.');
       return;
     }
-
-
+  
     try {
-      //Método para verificar se o usuário existe no banco
-
-      const response = await axios.post('http://10.110.12.15:8080/api/usuarios/verificarDados', { 
+      const response = await axios.post('http://10.110.12.20:8080/api/usuarios/verificarDados', {
         email: logarEmail,
         senha: logarSenha
       });
-
+  
       if (response.status === 200) {
-        setCookie(response.data.id + "");
+        await setCookie(response.data.id + "");
+        await AsyncStorage.setItem("userData", JSON.stringify(response.data)); // Armazenar os dados do usuário no AsyncStorage
+        navigation.navigate('HomeScreen');
+        console.log('Login Bem Sucedido!!');
+        console.log('Email:', logarEmail);
+        console.log('Senha:', logarSenha);
+      } else {
+        setErro('Senha ou Email estão incorretos.');
       }
-
-      //Manda a mensagem para o Prompt pra verificar se a tela recebeu o usuário
-      navigation.navigate('HomeScreen');
-      console.log('Login Bem Sucedido!!');
-      console.log('Email:', logarEmail);
-      console.log('Senha:', logarSenha);
-
     } catch (error) {
       console.error('Ocorreu um erro ao tentar logar:', error);
-      Alert.alert('Ocorreu um erro ao tentar logar:', error.message);
+      Alert.alert('Erro', 'Ocorreu um erro ao tentar logar. Por favor, tente novamente.');
     }
   };
-
+  
   return (
-    //Tela para logar
     <View style={styles.container}>
       <Text style={styles.header}>Login</Text>
       <View style={styles.loginContainer}>
-
-      <View style={styles.userPassContainer}>
-        <View style={styles.inputContainer}>
-        <Icon name="lock" size={20} color="white" marginLeft={30} />
-          <Text style={styles.inputText}>Usuário</Text>
+        {erro ? <Text style={styles.errorText}>{erro}</Text> : null}
+        <View style={styles.inputWrapper}>
+          <Icon name="user" size={20} color="white" style={styles.icon} />
+          <TextInput
+            style={styles.input}
+            onChangeText={text => setLogarEmail(text)}
+            value={logarEmail}
+            placeholder="Email"
+            placeholderTextColor="#aaa"
+          />
         </View>
+        <View style={styles.inputWrapper}>
+          <Icon name="lock" size={20} color="white" style={styles.icon} />
+          <TextInput
+            style={styles.input}
+            onChangeText={text => setLogarSenha(text)}
+            value={logarSenha}
+            secureTextEntry={true}
+            placeholder="Senha"
+            placeholderTextColor="#aaa"
+          />
         </View>
-        <TextInput
-          style={styles.input}
-          onChangeText={text => setLogarEmail(text)}
-          value={logarEmail}
-          placeholder="Email"
-        />
-
-        <View style={styles.inputContainer2}>
-        <Icon name="lock" size={20} color="white" marginLeft={30} />
-          <Text style={styles.inputText}>Senha</Text>
-        </View>
-
-        <TextInput
-          style={styles.input}
-          onChangeText={text => setLogarSenha(text)}
-          value={logarSenha}
-          secureTextEntry={true}
-          placeholder="Senha"
-        />
-        <TouchableOpacity style={styles.button} onPress={VerificarLogin} >
+        <TouchableOpacity style={styles.button} onPress={VerificarLogin}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
-
         <TouchableOpacity onPress={botaoCadastrar} style={[styles.button, styles.buttonSecondary]}>
           <Text style={styles.buttonText}>Criar uma conta</Text>
         </TouchableOpacity>
       </View>
-
-      {/* Local para a imagem */}
       <View style={styles.imageContainer}>
-        {/* Aqui você pode adicionar o componente Image com a sua imagem */}
-        <Image source={{uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/main/MY%20AUT.png?raw=true'}} style={styles.image} />
+        <Image source={{ uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/main/MY%20AUT.png?raw=true' }} style={styles.image} />
       </View>
-      </View>
+    </View>
   );
 };
 
@@ -145,16 +131,26 @@ const styles = StyleSheet.create({
     width: '80%',
     alignItems: 'center',
   },
-
-  input: {
+  inputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#0B0020',
+    borderRadius: 20,
+    marginBottom: 16,
     width: '100%',
+  },
+  icon: {
+    padding: 10,
+  },
+  input: {
+    flex: 1,
     height: 40,
     borderColor: 'black',
     borderWidth: 1,
-    marginBottom: 16,
     paddingHorizontal: 10,
     borderRadius: 20,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    color: 'black',
   },
   button: {
     backgroundColor: '#0C3C84',
@@ -168,8 +164,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0C3C84',
     borderColor: 'black',
     borderWidth: 1,
-    width: '80%'
-
+    width: '80%',
   },
   buttonText: {
     color: '#fff',
@@ -185,30 +180,9 @@ const styles = StyleSheet.create({
     height: 180,
     borderRadius: 90,
   },
-  userPassContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 20,
-    width: '80%',
-  },
-  inputContainer: {
-    backgroundColor: '#0B0020',
-    borderRadius: 20,
-    padding: 8,
-    width: '100%',
-  },
-  inputContainer2: {
-    backgroundColor: '#0B0020',
-    borderRadius: 20,
-    padding: 10,
-    width: '100%',
-    margin: 5,
-  },
-  inputText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 16,
-    fontWeight: 'bold',
+  errorText: {
+    color: 'red',
+    marginBottom: 16,
   },
 });
 
