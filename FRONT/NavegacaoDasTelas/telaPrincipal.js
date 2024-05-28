@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     //color: 'white',
  // },
   logo: {
-    marginTop: 13,
+    marginTop: '5%',
     width: 100, // Ajuste conforme necessário
     height: 100, // Ajuste conforme necessário
     //marginBottom: 10,
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    //marginBottom: 10,
+    marginTop: '5%',
   },
   servisoRealizado:{
     position: "absolute",
@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
+    marginTop: '8%'
   },
   buttonRodape:{
     backgroundColor: "white",
@@ -207,6 +208,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     margin: 10,
+    marginTop: "5%"
   },
   cadastroCarro:{
     position: 'relative',
