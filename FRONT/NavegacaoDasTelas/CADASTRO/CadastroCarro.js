@@ -16,17 +16,19 @@ import { Picker } from "@react-native-picker/picker";
 
 const CadastroCarroScreen = ({ navigation }) => {
   //Setando os metodos das informações do carro
-  const [marca, setMarca] = useState("");
-  const [modelo, setModelo] = useState("");
-  const [ano, setAno] = useState("");
-  const [km, setKm] = useState("");
-  const [mediaKm, setMediaKm] = useState("");
-  const [uso, setUso] = useState("");
-  const [frequencia, setFrequencia] = useState("");
-  const [cambio, setCambio] = useState("");
-  const [combustivel, setCombustivel] = useState("");
-  const [erro, setErro] = useState("");
-  const [valorCookie, setValorCookie] = useState("");
+
+  const [placa, setPlaca] = useState('');
+  const [marca, setMarca] = useState('');
+  const [modelo, setModelo] = useState('');
+  const [ano, setAno] = useState('');
+  const [km, setKm] = useState('');
+  const [mediaKm, setMediaKm] = useState('');
+  const [uso, setUso] = useState('');
+  const [frequencia, setFrequencia] = useState('');
+  const [cambio, setCambio] = useState('');
+  const [combustivel, setCombustivel] = useState('');
+  const [erro, setErro] = useState('');
+  const [valorCookie, setValorCookie] = useState('');
 
   const getCookie = async () => {
     const valorDoCookie = await AsyncStorage.getItem("id_usuario");
@@ -66,16 +68,17 @@ const CadastroCarroScreen = ({ navigation }) => {
 
     //Dados do carro
     const dados = {
-      marca: marca,
-      modelo: modelo,
-      ano: formattedDate,
-      km: km,
-      mediaKm: mediaKm,
-      uso: uso,
-      cambio: cambio,
-      combustivel: combustivel,
-      calc: media,
-      usuario: valorCookie,
+      "placa": "placa",
+      "marca": marca,
+      "modelo": modelo,
+      "ano": formattedDate,
+      "km": km,
+      "mediaKm": mediaKm,
+      "uso": uso,
+      "cambio": cambio,
+      "combustivel": combustivel,
+      "calc":  media,
+      "usuario": valorCookie
     };
 
     console.log(dados);
@@ -110,70 +113,73 @@ const CadastroCarroScreen = ({ navigation }) => {
   return (
     //Tela para Colocar as informações do carro
     <ScrollView>
-      <View style={styles.container}>
-        <View style={styles.botaoVoltar}>
-          <TouchableOpacity style={styles.voltar}>
-            <Icon
-              name="arrow-left"
-              size={24}
-              color="white"
-              onPress={botaoVoltar}
-            />
-          </TouchableOpacity>
-          <Image
-            source={{
-              uri: "https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true",
-            }}
-            style={styles.logo}
-          />
-        </View>
-        <View style={styles.Titulo}>
-          <Text style={styles.FraseTitulo}>Cadastar Veículo:</Text>
-        </View>
-        <View style={styles.obcaoDeCelecao}>
-          {/*Aba para colocar a marca*/}
-          <Text style={styles.label}>Marca:</Text>
-          <TextInput
-            style={styles.input}
-            value={marca}
-            onChangeText={setMarca}
-          />
-          {/*Aba para colocar a Modelo*/}
-          <Text style={styles.label}>Modelo:</Text>
-          <TextInput
-            style={styles.input}
-            value={modelo}
-            onChangeText={setModelo}
-          />
-          {/*Aba para colocar a Ano*/}
-          <Text style={styles.label}>Ano:</Text>
-          <TextInput
-            style={styles.input}
-            maxLength={4}
-            value={ano}
-            onChangeText={setAno}
-            keyboardType="numeric"
-          />
-          {/*Aba para colocar a KM*/}
-          <Text style={styles.label}>KM DO RELOGIO ATUALMENTE:</Text>
-          <TextInput
-            style={styles.input}
-            value={km}
-            maxLength={5}
-            onChangeText={setKm}
-            keyboardType="numeric"
-          />
-          {/*Aba para colocar a KM*/}
-          <Text style={styles.label}>MEDIA DE KM DIÁRIO:</Text>
-          <TextInput
-            style={styles.input}
-            value={mediaKm}
-            maxLength={6}
-            onChangeText={setMediaKm}
-            keyboardType="numeric"
-          />
-          {/*Aba para colocar a USO*/}
-          <Text style={styles.label}>USO:</Text>
+
+    <View style={styles.container}>
+    
+
+      <View style={styles.botaoVoltar}>
+        <TouchableOpacity  style={styles.voltar} >
+          <Icon name="arrow-left" size={24} color="white" onPress={botaoVoltar}/>
+        </TouchableOpacity>
+        <Image
+          source={{ uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true' }}
+          style={styles.logo}
+        />
+      </View>
+      <View style={styles.Titulo}>
+      <Text style={styles.FraseTitulo}>Cadastar Veículo:</Text>
+      </View>
+      <View style={styles.obcaoDeCelecao}>
+      <Text style={styles.label}>Placa:</Text>
+      <TextInput
+        style={styles.input}
+        value={placa}
+        maxLength={6} //Deixa digitar apenas 6 números
+        onChangeText={setPlaca}
+      />
+      {/*Aba para colocar a marca*/}
+      <Text style={styles.label}>Marca:</Text>
+      <TextInput
+        style={styles.input}
+        value={marca}
+        onChangeText={setMarca}
+      />
+      {/*Aba para colocar a Modelo*/}
+      <Text style={styles.label}>Modelo:</Text>
+      <TextInput
+        style={styles.input}
+        value={modelo}
+        onChangeText={setModelo}
+      />
+      {/*Aba para colocar a Ano*/}
+      <Text style={styles.label}>Ano:</Text>
+      <TextInput
+        style={styles.input}
+        maxLength={4}
+        value={ano}
+        onChangeText={setAno}
+        keyboardType="numeric"
+      />
+      {/*Aba para colocar a KM*/}
+      <Text style={styles.label}>KM DO RELOGIO ATUALMENTE:</Text>
+      <TextInput
+        style={styles.input}
+        value={km}
+        maxLength={5}
+        onChangeText={setKm}
+        keyboardType="numeric"
+      />
+      {/*Aba para colocar a KM*/}
+      <Text style={styles.label}>MEDIA DE KM DIÁRIO:</Text>
+      <TextInput
+        style={styles.input}
+        value={mediaKm}
+        maxLength={6}
+        onChangeText={setMediaKm}
+        keyboardType="numeric"
+      />
+      {/*Aba para colocar a USO*/}
+      <Text style={styles.label}>USO:</Text>
 
           <View style={styles.input}>
             <Picker
