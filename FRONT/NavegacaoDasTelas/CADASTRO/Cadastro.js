@@ -186,8 +186,8 @@ const Cadastro = ({ navigation }) => {
               mode="dropdown" // Definindo o modo como dropdown para iOS
             >
               <Picker.Item label="Selecionar" value="" />
-              <Picker.Item label="Masculino" value="Homem" />
-              <Picker.Item label="Feminino" value="Mulher" />
+              <Picker.Item label="Masculino" value="Masculino" />
+              <Picker.Item label="Feminino" value="Feminino" />
               <Picker.Item label="Prefiro Não Opinar" value="Prefiro Não Opinar" />
             </Picker>
 
