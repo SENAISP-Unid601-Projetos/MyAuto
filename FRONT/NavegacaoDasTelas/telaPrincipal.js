@@ -51,7 +51,6 @@ const HomeScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <ScrollView>
       <View style={styles.container}>
         {/* Cabeçalho */}
         <View style={styles.headerContainer}>
@@ -140,7 +139,6 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </View>
       </View>
-    </ScrollView>
   );
 };
 
