@@ -1,39 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import axios from "axios";
 
 const TelaDeNotificacao = ({ navigation }) => {
-  const [selectedTab, setSelectedTab] = useState('realizados')
-  const [isLoading, setIsLoading] = useState(true)
-  const [agendamentosFuturos, setAgendamentosFuturos] = useState([])
-  const [error, setError] = useState(null)
+  const [selectedTab, setSelectedTab] = useState("realizados");
+  const [isLoading, setIsLoading] = useState(true);
+  const [agendamentosFuturos, setAgendamentosFuturos] = useState([]);
+  const [error, setError] = useState(null);
 
   const botaoVoltar = () => {
-    navigation.goBack()
-  }
+    navigation.goBack();
+  };
 
-//  const visualizarServico = () => {
-    
-//  }
+  //  const visualizarServico = () => {
+
+  //  }
 
   const fetchAgendamentos = async () => {
     try {
-      const response = await axios.get('http://10.110.12.3:8080/api/agendamento')
-      console.log(response.data)
-      setAgendamentosFuturos(response.data) // Aqui, use `response.data` para acessar os dados reais
+      const response = await axios.get(
+        "http://10.110.12.3:8080/api/agendamento"
+      );
+      console.log(response.data);
+      setAgendamentosFuturos(response.data); // Aqui, use `response.data` para acessar os dados reais
     } catch (error) {
-      console.error('Erro ao obter os agendamentos:', error)
-      setError(error.message)
+      console.error("Erro ao obter os agendamentos:", error);
+      setError(error.message);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchAgendamentos()
+    fetchAgendamentos();
     //console.log(agendamentosFuturos)
-  }, [])
+  }, []);
 
   return (
     <View style={styles.screen}>
@@ -49,9 +51,9 @@ const TelaDeNotificacao = ({ navigation }) => {
           <TouchableOpacity
             style={[
               styles.tab,
-              selectedTab === 'realizados' && styles.selectedTab,
+              selectedTab === "realizados" && styles.selectedTab,
             ]}
-            onPress={() => setSelectedTab('realizados')}
+            onPress={() => setSelectedTab("realizados")}
           >
             <Text style={styles.tabText}>Serviços Realizados</Text>
           </TouchableOpacity>
@@ -97,71 +99,71 @@ const TelaDeNotificacao = ({ navigation }) => {
 
       <View style={styles.footer}>{/* Rodapé aqui */}</View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: "black",
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingTop: 50,
     paddingHorizontal: 10,
     paddingBottom: 15,
   },
   headerTitle: {
-    color: 'white',
+    color: "white",
     fontSize: 25,
     flex: 1, // Faz com que o título ocupe o máximo de espaço possível
-    textAlign: 'center', // Centraliza o texto
+    textAlign: "center", // Centraliza o texto
   },
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     padding: 20,
   },
   titleContainer: {
-    backgroundColor: '#F0E68C',
+    backgroundColor: "#F0E68C",
     padding: 10,
     borderRadius: 10,
     marginBottom: 20,
-    alignItems: 'center',
+    alignItems: "center",
     borderRadius: 20,
   },
   titleText: {
-    color: 'black',
+    color: "black",
     fontSize: 18,
   },
   tabContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginBottom: 40,
     top: 25,
   },
   tab: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     paddingVertical: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: "#ccc",
   },
   selectedTab: {
-    borderBottomColor: 'black',
+    borderBottomColor: "black",
   },
   tabText: {
     fontSize: 16,
   },
   agendamentoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 20,
   },
   imagemOficina: {
-    width: '35%',
-    height: '80%',
+    width: "35%",
+    height: "80%",
     borderRadius: 10,
     marginRight: 10,
   },
@@ -169,22 +171,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   visualizarButton: {
-    backgroundColor: '#1E90FF', // Azul escuro
+    backgroundColor: "#1E90FF", // Azul escuro
     padding: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: "black",
     marginTop: 10,
   },
   buttonText: {
-    color: 'white', // Branco
+    color: "white", // Branco
     fontSize: 15, // Tamanho da fonte aumentado
-    textAlign: 'center',
+    textAlign: "center",
   },
   nomeOficina: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 5,
   },
-})
+});
 
-export default TelaDeNotificacao
+export default TelaDeNotificacao;
