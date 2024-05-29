@@ -51,94 +51,94 @@ const HomeScreen = ({ navigation }) => {
   }, []);
 
   return (
-      <View style={styles.container}>
-        {/* Cabeçalho */}
-        <View style={styles.headerContainer}>
-          {/*Imagem da logo*/}
+    <View style={styles.container}>
+      {/* Cabeçalho */}
+      <View style={styles.headerContainer}>
+        {/*Imagem da logo*/}
+        <Image
+          source={{
+            uri: "https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true",
+          }}
+          style={styles.logo}
+        />
+      </View>
+
+      {/* Foto de perfil e botão Perfil */}
+      <View style={styles.profileContainer}>
+        <View style={styles.botaoImagemLogin}>
+          {/*Imagem de login*/}
           <Image
             source={{
-              uri: "https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true",
+              uri: "https://e7.pngegg.com/pngimages/505/761/png-clipart-login-computer-icons-avatar-icon-monochrome-black-thumbnail.png",
             }}
-            style={styles.logo}
+            style={styles.profileImage}
           />
-        </View>
-
-        {/* Foto de perfil e botão Perfil */}
-        <View style={styles.profileContainer}>
-          <View style={styles.botaoImagemLogin}>
-            {/*Imagem de login*/}
-            <Image
-              source={{
-                uri: "https://e7.pngegg.com/pngimages/505/761/png-clipart-login-computer-icons-avatar-icon-monochrome-black-thumbnail.png",
-              }}
-              style={styles.profileImage}
-            />
-            <View style={styles.buttonWithIcon}>
-              <TouchableOpacity onPress={botaoPerfil} style={styles.botaologin}>
-                <Text style={styles.ButtonText}>Perfil</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.servisoRealizado}>
-          {error ? (
-            <View>
-              <Text>Ocorreu um erro ao carregar os serviços realizados.</Text>
-            </View>
-          ) : (
-            <View>
-              <Text style={styles.texto}>Serviços Futuros</Text>
-
-              <View style={styles.diasAgendados}>
-                {agendamentosFuturos.map((agendamento, index) => (
-                  <Text style={styles.diaAgendado} key={index}>
-                    {" "}
-                    dia: {agendamento.data} - {agendamento.horario}
-                  </Text>
-                ))}
-              </View>
-            </View>
-          )}
-        </View>
-
-        {/* Retângulo roxo como rodapé */}
-        <View style={styles.footerContainer}>
-          {/* Botão Agendar */}
-          {/* Restante dos botões */}
-          <View style={styles.alinhaBotao}>
-            <View style={styles.buttonRodape}>
-              <AntDesign
-                name="calendar"
-                size={30}
-                color="black"
-                style={styles.icon}
-                onPress={botaoAgendar}
-              />
-            </View>
-            {/* Botão Notificações */}
-            <View style={styles.buttonRodape}>
-              <AntDesign
-                name="bells"
-                size={30}
-                color="black"
-                style={styles.icon}
-                onPress={botaoNotificacao}
-              />
-            </View>
-            {/* Botão Relatórios */}
-            <View style={styles.buttonRodape}>
-              <AntDesign
-                name="car"
-                size={30}
-                color="black"
-                style={styles.icon}
-                onPress={botaoCarro}
-              />
-            </View>
+          <View style={styles.buttonWithIcon}>
+            <TouchableOpacity onPress={botaoPerfil} style={styles.botaologin}>
+              <Text style={styles.ButtonText}>Perfil</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
+
+      <View style={styles.servisoRealizado}>
+        {error ? (
+          <View>
+            <Text>Ocorreu um erro ao carregar os serviços realizados.</Text>
+          </View>
+        ) : (
+          <View>
+            <Text style={styles.texto}>Serviços Futuros</Text>
+
+            <View style={styles.diasAgendados}>
+              {agendamentosFuturos.map((agendamento, index) => (
+                <Text style={styles.diaAgendado} key={index}>
+                  {" "}
+                  dia: {agendamento.data} - {agendamento.horario}
+                </Text>
+              ))}
+            </View>
+          </View>
+        )}
+      </View>
+
+      {/* Retângulo roxo como rodapé */}
+      <View style={styles.footerContainer}>
+        {/* Botão Agendar */}
+        {/* Restante dos botões */}
+        <View style={styles.alinhaBotao}>
+          <View style={styles.buttonRodape}>
+            <AntDesign
+              name="calendar"
+              size={30}
+              color="black"
+              style={styles.icon}
+              onPress={botaoAgendar}
+            />
+          </View>
+          {/* Botão Notificações */}
+          <View style={styles.buttonRodape}>
+            <AntDesign
+              name="bells"
+              size={30}
+              color="black"
+              style={styles.icon}
+              onPress={botaoNotificacao}
+            />
+          </View>
+          {/* Botão Relatórios */}
+          <View style={styles.buttonRodape}>
+            <AntDesign
+              name="car"
+              size={30}
+              color="black"
+              style={styles.icon}
+              onPress={botaoCarro}
+            />
+          </View>
+        </View>
+      </View>
+    </View>
   );
 };
 
