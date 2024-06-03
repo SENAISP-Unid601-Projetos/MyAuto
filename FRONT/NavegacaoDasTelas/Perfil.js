@@ -21,8 +21,9 @@ const ProfileScreen = ({ navigation }) => {
     fetchUserData();
   }, []);
 
+
   const ocultarCPF = (cpf) => {
-    return cpf.substring(0, cpf.length - 4).replace(/\d/g, '*') + cpf.substring(cpf.length - 4);
+    return cpf.substring(0, cpf.length - 2).replace(/\d/g, '*') +'-' +cpf.substring(cpf.length - 2);
   };
 
   const handleLogout = async () => {
@@ -37,27 +38,44 @@ const ProfileScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-        <Ionicons name="arrow-back" size={24} color="white" />
+        <Ionicons name="arrow-back" size={35} color="white" />
       </TouchableOpacity>
       <TouchableOpacity style={styles.profileIcon}>
-        <Ionicons name="person-circle" size={24} color="white" />
+        <Ionicons name="person-circle" size={60} color="white" />
       </TouchableOpacity>
       <View style={styles.profileContainer}>
         {/* <Image source={require('./profile-pic.jpg')} style={styles.profileImage} /> */}
-        <Text style={styles.header}>Username</Text>
+        <Text style={styles.header}>Perfil</Text>
         {userData && (
           <View style={styles.userInfoContainer}>
-            <Text style={styles.label}>Nome: {userData.nome}</Text>
-            <Text style={styles.label}>Email: {userData.email}</Text>
-            <Text style={styles.label}>CPF: {ocultarCPF(userData.cpf)}</Text>
-            <Text style={styles.label}>Data de Nascimento: {userData.dataDeNascimento}</Text>
-            <Text style={styles.label}>Sexo: {userData.sexo}</Text>
+            <Text style={styles.textDados}>Dados Pessoais</Text>
+            
+            <View style={styles.inputStyles}>
+            <Text style={styles.textInput}>Nome:</Text>
+            <Text style={styles.label}>{userData.nome}</Text>
+            </View>
+            <View style={styles.inputStyles}>
+            <Text style={styles.textInput}>Email:</Text>
+            <Text style={styles.label}> {userData.email}</Text>
+            </View>
+            <View style={styles.inputStyles}>
+            <Text style={styles.textInput}>CPF:</Text>
+            <Text style={styles.label}> {ocultarCPF(userData.cpf)}</Text>
+            </View>
+            <View style={styles.inputStyles}>
+            <Text style={styles.textInput}>Data de Nascimento:</Text>
+            <Text style={styles.label}> {userData.dataDeNascimento}</Text>
+            </View>
+            <View style={styles.inputStyles}>
+            <Text style={styles.textInput}>Sexo:</Text>
+            <Text style={styles.label}> {userData.sexo}</Text>
+            </View>
             {/* Adicione mais campos conforme necessário */}
           </View>
         )}
       </View>
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-        <Text style={styles.buttonText}>Logout</Text>
+        <Text style={styles.buttonText}>Sair da conta</Text>
       </TouchableOpacity>
     </View>
   );
@@ -73,10 +91,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   header: {
-    fontSize: 24,
+    fontSize: 35,
     fontWeight: 'bold',
     color: '#fff',
     marginBottom: 10,
+    marginTop: '10%'
   },
   profileContainer: {
     alignItems: 'center',
@@ -91,37 +110,74 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 20,
-    width: '100%',
-    alignItems: 'flex-end',
+    width: 400,
+    height: 650,
+    marginTop: '5%',
+    alignItems: 'center',
   },
+
+  textDados:{
+    fontSize: 28,
+    fontWeight: 'bold',
+    alignItems: 'center',
+    marginTop: '3%',
+    marginBottom: '8%',
+    color: 'red',
+    fontStyle: 'italic',
+
+  },
+
+  inputStyles:{
+    backgroundColor: '#fafba7',
+    borderRadius: '20%',
+    padding: "2%",
+    width: '100%',
+    marginBottom: "2%",
+    borderWidth: 2,
+    borderColor: 'blue',
+  },
+
+  textInput:{
+    fontSize: 22,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    marginLeft: '2%',
+    fontVariant: '',
+    
+  },
+
   label: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#333',
     marginBottom: 5,
+    marginLeft: '5%'
   },
   backButton: {
     position: 'absolute',
-    top: 40,
+    top: '10%',
     left: 20,
   },
   profileIcon: {
     position: 'absolute',
-    top: 40,
+    top: '8%',
     right: 20,
   },
   logoutButton: {
     backgroundColor: '#c32b2b',
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    width: "90%",
     borderRadius: 20,
     position: 'absolute',
     bottom: 40,
-    right: 20,
+    alignItems: 'center',
   },
   buttonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
+    height: 25,
+    alignItems: 'center',
+    marginTop: 3
   },
 });
 
