@@ -42,11 +42,11 @@ public class Carro implements Serializable {
 	@Column(nullable = true)
 	private Integer calc;
 	@JsonIgnore
+
+
 	@ManyToOne
 	@JoinColumn(name = "usuario_id", nullable = false)
 	private Usuario usuario;
-
-
 	public static Carro fromCarroDTO(CarroDTO carroDTO) {
 		Carro carro = new Carro();
 		carro.setId(carroDTO.getId());

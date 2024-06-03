@@ -3,7 +3,6 @@ package com.senai.auth.entities;
 
 import java.util.Date;
 import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,4 +35,7 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Carro> carros;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Agendamento> agendamentos;
 }

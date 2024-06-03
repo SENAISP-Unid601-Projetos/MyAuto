@@ -8,5 +8,6 @@ import com.senai.auth.entities.Agendamento;
 
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
+    public Agendamento findBydata(String data);
 
 }
