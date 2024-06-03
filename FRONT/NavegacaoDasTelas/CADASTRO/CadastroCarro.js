@@ -30,6 +30,8 @@ const CadastroCarroScreen = ({ navigation }) => {
   const [erro, setErro] = useState('');
   const [valorCookie, setValorCookie] = useState('');
 
+  //cdsvdsvsdvds
+
   const getCookie = async () => {
     const valorDoCookie = await AsyncStorage.getItem("id_usuario");
     console.log("esse ", valorDoCookie);
