@@ -33,7 +33,7 @@ const HomeScreen = ({ navigation }) => {
   const [selectedTab, setSelectedTab] = useState(null);
 
   useEffect(() => {
-    fetch("http://10.110.12.20:8080/api/agendamento")
+    fetch("http://10.110.12.15:8080/api/agendamento")
       .then((response) => {
         if (response.ok) {
           return response.json();

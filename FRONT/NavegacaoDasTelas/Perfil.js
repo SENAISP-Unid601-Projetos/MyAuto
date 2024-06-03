@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from '@expo/vector-icons';
 
@@ -11,6 +11,7 @@ const ProfileScreen = ({ navigation }) => {
       try {
         const data = await AsyncStorage.getItem("userData");
         if (data) {
+          console.log("User Data:", JSON.parse(data)); // Log data to check its content
           setUserData(JSON.parse(data));
         }
       } catch (error) {
@@ -21,9 +22,11 @@ const ProfileScreen = ({ navigation }) => {
     fetchUserData();
   }, []);
 
-
   const ocultarCPF = (cpf) => {
-    return cpf.substring(0, cpf.length - 2).replace(/\d/g, '*') +'-' +cpf.substring(cpf.length - 2);
+    if (!cpf || cpf.length < 4) {
+      return cpf;
+    }
+    return cpf.substring(0, cpf.length - 2).replace(/\d/g, '*') + '-' + cpf.substring(cpf.length - 2);
   };
 
   const handleLogout = async () => {
@@ -44,34 +47,34 @@ const ProfileScreen = ({ navigation }) => {
         <Ionicons name="person-circle" size={60} color="white" />
       </TouchableOpacity>
       <View style={styles.profileContainer}>
-        {/* <Image source={require('./profile-pic.jpg')} style={styles.profileImage} /> */}
         <Text style={styles.header}>Perfil</Text>
-        {userData && (
+        {userData ? (
           <View style={styles.userInfoContainer}>
             <Text style={styles.textDados}>Dados Pessoais</Text>
-            
+
             <View style={styles.inputStyles}>
-            <Text style={styles.textInput}>Nome:</Text>
-            <Text style={styles.label}>{userData.nome}</Text>
+              <Text style={styles.textInput}>Nome:</Text>
+              <Text style={styles.label}>{userData.nome}</Text>
             </View>
             <View style={styles.inputStyles}>
-            <Text style={styles.textInput}>Email:</Text>
-            <Text style={styles.label}> {userData.email}</Text>
+              <Text style={styles.textInput}>Email:</Text>
+              <Text style={styles.label}>{userData.email}</Text>
             </View>
             <View style={styles.inputStyles}>
-            <Text style={styles.textInput}>CPF:</Text>
-            <Text style={styles.label}> {ocultarCPF(userData.cpf)}</Text>
+              <Text style={styles.textInput}>CPF:</Text>
+              <Text style={styles.label}>{ocultarCPF(userData.cpf)}</Text>
             </View>
             <View style={styles.inputStyles}>
-            <Text style={styles.textInput}>Data de Nascimento:</Text>
-            <Text style={styles.label}> {userData.dataDeNascimento}</Text>
+              <Text style={styles.textInput}>Data de Nascimento:</Text>
+              <Text style={styles.label}>{userData.dataDeNascimento}</Text>
             </View>
             <View style={styles.inputStyles}>
-            <Text style={styles.textInput}>Sexo:</Text>
-            <Text style={styles.label}> {userData.sexo}</Text>
+              <Text style={styles.textInput}>Sexo:</Text>
+              <Text style={styles.label}>{userData.sexo}</Text>
             </View>
-            {/* Adicione mais campos conforme necessário */}
           </View>
+        ) : (
+          <Text style={styles.loadingText}>Carregando...</Text>
         )}
       </View>
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
@@ -95,16 +98,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
     marginBottom: 10,
-    marginTop: '10%'
+    marginTop: '10%',
   },
   profileContainer: {
     alignItems: 'center',
-  },
-  profileImage: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    marginBottom: 10,
   },
   userInfoContainer: {
     backgroundColor: '#fff',
@@ -115,8 +112,7 @@ const styles = StyleSheet.create({
     marginTop: '5%',
     alignItems: 'center',
   },
-
-  textDados:{
+  textDados: {
     fontSize: 28,
     fontWeight: 'bold',
     alignItems: 'center',
@@ -124,33 +120,27 @@ const styles = StyleSheet.create({
     marginBottom: '8%',
     color: 'red',
     fontStyle: 'italic',
-
   },
-
-  inputStyles:{
+  inputStyles: {
     backgroundColor: '#fafba7',
-    borderRadius: '20%',
-    padding: "2%",
+    borderRadius: 20,
+    padding: '2%',
     width: '100%',
-    marginBottom: "2%",
+    marginBottom: '2%',
     borderWidth: 2,
     borderColor: 'blue',
   },
-
-  textInput:{
+  textInput: {
     fontSize: 22,
     fontWeight: 'bold',
     fontStyle: 'italic',
     marginLeft: '2%',
-    fontVariant: '',
-    
   },
-
   label: {
     fontSize: 18,
     color: '#333',
     marginBottom: 5,
-    marginLeft: '5%'
+    marginLeft: '5%',
   },
   backButton: {
     position: 'absolute',
@@ -165,7 +155,7 @@ const styles = StyleSheet.create({
   logoutButton: {
     backgroundColor: '#c32b2b',
     paddingVertical: 10,
-    width: "90%",
+    width: '90%',
     borderRadius: 20,
     position: 'absolute',
     bottom: 40,
@@ -177,7 +167,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     height: 25,
     alignItems: 'center',
-    marginTop: 3
+    marginTop: 3,
+  },
+  loadingText: {
+    fontSize: 20,
+    color: '#fff',
+    marginTop: 20,
   },
 });
 
