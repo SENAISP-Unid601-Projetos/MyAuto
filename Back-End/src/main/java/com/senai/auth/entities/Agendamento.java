@@ -37,6 +37,8 @@ public class Agendamento implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "usuario_id", nullable = false)
 	private Usuario usuario;
+
+
 	public static Agendamento fromAgendamentoDTO(AgendamentoDTO agendamentoDTO) {
 		Agendamento agendamento = new Agendamento();
 		agendamento.setId(agendamentoDTO.getId());

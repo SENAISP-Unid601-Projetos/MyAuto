@@ -13,6 +13,8 @@ import com.senai.auth.repository.AgendamentoRepository;
 import com.senai.auth.service.AgendamentoService;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -24,17 +26,17 @@ public class AgendamentoController {
     @Autowired // Adicione esta anotação para injetar o AgendamentoRepository
     private AgendamentoRepository agendamentoRepository;
 
-    @PostMapping("/agendamento")
-    public ResponseEntity<Agendamento> agendarServico(@RequestBody Agendamento request) {
-        try {
-            Agendamento novoAgendamento = agendamentoService.agendarServico(request.getData(), request.getHorario());
-            return ResponseEntity.ok(novoAgendamento);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-    }
+   // @PostMapping("/agendamento")
+   // public ResponseEntity<Agendamento> agendarServico(@RequestBody Agendamento request) {
+   //     try {
+   //         Agendamento novoAgendamento = agendamentoService.agendarServico(request.getData(), request.getHorario());
+   //         return ResponseEntity.ok(novoAgendamento);
+   //     } catch (Exception e) {
+   //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    //    }
+    //}
 
-    @PostMapping()
+    @PostMapping("/agendamento")
     public ResponseEntity<Agendamento> criarAgendamento(@Valid @RequestBody AgendamentoDTO agendamento){
         try {
             Agendamento novoAgendamento = agendamentoRepository.save(Agendamento.fromAgendamentoDTO(agendamento));
@@ -47,5 +49,11 @@ public class AgendamentoController {
     @GetMapping("/agendamento")
     public Iterable<Agendamento> findAllAgendamentos() {
         return agendamentoRepository.findAll();
+    }
+
+    @GetMapping("/agendamento/{usuarioId}")
+    public List<AgendamentoDTO> findAgendamentoByUsuario(@PathVariable Long usuarioId) {
+        List<Agendamento> agendamentos = agendamentoRepository.findByUsuarioId(usuarioId);
+        return agendamentos.stream().map(AgendamentoDTO::toDTO).collect(Collectors.toList());
     }
 }
