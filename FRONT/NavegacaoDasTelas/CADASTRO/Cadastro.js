@@ -81,7 +81,7 @@ const Cadastro = ({ navigation }) => {
       sexo: sexo,
     };
 
-    fetch("http://10.110.12.15:8080/api/usuarios", {
+    fetch("http://10.110.12.3:8080/api/usuarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet, Alert } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Notifications from 'expo-notifications';
 
 Notifications.setNotificationHandler({
@@ -17,6 +18,18 @@ const Agendamento = ({ navigation }) => {
   const [selectedHour, setSelectedHour] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedService, setSelectedService] = useState('');
+  const [valorCookie, setValorCookie] = useState('');
+
+  const getCookie = async () => {
+    const valorDoCookie = await AsyncStorage.getItem("id_usuario");
+    console.log("esse ", valorDoCookie);
+    setValorCookie(valorDoCookie);
+    return valorDoCookie;
+  };
+
+  useEffect(() => {
+    setValorCookie(getCookie());
+  }, []);
 
   const botaoVoltar = () => {
     navigation.goBack();
@@ -41,11 +54,12 @@ const Agendamento = ({ navigation }) => {
     const novoAgendamento = {
       data: selectedDay,
       horario: selectedHour,
-      servico: selectedService
+      servico: selectedService,
+      usuario : valorCookie
     };
 
     // Endpoint da API
-    const endpoint = 'http://10.110.12.15:8080/api/agendamento';
+    const endpoint = 'http://10.110.12.3:8080/api/agendamento';
 
     fetch(endpoint, {
       method: 'POST',
@@ -70,6 +84,7 @@ const Agendamento = ({ navigation }) => {
           'Erro',
           'Erro ao agendar. Por favor, tente novamente mais tarde.'
         );
+        console.log(valorCookie)
       });
   };
 
