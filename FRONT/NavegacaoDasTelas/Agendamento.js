@@ -84,7 +84,7 @@ const Agendamento = ({ navigation }) => {
           'Erro',
           'Erro ao agendar. Por favor, tente novamente mais tarde.'
         );
-        console.log(valorCookie)
+        //console.log(valorCookie)
       });
   };
 
