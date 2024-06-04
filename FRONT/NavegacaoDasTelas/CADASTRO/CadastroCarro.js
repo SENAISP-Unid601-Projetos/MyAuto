@@ -1,316 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Pressable, Alert, ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Picker } from '@react-native-picker/picker';
-
-const CadastroCarroScreen = ({navigation}) => {
-  //Setando os metodos das informações do carro
-  const [marca, setMarca] = useState('');
-  const [modelo, setModelo] = useState('');
-  const [ano, setAno] = useState('');
-  const [km, setKm] = useState('');
-  const [mediaKm, setMediaKm] = useState('');
-  const [uso, setUso] = useState('');
-  const [frequencia, setFrequencia] = useState('');
-  const [cambio, setCambio] = useState('');
-  const [combustivel, setCombustivel] = useState('');
-  const [erro, setErro] = useState('');
-  const [valorCookie, setValorCookie] = useState('');
-
-  const getCookie = async () => {
-    const valorDoCookie = await AsyncStorage.getItem("id_usuario");
-    console.log("esse ", valorDoCookie)
-    setValorCookie(valorDoCookie);
-    return valorDoCookie;
-  };
-
-  useEffect(() => {
-    setValorCookie(getCookie());
-  }, []);
-
-  const calc=()=>{
-    return parseInt((10000 / mediaKm) / frequencia);
-  }
-
-  const botaoVoltar=()=>{
-    navigation.goBack();
-  }
-
-  const formatarData = (ano) => {
-    return `${ano}`;
-  };  
-  
-  //Criando o carro no banco pelo Back End
-  const Criar = () => {
-
-    //Mostra no console se a tela está pegando as informações
-    console.log('Marca:', marca);
-    console.log('Modelo:', modelo);
-    console.log('Ano:', ano);
-    console.log('KM:', km);
-
-    setErro('');
-
-    const formattedDate = formatarData(ano);
-    const media = calc();
-
-    //Dados do carro
-    const dados = {
-      "marca": marca,
-      "modelo": modelo,
-      "ano": formattedDate,
-      "km": km,
-      "mediaKm": mediaKm,
-      "uso": uso,
-      "cambio": cambio,
-      "combustivel": combustivel,
-      "calc":  media,
-      "usuario": valorCookie
-    };
-
-    console.log(dados);
-
-
-    
-    fetch('http://10.110.12.20:8080/api/carros', { //metodo para chamar a API usando o feth
-      method: 'POST', //Usamos o POST para postar no banco as informações
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(dados)
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Erro ao cadastrar seu carro');
-      }
-      return response.json();
-    })
-    .then(dados => {
-      console.log('Carro cadastrado com sucesso:', dados);
-      Alert.alert("Sucesso!","Próxima troca de óleo em: "+calc()+" dias.");
-      botaoVoltar();
-    })
-    .catch(error => {
-      console.error('Ocorreu um erro ao cadastrar seu Carro:', error);
-    });
-    
-  };
-
-  return (
-    //Tela para Colocar as informações do carro
-    <ScrollView>
-    <View style={styles.container}>
-    
-
-      <View style={styles.botaoVoltar}>
-        <TouchableOpacity  style={styles.voltar} >
-          <Icon name="arrow-left" size={24} color="white" onPress={botaoVoltar}/>
-        </TouchableOpacity>
-        <Image
-          source={{ uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true' }}
-          style={styles.logo}
-        />
-      </View>
-      <View style={styles.Titulo}>
-      <Text style={styles.FraseTitulo}>Cadastar Veículo:</Text>
-      </View>
-      <View style={styles.obcaoDeCelecao}>
-      {/*Aba para colocar a marca*/}
-      <Text style={styles.label}>Marca:</Text>
-      <TextInput
-        style={styles.input}
-        value={marca}
-        onChangeText={setMarca}
-      />
-      {/*Aba para colocar a Modelo*/}
-      <Text style={styles.label}>Modelo:</Text>
-      <TextInput
-        style={styles.input}
-        value={modelo}
-        onChangeText={setModelo}
-      />
-      {/*Aba para colocar a Ano*/}
-      <Text style={styles.label}>Ano:</Text>
-      <TextInput
-        style={styles.input}
-        maxLength={4}
-        value={ano}
-        onChangeText={setAno}
-        keyboardType="numeric"
-      />
-      {/*Aba para colocar a KM*/}
-      <Text style={styles.label}>KM DO RELOGIO ATUALMENTE:</Text>
-      <TextInput
-        style={styles.input}
-        value={km}
-        maxLength={5}
-        onChangeText={setKm}
-        keyboardType="numeric"
-      />
-      {/*Aba para colocar a KM*/}
-      <Text style={styles.label}>MEDIA DE KM DIÁRIO:</Text>
-      <TextInput
-        style={styles.input}
-        value={mediaKm}
-        maxLength={6}
-        onChangeText={setMediaKm}
-        keyboardType="numeric"
-      />
-      {/*Aba para colocar a USO*/}
-      <Text style={styles.label}>USO:</Text>
-
-      <View style={styles.input}>
-      <Picker
-      selectedValue={uso}
-      onValueChange={(itemValue)=> setUso(itemValue)}
-      >
-        <Picker.Item label='Selecionar' value={(null)}/>
-        <Picker.Item label='Uber' value='Uber'/>
-        <Picker.Item label='Viagens' value='Viagens'/>
-        <Picker.Item label='Trabalho' value='Trabalho'/>
-        <Picker.Item label='Entregas' value='Entregas'/>
-        <Picker.Item label='Rural' value='Rural'/>
-        <Picker.Item label='Passeio' value='Passeio'/>
-      </Picker>
-      </View>
-      {/*Aba para colocar a USO*/}
-      <Text style={styles.label}>FREQUENCIA:</Text>
-
-      <View style={styles.input}>
-      <Picker
-      selectedValue={frequencia}
-      onValueChange={(itemValue)=> setFrequencia(itemValue)}
-      keyboardType="numeric"
-      >
-        <Picker.Item label='Selecionar' value={(null)}/>
-        <Picker.Item label='Frequentemente' value={1.5}/>
-        <Picker.Item label='Razoavel' value={1}/>
-        <Picker.Item label='Ocasionalmente' value={1.3}/>
-
-      </Picker>
-      </View>
-
-      {/*Aba para colocar a CAMBIO*/}
-      <Text style={styles.label}>CAMBIO:</Text>
-
-      <View style={styles.input}>
-      <Picker
-      selectedValue={cambio}
-      onValueChange={(itemValue)=> setCambio(itemValue)}
-      >
-        <Picker.Item label='Selecionar' value={(null)}/>
-        <Picker.Item label='Manual' value='Manual'/>
-        <Picker.Item label='Automático' value='Automatico'/>
-      </Picker>
-      </View>
-      {/*Aba para colocar a COMBUSTIVEL*/}
-      <Text style={styles.label}>COMBUSTIVEL:</Text>
-      <View style={styles.input}>
-      <Picker
-      selectedValue={combustivel}
-      onValueChange={(itemValue)=> setCombustivel(itemValue)}
-      >
-        <Picker.Item label='Selecionar' value={(null)}/>
-        <Picker.Item label='Gasolina' value='Gasolina'/>
-        <Picker.Item label='Diesel' value='Diesel'/>
-        <Picker.Item label='Etanol' value='Etanol'/>
-        <Picker.Item label='Flex' value='Flex'/>
-      </Picker>
-      </View>
-      <View style={styles.btncadastro}>
-        <Pressable  onPress={Criar} style={styles.btn}>
-          <Text style={styles.texto}>Cadastrar</Text>
-        </Pressable>
-      </View>
-      {erro !== '' && <Text style={styles.error}>{erro}</Text>}
-      </View>
-    </View>
-    </ScrollView>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-
-  obcaoDeCelecao:{
-    top: "1.5%",
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#0A0226',
-    borderRadius: 60,
-    marginHorizontal:15,
-    padding: '6%'
-  },
-  FraseTitulo:{
-    color:'green',
-    fontSize: 25,
-    fontWeight: 'bold',
-    marginLeft: '25%',
-    marginTop: '8%',
-    marginBottom: '5%'
-  },
-
-  voltar:{
-    marginHorizontal: 10,
-    top: 45,
-    paddingHorizontal: 20,
-  },
-
-  botaoVoltar:{
-    height: '12%',
-    backgroundColor: '#0A0226'
-  },
-  label: {
-    fontSize: 18,
-    marginBottom: 5,
-    color: 'white'
-  },
-  input: {
-    width: '90%',
-    height:50,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 50,
-    marginBottom: 10,
-    paddingHorizontal: 11,
-    backgroundColor: '#FFF9C4',
-
-  },
-  btncadastro:{
-    flexDirection: 'row',
-    alignItems: 'center',
-    top:"5%",
-  },
-  btn:{
-    backgroundColor: '#2196f3',
-    color: 'white',
-    alignItems: 'center',
-    borderRadius: 20,
-    width: 115,
-    height:40,
-    justifyContent: 'center',
-  },
-  texto:{
-    fontSize: 18,
-    color: 'white',
-    fontFamily: "Roboto"
-  },
-  logo: {
-    marginTop: '5%',
-    width: 100, // Ajuste conforme necessário
-    height: 100, // Ajuste conforme necessário
-    margin:'37%',
-  },
-});
-
-export default CadastroCarroScreen;
---------------------------------------------------------------- Rascunho CadastroVeículo (problema) -------------------------------------------------------
-
-  import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -322,12 +10,9 @@ import {
   Alert,
   ScrollView,
   Modal,
-  Button,
-  Platform
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Picker } from "@react-native-picker/picker";
 
 const CadastroCarroScreen = ({ navigation }) => {
   const [placa, setPlaca] = useState('');
@@ -341,7 +26,12 @@ const CadastroCarroScreen = ({ navigation }) => {
   const [cambio, setCambio] = useState('');
   const [combustivel, setCombustivel] = useState('');
   const [erro, setErro] = useState('');
-  const [modalVisible, setModalVisible] = useState(false);
+
+  const [modalUsoVisible, setModalUsoVisible] = useState(false);
+  const [modalFrequenciaVisible, setModalFrequenciaVisible] = useState(false);
+  const [modalCambioVisible, setModalCambioVisible] = useState(false);
+  const [modalCombustivelVisible, setModalCombustivelVisible] = useState(false);
+
   const [pickerOptionsUso, setPickerOptionsUso] = useState([
     { label: "Selecionar", value: null },
     { label: "Uber", value: "Uber" },
@@ -351,11 +41,12 @@ const CadastroCarroScreen = ({ navigation }) => {
     { label: "Rural", value: "Rural" },
     { label: "Passeio", value: "Passeio" }
   ]);
+
   const [pickerOptionsFrequencia, setPickerOptionsFrequencia] = useState([
     { label: "Selecionar", value: null },
-    { label: "Frequentemente", value: 1.5 },
-    { label: "Razoavel", value: 1 },
-    { label: "Ocasionalmente", value: 1.3 }
+    { label: "Frequente", value: 1.5 },
+    { label: "Razoável", value: 1 },
+    { label: "Ocasional", value: 1.3 }
   ]);
 
   const [pickerOptionsCambio, setPickerOptionsCambio] = useState([
@@ -415,13 +106,13 @@ const CadastroCarroScreen = ({ navigation }) => {
       "uso": uso,
       "cambio": cambio,
       "combustivel": combustivel,
-      "calc":  media,
+      "calc": media,
       "usuario": "valorCookie"
     };
 
     console.log(dados);
 
-    fetch("http://10.110.12.3:8080/api/carros", {
+    fetch("http://10.110.12.11:8080/api/carros", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -451,8 +142,8 @@ const CadastroCarroScreen = ({ navigation }) => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.botaoVoltar}>
-          <TouchableOpacity  style={styles.voltar} >
-            <Icon name="arrow-left" size={24} color="white" onPress={botaoVoltar}/>
+          <TouchableOpacity style={styles.voltar}>
+            <Icon name="arrow-left" size={24} color="white" onPress={botaoVoltar} />
           </TouchableOpacity>
           <Image
             source={{ uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true' }}
@@ -490,7 +181,7 @@ const CadastroCarroScreen = ({ navigation }) => {
             onChangeText={setAno}
             keyboardType="numeric"
           />
-          <Text style={styles.label}>KM DO RELOGIO ATUALMENTE:</Text>
+          <Text style={styles.label}>KM atual do veículo:</Text>
           <TextInput
             style={styles.input}
             value={km}
@@ -498,7 +189,7 @@ const CadastroCarroScreen = ({ navigation }) => {
             onChangeText={setKm}
             keyboardType="numeric"
           />
-          <Text style={styles.label}>MEDIA DE KM DIÁRIO:</Text>
+          <Text style={styles.label}>Média de KM percorrido (diário):</Text>
           <TextInput
             style={styles.input}
             value={mediaKm}
@@ -507,21 +198,19 @@ const CadastroCarroScreen = ({ navigation }) => {
             keyboardType="numeric"
           />
 
-
-          <Text style={styles.label}>USO:</Text>
+          <Text style={styles.label}>Finalidade:</Text>
           <TouchableOpacity
-            onPress={() => setModalVisible(true)}
+            onPress={() => setModalUsoVisible(true)}
             style={styles.input}
           >
             <Text style={styles.pickerText}>{uso || "Selecionar"}</Text>
           </TouchableOpacity>
-
           <Modal
             animationType="slide"
             transparent={true}
-            visible={modalVisible}
+            visible={modalUsoVisible}
             onRequestClose={() => {
-              setModalVisible(false);
+              setModalUsoVisible(false);
             }}
           >
             <View style={styles.modalContainer}>
@@ -531,7 +220,7 @@ const CadastroCarroScreen = ({ navigation }) => {
                     key={index}
                     onPress={() => {
                       setUso(option.value);
-                      setModalVisible(false);
+                      setModalUsoVisible(false);
                     }}
                     style={{ paddingVertical: 10 }}
                   >
@@ -542,20 +231,19 @@ const CadastroCarroScreen = ({ navigation }) => {
             </View>
           </Modal>
 
-          <Text style={styles.label}>FREQUENCIA:</Text>
+          <Text style={styles.label}>Frequência de uso:</Text>
           <TouchableOpacity
-            onPress={() => setModalVisible(true)}
+            onPress={() => setModalFrequenciaVisible(true)}
             style={styles.input}
           >
             <Text style={styles.pickerText}>{frequencia || "Selecionar"}</Text>
           </TouchableOpacity>
-
           <Modal
             animationType="slide"
             transparent={true}
-            visible={modalVisible}
+            visible={modalFrequenciaVisible}
             onRequestClose={() => {
-              setModalVisible(false);
+              setModalFrequenciaVisible(false);
             }}
           >
             <View style={styles.modalContainer}>
@@ -565,7 +253,7 @@ const CadastroCarroScreen = ({ navigation }) => {
                     key={index}
                     onPress={() => {
                       setFrequencia(option.value);
-                      setModalVisible(false);
+                      setModalFrequenciaVisible(false);
                     }}
                     style={{ paddingVertical: 10 }}
                   >
@@ -576,20 +264,19 @@ const CadastroCarroScreen = ({ navigation }) => {
             </View>
           </Modal>
 
-          <Text style={styles.label}>CAMBIO:</Text>
+          <Text style={styles.label}>Câmbio:</Text>
           <TouchableOpacity
-            onPress={() => setModalVisible(true)}
+            onPress={() => setModalCambioVisible(true)}
             style={styles.input}
           >
             <Text style={styles.pickerText}>{cambio || "Selecionar"}</Text>
           </TouchableOpacity>
-
           <Modal
             animationType="slide"
             transparent={true}
-            visible={modalVisible}
+            visible={modalCambioVisible}
             onRequestClose={() => {
-              setModalVisible(false);
+              setModalCambioVisible(false);
             }}
           >
             <View style={styles.modalContainer}>
@@ -599,7 +286,7 @@ const CadastroCarroScreen = ({ navigation }) => {
                     key={index}
                     onPress={() => {
                       setCambio(option.value);
-                      setModalVisible(false);
+                      setModalCambioVisible(false);
                     }}
                     style={{ paddingVertical: 10 }}
                   >
@@ -610,20 +297,19 @@ const CadastroCarroScreen = ({ navigation }) => {
             </View>
           </Modal>
 
-          <Text style={styles.label}>COMBUSTIVEL:</Text>
+          <Text style={styles.label}>Tipo de combustível:</Text>
           <TouchableOpacity
-            onPress={() => setModalVisible(true)}
+            onPress={() => setModalCombustivelVisible(true)}
             style={styles.input}
           >
             <Text style={styles.pickerText}>{combustivel || "Selecionar"}</Text>
           </TouchableOpacity>
-
           <Modal
             animationType="slide"
             transparent={true}
-            visible={modalVisible}
+            visible={modalCombustivelVisible}
             onRequestClose={() => {
-              setModalVisible(false);
+              setModalCombustivelVisible(false);
             }}
           >
             <View style={styles.modalContainer}>
@@ -633,7 +319,7 @@ const CadastroCarroScreen = ({ navigation }) => {
                     key={index}
                     onPress={() => {
                       setCombustivel(option.value);
-                      setModalVisible(false);
+                      setModalCombustivelVisible(false);
                     }}
                     style={{ paddingVertical: 10 }}
                   >
@@ -643,13 +329,11 @@ const CadastroCarroScreen = ({ navigation }) => {
               </View>
             </View>
           </Modal>
-          
-          <View style={styles.btncadastro}>
-            <Pressable onPress={Criar} style={styles.btn}>
-              <Text style={styles.texto}>Cadastrar</Text>
-            </Pressable>
-          </View>
-          {erro !== "" && <Text style={styles.error}>{erro}</Text>}
+
+          <Pressable style={styles.btn} onPress={Criar}>
+            <Text style={styles.texto}>Cadastrar</Text>
+          </Pressable>
+          {erro ? <Text style={styles.erro}>{erro}</Text> : null}
         </View>
       </View>
     </ScrollView>
@@ -661,7 +345,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
   },
-
   obcaoDeCelecao: {
     top: "1.5%",
     justifyContent: "center",
@@ -679,15 +362,13 @@ const styles = StyleSheet.create({
     marginTop: "8%",
     marginBottom: "5%",
   },
-
   voltar: {
     marginHorizontal: 10,
-    top: 45,
+    top: 75,
     paddingHorizontal: 20,
   },
-
   botaoVoltar: {
-    height: "12%",
+    height: "15%",
     backgroundColor: "#0A0226",
   },
   label: {
@@ -697,14 +378,13 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "90%",
-    height: 50,
+    height: 40,
     borderColor: "gray",
     borderWidth: 1,
     borderRadius: 50,
     marginBottom: 10,
     paddingHorizontal: 11,
     backgroundColor: "#FFF9C4",
-    justifyContent: "center",
   },
   btncadastro: {
     flexDirection: "row",
@@ -716,9 +396,11 @@ const styles = StyleSheet.create({
     color: "white",
     alignItems: "center",
     borderRadius: 20,
-    width: 115,
+    width: "75%",
     height: 40,
     justifyContent: "center",
+    marginTop: "5%"
+    
   },
   texto: {
     fontSize: 18,
@@ -726,31 +408,37 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
   },
   logo: {
-    marginTop: "5%",
-    width: 100, // Ajuste conforme necessário
-    height: 100, // Ajuste conforme necessário
+    marginTop: "8%",
+    width: 100, 
+    height: 100, 
     margin: "37%",
-  },
-  pickerText: {
-    fontSize: 18,
-    color: "black",
-    textAlign: "center",
   },
   modalContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(1, 0, 0, 0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalContent: {
     backgroundColor: "white",
     padding: 20,
-    borderRadius: 30,
+    borderRadius: 10,
     width: "80%",
-    justifyContent: "center",
-    alignItems: "center",
-  }
+    
+  },
+  pickerText: {
+    color: "#000",
+    marginLeft: '35%',
+    marginTop: '2.5%',
+    fontSize: 18,
+    padding: 2,
+   
+
+  },
+  erro: {
+    color: "red",
+    marginTop: 16,
+  },
 });
 
 export default CadastroCarroScreen;
-
