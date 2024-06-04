@@ -30,6 +30,8 @@ const CadastroCarroScreen = ({ navigation }) => {
   const [erro, setErro] = useState('');
   const [valorCookie, setValorCookie] = useState('');
 
+  //cdsvdsvsdvds
+
   const getCookie = async () => {
     const valorDoCookie = await AsyncStorage.getItem("id_usuario");
     console.log("esse ", valorDoCookie);
@@ -83,7 +85,7 @@ const CadastroCarroScreen = ({ navigation }) => {
 
     console.log(dados);
 
-    fetch("http://10.110.12.3:8080/api/carros", {
+    fetch("http://10.110.12.15:8080/api/carros", {
       //metodo para chamar a API usando o feth
       method: "POST", //Usamos o POST para postar no banco as informações
       headers: {
