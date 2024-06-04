@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  RefreshControl,
 } from "react-native";
 //import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from "@expo/vector-icons";
@@ -31,14 +32,41 @@ const HomeScreen = ({ navigation }) => {
 
   const [agendamentosFuturos, setAgendamentosFuturos] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedTab, setSelectedTab] = useState(null);
   const [valorCookie, setValorCookie] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
 
   const getCookie = async () => {
     const valorDoCookie = await AsyncStorage.getItem("id_usuario");
     setValorCookie(valorDoCookie);
     return valorDoCookie;
   };
+  
+  const fetchAgendamentos = useCallback(() => {
+    setRefreshing(true);
+    fetch("http://10.110.12.3:8080/api/agendamento")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Erro ao obter os agendamentos");
+        }
+      })
+      .then((data) => {
+        setAgendamentosFuturos(data);
+        setError(null);
+      })
+      .catch((error) => {
+        console.error("Erro ao obter os agendamentos:", error);
+        setError(error.message);
+      })
+      .finally(() => {
+        setRefreshing(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetchAgendamentos();
+  }, [fetchAgendamentos]);
   
   useEffect(() => {
     const fetchAgendamentos = async () => {
@@ -47,7 +75,8 @@ const HomeScreen = ({ navigation }) => {
         console.log("http://10.110.12.3:8080/api/agendamento/" + valorCookie);
         console.log('entrei');
         console.log(valorCookie);
-  
+        
+
         const response = await fetch("http://10.110.12.3:8080/api/agendamento/" + valorCookie);
         if (!response.ok) {
           throw new Error("Erro ao obter os agendamentos");
@@ -96,6 +125,12 @@ const HomeScreen = ({ navigation }) => {
         </View>
       </View>
 
+      <ScrollView
+        contentContainerStyle={styles.scrollViewContent}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={fetchAgendamentos} />
+        }
+      >
       <View style={styles.servisoRealizado}>
         {error ? (
           <View>
@@ -116,6 +151,7 @@ const HomeScreen = ({ navigation }) => {
           </View>
         )}
       </View>
+      </ScrollView>
 
       {/* Retângulo roxo como rodapé */}
       <View style={styles.footerContainer}>
@@ -164,19 +200,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   diasAgendados: {
-    marginTop: "8%",
+    marginTop: "4%",
     width: "100%",
-    marginRight: "49%",
+    marginRight: "50%",
   },
   diaAgendado: {
     borderWidth: 1,
     borderRadius: 10,
-    height: "13%",
+    padding: 10,
     backgroundColor: "#fafba7",
+    marginBottom: "2.5%",
+  },
+  diaAgendadoTexto: {
     fontSize: 18,
-    marginBottom: "2%",
   },
   texto: {
+    marginTop: '2%',
     textAlign: "center",
     fontSize: 30,
   },
@@ -189,8 +228,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginTop: 13,
-    width: 100, // Ajuste conforme necessário
-    height: 100, // Ajuste conforme necessário
+    width: 100,
+    height: 100,
   },
   alinhaBotao: {
     flexDirection: "row",
@@ -198,7 +237,7 @@ const styles = StyleSheet.create({
   profileContainer: {
     alignItems: "flex-start",
     position: "absolute",
-    top: 36, // Aumentei a distância para o conteúdo central
+    top: 36,
     right: 16,
   },
   profileImage: {
@@ -206,9 +245,9 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
   },
-  servisoRealizado: {
-    position: "absolute",
-    marginTop: "35%",
+  servicoRealizado: {
+    marginTop: 20,
+    width: "90%",
   },
   buttonWithIcon: {
     flexDirection: "row",
@@ -239,7 +278,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   footerButton: {
-    //Estilização dos Botões
     backgroundColor: "#2196f3",
     borderRadius: 2,
     width: 120,
@@ -252,7 +290,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
   },
-
   footerContainer: {
     backgroundColor: "black",
     width: "100%",
@@ -266,6 +303,12 @@ const styles = StyleSheet.create({
   },
   botaoImagemLogin: {
     alignItems: "center",
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
   },
 });
 

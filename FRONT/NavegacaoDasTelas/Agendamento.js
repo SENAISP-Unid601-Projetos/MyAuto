@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Modal, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, StyleSheet, Alert, ScrollView  } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Notifications from 'expo-notifications';
+
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -137,7 +138,8 @@ const Agendamento = ({ navigation }) => {
         </TouchableOpacity>
         <Text style={styles.headerText}>Agendamento</Text>
       </View>
-
+      
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.chooseDayContainer}>
         <View>
           <Text style={styles.chooseDayText}>Escolha o melhor dia:</Text>
@@ -186,6 +188,7 @@ const Agendamento = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={agendarHorario}>
         <Text style={styles.buttonText}>Agendar</Text>
       </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }
@@ -232,6 +235,11 @@ const styles = StyleSheet.create({
     marginVertical: '5%',
     width: '90%',
     alignSelf: 'center',
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   selectedDateTimeContainer: {
     backgroundColor: '#001F3D',
