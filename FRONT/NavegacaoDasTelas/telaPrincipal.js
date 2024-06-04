@@ -9,6 +9,7 @@ import {
 } from "react-native";
 //import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = ({ navigation }) => {
   //Chamando as telas de cadastro, login e notificação
@@ -31,24 +32,38 @@ const HomeScreen = ({ navigation }) => {
   const [agendamentosFuturos, setAgendamentosFuturos] = useState([]);
   const [error, setError] = useState(null);
   const [selectedTab, setSelectedTab] = useState(null);
+  const [valorCookie, setValorCookie] = useState('');
 
+  const getCookie = async () => {
+    const valorDoCookie = await AsyncStorage.getItem("id_usuario");
+    setValorCookie(valorDoCookie);
+    return valorDoCookie;
+  };
+  
   useEffect(() => {
-    fetch("http://10.110.12.3:8080/api/agendamento/"+1)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
+    const fetchAgendamentos = async () => {
+      try {
+        const valorCookie = await getCookie(); // Wait for getCookie to complete
+        console.log("http://10.110.12.3:8080/api/agendamento/" + valorCookie);
+        console.log('entrei');
+        console.log(valorCookie);
+  
+        const response = await fetch("http://10.110.12.3:8080/api/agendamento/" + valorCookie);
+        if (!response.ok) {
           throw new Error("Erro ao obter os agendamentos");
         }
-      })
-      .then((data) => {
+  
+        const data = await response.json();
         setAgendamentosFuturos(data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Erro ao obter os agendamentos:", error);
         setError(error.message); // Define o erro no estado de erro
-      });
+      }
+    };
+  
+    fetchAgendamentos();
   }, []);
+  
 
   return (
     <View style={styles.container}>
