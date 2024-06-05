@@ -7,6 +7,10 @@ const ProfileScreen = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
   const [valorCookie, setValorCookie] = useState("");
   const [refreshing, setRefreshing] = useState(false);
+  
+  const botaoVoltar = () => {
+    navigation.goBack();
+  };
 
   const getCookie = async () => {
     const valorDoCookie = await AsyncStorage.getItem("id_usuario");
@@ -63,16 +67,11 @@ const ProfileScreen = ({ navigation }) => {
       console.error("Erro ao fazer logout:", error);
     }
   };
-  const botaoVoltar = () => {
-    navigation.goBack();
-  };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.backButton}
-      >
-        <Ionicons name="arrow-back" size={35} color="white" onPress={() =>botaoVoltar}/>
+      <TouchableOpacity style={styles.backButton}>
+        <Ionicons name="arrow-back" size={35} color="white" onPress={() =>navigation.goBack()}/>
       </TouchableOpacity>
       <TouchableOpacity style={styles.profileIcon}>
         <Ionicons name="person-circle" size={60} color="white" />
@@ -162,10 +161,10 @@ const ProfileScreen = ({ navigation }) => {
           <Text style={styles.loadingText}>Carregando...</Text>
         )}
       </View>
-      </ScrollView>
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
         <Text style={styles.buttonText}>Sair da conta</Text>
       </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
@@ -244,7 +243,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     width: "90%",
     borderRadius: 20,
-    position: "absolute",
+    position: "abslute",
     bottom: 40,
     alignItems: "center",
   },
