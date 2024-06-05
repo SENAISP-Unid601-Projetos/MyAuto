@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
   const fetchAgendamentos = useCallback(async () => {
     setRefreshing(true);
     try {
-      const valorCookie = await getCookie();  // Await the result of getCookie
+      const valorCookie = await getCookie();  //Aguarde o resultado de getCookie
       const response = await fetch("http://10.110.12.3:8080/api/agendamento/" + valorCookie);
   
       if (response.ok) {
