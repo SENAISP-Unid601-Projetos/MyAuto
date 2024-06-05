@@ -13,10 +13,6 @@ const TelaDeNotificacao = ({ navigation }) => {
     navigation.goBack();
   };
 
-  //  const visualizarServico = () => {
-
-  //  }
-
   const fetchAgendamentos = async () => {
     try {
       const response = await axios.get(
@@ -59,47 +55,44 @@ const TelaDeNotificacao = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        {/* Conteúdo da Tab de Serviços Realizados */}
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        {error ? ( // Renderiza o erro se ocorrer
-          <View>
-            <Text>Erro ao carregar os agendamentos: {error}</Text>
-          </View>
-        ) : (
-          <View style={styles.realizadosContainer}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.titleText}>Serviços Realizados</Text>
+          {error ? (
+            <View>
+              <Text>Erro ao carregar os agendamentos: {error}</Text>
             </View>
-            {!isLoading &&
-              agendamentosFuturos.map((agendamento, index) => (
-                <View key={index} style={styles.agendamentoContainer}>
-                  <Image
-                    source={agendamento.imagem}
-                    style={styles.imagemOficina}
-                  />
-                  <View style={styles.infoContainer}>
-                    <Text style={styles.nomeOficina}>
-                      {agendamento.nomeOficina}
-                    </Text>
-                    <Text>Tipo de Serviço: {agendamento.tipoServico}</Text>
-                    <Text>Data: {agendamento.data}</Text>
-                    <Text>Hora: {agendamento.horario}</Text>
-                    <Text>Local: {agendamento.local}</Text>
-                    <TouchableOpacity
-                      //onPress={visualizarServico}
-                      style={styles.visualizarButton}
-                    >
-                      <Text style={styles.buttonText}>Visualizar Serviço</Text>
-                    </TouchableOpacity>
+          ) : (
+            <View style={styles.realizadosContainer}>
+              {!isLoading &&
+                agendamentosFuturos.map((agendamento, index) => (
+                  <View key={index} style={styles.agendamentoContainer}>
+                    <Image
+                      source={{ uri: "https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true" }}
+                      style={styles.imagemOficina}
+                    />
+                    <View style={styles.infoContainer}>
+                      <Text style={styles.nomeOficina}>
+                        {agendamento.nomeOficina}
+                      </Text>
+                      <Text>Tipo de Serviço: {agendamento.tipoServico}</Text>
+                      <Text>Data: {agendamento.data}</Text>
+                      <Text>Hora: {agendamento.horario}</Text>
+                      <Text>Local: {agendamento.local}</Text>
+                      <TouchableOpacity
+                        style={styles.visualizarButton}
+                      >
+                        <Text style={styles.buttonText}>Visualizar Serviço</Text>
+                      </TouchableOpacity>
+                    </View>
                   </View>
-                </View>
-              ))}
-          </View>
-        )}
+                ))}
+            </View>
+          )}
         </ScrollView>
       </View>
 
-      <View style={styles.footer}>{/* Rodapé aqui */}</View>
+      <View style={styles.footer}>
+        {/* Rodapé aqui */}
+      </View>
     </View>
   );
 };
@@ -108,12 +101,6 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: "black",
-  },
-  scrollViewContent: {
-    flexGrow: 1,
-  },
-  realizadosContainer: {
-    flex: 1,
   },
   header: {
     flexDirection: "row",
@@ -126,25 +113,13 @@ const styles = StyleSheet.create({
   headerTitle: {
     color: "white",
     fontSize: 25,
-    flex: 1, // Faz com que o título ocupe o máximo de espaço possível
-    textAlign: "center", // Centraliza o texto
+    flex: 1,
+    textAlign: "center",
   },
   container: {
     flex: 1,
     backgroundColor: "white",
     padding: 20,
-  },
-  titleContainer: {
-    backgroundColor: "#F0E68C",
-    padding: 10,
-    borderRadius: 10,
-    marginBottom: 20,
-    alignItems: "center",
-    borderRadius: 20,
-  },
-  titleText: {
-    color: "black",
-    fontSize: 18,
   },
   tabContainer: {
     flexDirection: "row",
@@ -162,7 +137,10 @@ const styles = StyleSheet.create({
     borderBottomColor: "black",
   },
   tabText: {
-    fontSize: 16,
+    fontSize: 24,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
   },
   agendamentoContainer: {
     flexDirection: "row",
@@ -170,8 +148,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   imagemOficina: {
-    width: "35%",
-    height: "80%",
+    width: 100,
+    height: 100,
     borderRadius: 10,
     marginRight: 10,
   },
@@ -179,21 +157,24 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   visualizarButton: {
-    backgroundColor: "#1E90FF", // Azul escuro
-    padding: 10,
-    borderRadius: 20,
+    backgroundColor: "#1E90FF",
+    padding: '3%',
+    borderRadius: 17,
     borderWidth: 2,
     borderColor: "black",
     marginTop: 10,
   },
   buttonText: {
-    color: "white", // Branco
-    fontSize: 15, // Tamanho da fonte aumentado
+    color: "white",
+    fontSize: 19,
     textAlign: "center",
   },
   nomeOficina: {
     fontWeight: "bold",
-    marginBottom: 5,
+    marginBottom: 8,
+  },
+  footer: {
+    // Estilos do rodapé aqui
   },
 });
 

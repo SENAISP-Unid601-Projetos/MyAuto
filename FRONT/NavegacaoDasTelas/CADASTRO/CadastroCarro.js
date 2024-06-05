@@ -9,6 +9,7 @@ import {
   Pressable,
   Alert,
   ScrollView,
+  Modal,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -30,7 +31,41 @@ const CadastroCarroScreen = ({ navigation }) => {
   const [erro, setErro] = useState('');
   const [valorCookie, setValorCookie] = useState('');
 
-  //cdsvdsvsdvds
+  const [modalUsoVisible, setModalUsoVisible] = useState(false);
+  const [modalFrequenciaVisible, setModalFrequenciaVisible] = useState(false);
+  const [modalCambioVisible, setModalCambioVisible] = useState(false);
+  const [modalCombustivelVisible, setModalCombustivelVisible] = useState(false);
+
+  const [pickerOptionsUso, setPickerOptionsUso] = useState([
+    { label: "Selecionar", value: null },
+    { label: "Uber", value: "Uber" },
+    { label: "Viagens", value: "Viagens" },
+    { label: "Trabalho", value: "Trabalho" },
+    { label: "Entregas", value: "Entregas" },
+    { label: "Rural", value: "Rural" },
+    { label: "Passeio", value: "Passeio" }
+  ]);
+
+  const [pickerOptionsFrequencia, setPickerOptionsFrequencia] = useState([
+    { label: "Selecionar", value: null },
+    { label: "Frequente", value: 1.5 },
+    { label: "Razoável", value: 1 },
+    { label: "Ocasional", value: 1.3 }
+  ]);
+
+  const [pickerOptionsCambio, setPickerOptionsCambio] = useState([
+    { label: "Selecionar", value: null },
+    { label: "Manual", value: "Manual" },
+    { label: "Automático", value: "Automático" }
+  ]);
+
+  const [pickerOptionsCombustivel, setPickerOptionsCombustivel] = useState([
+    { label: "Selecionar", value: null },
+    { label: "Gasolina", value: "Gasolina" },
+    { label: "Diesel", value: "Diesel" },
+    { label: "Etanol", value: "Etanol" },
+    { label: "Flex", value: "Flex" }
+  ]);
 
   const getCookie = async () => {
     const valorDoCookie = await AsyncStorage.getItem("id_usuario");
@@ -115,13 +150,10 @@ const CadastroCarroScreen = ({ navigation }) => {
   return (
     //Tela para Colocar as informações do carro
     <ScrollView>
-
     <View style={styles.container}>
-    
-
       <View style={styles.botaoVoltar}>
-        <TouchableOpacity  style={styles.voltar} >
-          <Icon name="arrow-left" size={24} color="white" onPress={botaoVoltar}/>
+        <TouchableOpacity style={styles.voltar}>
+          <Icon name="arrow-left" size={24} color="white" onPress={botaoVoltar} />
         </TouchableOpacity>
         <Image
           source={{ uri: 'https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true' }}
@@ -129,126 +161,193 @@ const CadastroCarroScreen = ({ navigation }) => {
         />
       </View>
       <View style={styles.Titulo}>
-      <Text style={styles.FraseTitulo}>Cadastar Veículo:</Text>
+        <Text style={styles.FraseTitulo}>Cadastar Veículo:</Text>
       </View>
       <View style={styles.obcaoDeCelecao}>
-      <Text style={styles.label}>Placa:</Text>
-      <TextInput
-        style={styles.input}
-        value={placa}
-        maxLength={7} //Deixa digitar apenas 6 números
-        onChangeText={setPlaca}
-      />
-      {/*Aba para colocar a marca*/}
-      <Text style={styles.label}>Marca:</Text>
-      <TextInput
-        style={styles.input}
-        value={marca}
-        onChangeText={setMarca}
-      />
-      {/*Aba para colocar a Modelo*/}
-      <Text style={styles.label}>Modelo:</Text>
-      <TextInput
-        style={styles.input}
-        value={modelo}
-        onChangeText={setModelo}
-      />
-      {/*Aba para colocar a Ano*/}
-      <Text style={styles.label}>Ano:</Text>
-      <TextInput
-        style={styles.input}
-        maxLength={4}
-        value={ano}
-        onChangeText={setAno}
-        keyboardType="numeric"
-      />
-      {/*Aba para colocar a KM*/}
-      <Text style={styles.label}>KM DO RELOGIO ATUALMENTE:</Text>
-      <TextInput
-        style={styles.input}
-        value={km}
-        maxLength={5}
-        onChangeText={setKm}
-        keyboardType="numeric"
-      />
-      {/*Aba para colocar a KM*/}
-      <Text style={styles.label}>MEDIA DE KM DIÁRIO:</Text>
-      <TextInput
-        style={styles.input}
-        value={mediaKm}
-        maxLength={6}
-        onChangeText={setMediaKm}
-        keyboardType="numeric"
-      />
-      {/*Aba para colocar a USO*/}
-      <Text style={styles.label}>USO:</Text>
+        <Text style={styles.label}>Placa:</Text>
+        <TextInput
+          style={styles.input}
+          value={placa}
+          maxLength={7}
+          onChangeText={setPlaca}
+        />
+        
+        <Text style={styles.label}>Marca:</Text>
+        <TextInput
+          style={styles.input}
+          value={marca}
+          onChangeText={setMarca}
+        />
+        <Text style={styles.label}>Modelo:</Text>
+        <TextInput
+          style={styles.input}
+          value={modelo}
+          onChangeText={setModelo}
+        />
+        <Text style={styles.label}>Ano:</Text>
+        <TextInput
+          style={styles.input}
+          maxLength={4}
+          value={ano}
+          onChangeText={setAno}
+          keyboardType="numeric"
+        />
+        <Text style={styles.label}>KM atual do veículo:</Text>
+        <TextInput
+          style={styles.input}
+          value={km}
+          maxLength={5}
+          onChangeText={setKm}
+          keyboardType="numeric"
+        />
+        <Text style={styles.label}>Média de KM percorrido (diário):</Text>
+        <TextInput
+          style={styles.input}
+          value={mediaKm}
+          maxLength={6}
+          onChangeText={setMediaKm}
+          keyboardType="numeric"
+        />
 
-          <View style={styles.input}>
-            <Picker
-              selectedValue={uso}
-              onValueChange={(itemValue) => setUso(itemValue)}
-            >
-              <Picker.Item label="Selecionar" value={null} />
-              <Picker.Item label="Uber" value="Uber" />
-              <Picker.Item label="Viagens" value="Viagens" />
-              <Picker.Item label="Trabalho" value="Trabalho" />
-              <Picker.Item label="Entregas" value="Entregas" />
-              <Picker.Item label="Rural" value="Rural" />
-              <Picker.Item label="Passeio" value="Passeio" />
-            </Picker>
+        <Text style={styles.label}>Finalidade:</Text>
+        <TouchableOpacity
+          onPress={() => setModalUsoVisible(true)}
+          style={styles.input}
+        >
+          <Text style={styles.pickerText}>{uso || "Selecionar"}</Text>
+        </TouchableOpacity>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalUsoVisible}
+          onRequestClose={() => {
+            setModalUsoVisible(false);
+          }}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              {pickerOptionsUso.map((option, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    setUso(option.value);
+                    setModalUsoVisible(false);
+                  }}
+                  style={{ paddingVertical: 10 }}
+                >
+                  <Text>{option.label}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
-          {/*Aba para colocar a USO*/}
-          <Text style={styles.label}>FREQUENCIA:</Text>
+        </Modal>
 
-          <View style={styles.input}>
-            <Picker
-              selectedValue={frequencia}
-              onValueChange={(itemValue) => setFrequencia(itemValue)}
-              keyboardType="numeric"
-            >
-              <Picker.Item label="Selecionar" value={null} />
-              <Picker.Item label="Frequentemente" value={1.5} />
-              <Picker.Item label="Razoavel" value={1} />
-              <Picker.Item label="Ocasionalmente" value={1.3} />
-            </Picker>
+        <Text style={styles.label}>Frequência de uso:</Text>
+        <TouchableOpacity
+          onPress={() => setModalFrequenciaVisible(true)}
+          style={styles.input}
+        >
+          <Text style={styles.pickerText}>{frequencia || "Selecionar"}</Text>
+        </TouchableOpacity>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalFrequenciaVisible}
+          onRequestClose={() => {
+            setModalFrequenciaVisible(false);
+          }}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              {pickerOptionsFrequencia.map((option, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    setFrequencia(option.value);
+                    setModalFrequenciaVisible(false);
+                  }}
+                  style={{ paddingVertical: 10 }}
+                >
+                  <Text>{option.label}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
+        </Modal>
 
-          {/*Aba para colocar a CAMBIO*/}
-          <Text style={styles.label}>CAMBIO:</Text>
+        <Text style={styles.label}>Câmbio:</Text>
+        <TouchableOpacity
+          onPress={() => setModalCambioVisible(true)}
+          style={styles.input}
+        >
+          <Text style={styles.pickerText}>{cambio || "Selecionar"}</Text>
+        </TouchableOpacity>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalCambioVisible}
+          onRequestClose={() => {
+            setModalCambioVisible(false);
+          }}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              {pickerOptionsCambio.map((option, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    setCambio(option.value);
+                    setModalCambioVisible(false);
+                  }}
+                  style={{ paddingVertical: 10 }}
+                >
+                  <Text>{option.label}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+        </Modal>
 
-          <View style={styles.input}>
-            <Picker
-              selectedValue={cambio}
-              onValueChange={(itemValue) => setCambio(itemValue)}
-            >
-              <Picker.Item label="Selecionar" value={null} />
-              <Picker.Item label="Manual" value="Manual" />
-              <Picker.Item label="Automático" value="Automatico" />
-            </Picker>
+        <Text style={styles.label}>Tipo de combustível:</Text>
+        <TouchableOpacity
+          onPress={() => setModalCombustivelVisible(true)}
+          style={styles.input}
+        >
+          <Text style={styles.pickerText}>{combustivel || "Selecionar"}</Text>
+        </TouchableOpacity>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalCombustivelVisible}
+          onRequestClose={() => {
+            setModalCombustivelVisible(false);
+          }}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              {pickerOptionsCombustivel.map((option, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    setCombustivel(option.value);
+                    setModalCombustivelVisible(false);
+                  }}
+                  style={{ paddingVertical: 10 }}
+                >
+                  <Text>{option.label}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
-          {/*Aba para colocar a COMBUSTIVEL*/}
-          <Text style={styles.label}>COMBUSTIVEL:</Text>
-          <View style={styles.input}>
-            <Picker
-              selectedValue={combustivel}
-              onValueChange={(itemValue) => setCombustivel(itemValue)}
-            >
-              <Picker.Item label="Selecionar" value={null} />
-              <Picker.Item label="Gasolina" value="Gasolina" />
-              <Picker.Item label="Diesel" value="Diesel" />
-              <Picker.Item label="Etanol" value="Etanol" />
-              <Picker.Item label="Flex" value="Flex" />
-            </Picker>
-          </View>
-          <View style={styles.btncadastro}>
-            <Pressable onPress={Criar} style={styles.btn}>
-              <Text style={styles.texto}>Cadastrar</Text>
-            </Pressable>
-          </View>
-          {erro !== "" && <Text style={styles.error}>{erro}</Text>}
-        </View>
+        </Modal>
+
+        <Pressable style={styles.btn} onPress={Criar}>
+          <Text style={styles.texto}>Cadastrar</Text>
+        </Pressable>
+        {erro ? <Text style={styles.erro}>{erro}</Text> : null}
       </View>
-    </ScrollView>
+    </View>
+  </ScrollView>
   );
 };
 
@@ -257,7 +356,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
   },
-
   obcaoDeCelecao: {
     top: "1.5%",
     justifyContent: "center",
@@ -275,15 +373,13 @@ const styles = StyleSheet.create({
     marginTop: "8%",
     marginBottom: "5%",
   },
-
   voltar: {
     marginHorizontal: 10,
-    top: 45,
+    top: 75,
     paddingHorizontal: 20,
   },
-
   botaoVoltar: {
-    height: "12%",
+    height: "15%",
     backgroundColor: "#0A0226",
   },
   label: {
@@ -293,7 +389,7 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "90%",
-    height: 50,
+    height: 40,
     borderColor: "gray",
     borderWidth: 1,
     borderRadius: 50,
@@ -311,9 +407,11 @@ const styles = StyleSheet.create({
     color: "white",
     alignItems: "center",
     borderRadius: 20,
-    width: 115,
+    width: "75%",
     height: 40,
     justifyContent: "center",
+    marginTop: "5%"
+    
   },
   texto: {
     fontSize: 18,
@@ -321,10 +419,36 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
   },
   logo: {
-    marginTop: "5%",
-    width: 100, // Ajuste conforme necessário
-    height: 100, // Ajuste conforme necessário
+    marginTop: "8%",
+    width: 100, 
+    height: 100, 
     margin: "37%",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    width: "80%",
+    
+  },
+  pickerText: {
+    color: "#000",
+    marginLeft: '35%',
+    marginTop: '2.5%',
+    fontSize: 18,
+    padding: 2,
+   
+
+  },
+  erro: {
+    color: "red",
+    marginTop: 16,
   },
 });
 

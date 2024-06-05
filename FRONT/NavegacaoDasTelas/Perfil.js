@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
@@ -7,10 +7,6 @@ const ProfileScreen = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
   const [valorCookie, setValorCookie] = useState("");
   const [refreshing, setRefreshing] = useState(false);
-  
-  const botaoVoltar = () => {
-    navigation.goBack();
-  };
 
   const getCookie = async () => {
     const valorDoCookie = await AsyncStorage.getItem("id_usuario");
@@ -176,8 +172,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 40,
-    borderColor: "pink"
-    //paddingHorizontal: 20,
   },
   header: {
     fontSize: 35,
@@ -191,10 +185,8 @@ const styles = StyleSheet.create({
   },
   userInfoContainer: {
     backgroundColor: "#fff",
-    //borderRadius: 10,
     padding: 20,
     width: 400,
-    //height: 650,
     marginTop: "5%",
     alignItems: "center",
   },
@@ -202,8 +194,6 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "bold",
     alignItems: "center",
-    //marginTop: "3%",
-    //marginBottom: "8%",
     color: "red",
     fontStyle: "italic",
   },
@@ -259,11 +249,6 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 45,
     backgroundColor: '#f8f8f8',
-    //borderRadius: 8,
-    //shadowColor: '#000',
-    //shadowOpacity: 0.1,
-    //shadowRadius: 10,
-    //shadowOffset: { width: 0, height: 5 },
   },
   loadingText: {
     fontSize: 20,

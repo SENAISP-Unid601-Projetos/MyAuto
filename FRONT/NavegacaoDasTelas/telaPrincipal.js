@@ -103,29 +103,40 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={fetchAgendamentos} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={fetchAgendamentos}
+          />
         }
       >
-      <View style={styles.servisoRealizado}>
-        {error ? (
-          <View>
-            <Text>Ocorreu um erro ao carregar os serviços realizados.</Text>
-          </View>
-        ) : (
-          <View>
-            <Text style={styles.texto}>Serviços Futuros</Text>
-
-            <View style={styles.diasAgendados}>
-              {agendamentosFuturos.map((agendamento, index) => (
-                <Text style={styles.diaAgendado} key={index}>
-                  {" "}
-                  dia: {agendamento.data} - {agendamento.horario}
-                </Text>
-              ))}
+        <View style={styles.servicoRealizado}>
+          {error ? (
+            <View>
+              <Text>Ocorreu um erro ao carregar os serviços realizados.</Text>
             </View>
-          </View>
-        )}
-      </View>
+          ) : (
+            <View>
+              <Text style={styles.texto}>Serviços Futuros</Text>
+              <View style={styles.diasAgendados}>
+                {agendamentosFuturos.map((agendamento, index) => (
+                  <View style={styles.diaAgendado} key={index}>
+                    <View style={styles.textoComLogo}>
+                      <Text style={styles.diaAgendadoTexto}>
+                        Dia: {agendamento.data} - {agendamento.horario}
+                      </Text>
+                      <Image
+                        source={{
+                          uri: "https://github.com/SSancaSH-Projetos/MyAuto/blob/new-Tela_Carro/FRONT/MyautoOficina/img/MY%20AUT.png?raw=true",
+                        }}
+                        style={styles.imagemOficina}
+                      />
+                    </View>
+                  </View>
+                ))}
+              </View>
+            </View>
+          )}
+        </View>
       </ScrollView>
 
       {/* Retângulo roxo como rodapé */}
@@ -177,7 +188,6 @@ const styles = StyleSheet.create({
   diasAgendados: {
     marginTop: "4%",
     width: "100%",
-    marginRight: "50%",
   },
   diaAgendado: {
     borderWidth: 1,
@@ -188,9 +198,11 @@ const styles = StyleSheet.create({
   },
   diaAgendadoTexto: {
     fontSize: 18,
+    flex: 1,
+    flexShrink: 1,
   },
   texto: {
-    marginTop: '2%',
+    marginTop: "2%",
     textAlign: "center",
     fontSize: 30,
   },
@@ -258,7 +270,6 @@ const styles = StyleSheet.create({
     width: 120,
     height: 35,
     alignItems: "center",
-    justifyContent: "center",
   },
   ButtonText: {
     fontSize: 14,
@@ -283,7 +294,18 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
-    width: "100%",
+    width: 410,
+  },
+  imagemOficina: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginLeft: 10,
+  },
+  textoComLogo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
 
