@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
 
@@ -60,6 +60,7 @@ const TelaDeNotificacao = ({ navigation }) => {
         </View>
 
         {/* Conteúdo da Tab de Serviços Realizados */}
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
         {error ? ( // Renderiza o erro se ocorrer
           <View>
             <Text>Erro ao carregar os agendamentos: {error}</Text>
@@ -95,6 +96,7 @@ const TelaDeNotificacao = ({ navigation }) => {
               ))}
           </View>
         )}
+        </ScrollView>
       </View>
 
       <View style={styles.footer}>{/* Rodapé aqui */}</View>
@@ -106,6 +108,12 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: "black",
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+  },
+  realizadosContainer: {
+    flex: 1,
   },
   header: {
     flexDirection: "row",
