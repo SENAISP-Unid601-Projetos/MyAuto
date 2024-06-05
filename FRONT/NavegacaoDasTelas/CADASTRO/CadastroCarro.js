@@ -136,7 +136,7 @@ const CadastroCarroScreen = ({ navigation }) => {
       <TextInput
         style={styles.input}
         value={placa}
-        maxLength={6} //Deixa digitar apenas 6 números
+        maxLength={7} //Deixa digitar apenas 6 números
         onChangeText={setPlaca}
       />
       {/*Aba para colocar a marca*/}

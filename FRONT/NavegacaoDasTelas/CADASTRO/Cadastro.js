@@ -41,7 +41,7 @@ const Cadastro = ({ navigation }) => {
   };
 
   const formatarDataDeNascimento = (dia, mes, ano) => {
-    return `${ano}-${mes}-${dia}`;
+    return `${dia}/${mes}/${ano}`;
   };
 
   const validarData = (dia, mes, ano) => {
