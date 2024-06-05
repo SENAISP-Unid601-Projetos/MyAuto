@@ -41,58 +41,33 @@ const HomeScreen = ({ navigation }) => {
     return valorDoCookie;
   };
   
-  const fetchAgendamentos = useCallback(() => {
+  const fetchAgendamentos = useCallback(async () => {
     setRefreshing(true);
-    fetch("http://10.110.12.3:8080/api/agendamento")
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Erro ao obter os agendamentos");
-        }
-      })
-      .then((data) => {
+    try {
+      const valorCookie = await getCookie();  // Await the result of getCookie
+      const response = await fetch("http://10.110.12.3:8080/api/agendamento/" + valorCookie);
+  
+      if (response.ok) {
+        const data = await response.json();
         setAgendamentosFuturos(data);
         setError(null);
-      })
-      .catch((error) => {
-        console.error("Erro ao obter os agendamentos:", error);
-        setError(error.message);
-      })
-      .finally(() => {
-        setRefreshing(false);
-      });
+      } else {
+        throw new Error("Erro ao obter os agendamentos");
+      }
+    } catch (error) {
+      console.error("Erro ao obter os agendamentos:", error);
+      console.log('entrei');
+      console.log(valorCookie);
+      setError(error.message);
+    } finally {
+      setRefreshing(false);
+    }
   }, []);
-
+  
   useEffect(() => {
     fetchAgendamentos();
   }, [fetchAgendamentos]);
-  
-  useEffect(() => {
-    const fetchAgendamentos = async () => {
-      try {
-        const valorCookie = await getCookie(); // Wait for getCookie to complete
-        console.log("http://10.110.12.3:8080/api/agendamento/" + valorCookie);
-        console.log('entrei');
-        console.log(valorCookie);
-        
-
-        const response = await fetch("http://10.110.12.3:8080/api/agendamento/" + valorCookie);
-        if (!response.ok) {
-          throw new Error("Erro ao obter os agendamentos");
-        }
-  
-        const data = await response.json();
-        setAgendamentosFuturos(data);
-      } catch (error) {
-        console.error("Erro ao obter os agendamentos:", error);
-        setError(error.message); // Define o erro no estado de erro
-      }
-    };
-  
-    fetchAgendamentos();
-  }, []);
-  
+    
 
   return (
     <View style={styles.container}>
