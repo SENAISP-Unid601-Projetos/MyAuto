@@ -11,7 +11,7 @@ const ProfileScreen = ({ navigation }) => {
       try {
         const data = await AsyncStorage.getItem("userData");
         if (data) {
-          console.log("User Data:", JSON.parse(data)); // Log data to check its content
+          console.log("User Data:", JSON.parse(data)); // Registrar dados para verificar seu conteúdo
           setUserData(JSON.parse(data));
         }
       } catch (error) {
