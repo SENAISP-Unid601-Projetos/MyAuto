@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Modal, StyleSheet, Alert, ScrollView  } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, StyleSheet, Alert, ScrollView, TextInput  } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -20,6 +20,9 @@ const Agendamento = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedService, setSelectedService] = useState('');
   const [valorCookie, setValorCookie] = useState('');
+  const [trocaOleo, setTrocaOleo] = useState(false);
+  const [outrosServicos, setOutrosServicos] = useState(false);
+  const [descricaoServico, setDescricaoServico] = useState('');
 
   const getCookie = async () => {
     const valorDoCookie = await AsyncStorage.getItem("id_usuario");
@@ -184,6 +187,31 @@ const Agendamento = ({ navigation }) => {
           </View>
         </View>
       </Modal>
+          <View style={styles.checkBoxContainer}>
+            <TouchableOpacity
+              style={styles.checkBox}
+              onPress={() => setTrocaOleo(!trocaOleo)}
+            >
+              <Text>Troca de Óleo</Text>
+              {trocaOleo && <Icon name="check" size={20} color="#41B06E" />}
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.checkBox}
+              onPress={() => setOutrosServicos(!outrosServicos)}
+            >
+              <Text>Outros Serviços</Text>
+              {outrosServicos && <Icon name="check" size={20} color="#41B06E" />}
+            </TouchableOpacity>
+          </View>
+
+          <TextInput
+            style={styles.input}
+            placeholder="Descreva o problema ou serviço desejado"
+            onChangeText={text => setDescricaoServico(text)}
+            value={descricaoServico}
+            multiline={true}
+            numberOfLines={4}
+          />
 
       <TouchableOpacity style={styles.button} onPress={agendarHorario}>
         <Text style={styles.buttonText}>Agendar</Text>
