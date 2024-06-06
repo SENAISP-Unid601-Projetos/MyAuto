@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   logoutButton: {
     backgroundColor: "#c32b2b",
     paddingVertical: 10,
-    width: "90%",
+    width: "80%",
     borderRadius: 20,
     position: "abslute",
     bottom: 40,

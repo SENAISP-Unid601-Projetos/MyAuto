@@ -140,44 +140,28 @@ const HomeScreen = ({ navigation }) => {
       </ScrollView>
 
       {/* Retângulo roxo como rodapé */}
-      <View style={styles.footerContainer}>
-        {/* Botão Agendar */}
-        {/* Restante dos botões */}
-        <View style={styles.alinhaBotao}>
-          <View style={styles.buttonRodape}>
-            <AntDesign
-              name="calendar"
-              size={30}
-              color="black"
-              style={styles.icon}
-              onPress={botaoAgendar}
-            />
-          </View>
-          {/* Botão Notificações */}
-          <View style={styles.buttonRodape}>
-            <AntDesign
-              name="bells"
-              size={30}
-              color="black"
-              style={styles.icon}
-              onPress={botaoNotificacao}
-            />
-          </View>
-          {/* Botão Relatórios */}
-          <View style={styles.buttonRodape}>
-            <AntDesign
-              name="car"
-              size={30}
-              color="black"
-              style={styles.icon}
-              onPress={botaoCarro}
-            />
-          </View>
-        </View>
+          <View style={styles.footerContainer}>
+      <View style={styles.alinhaBotao}>
+        <TouchableOpacity style={styles.buttonRodape} onPress={botaoAgendar}>
+          <AntDesign name="calendar" size={30} color="black" style={styles.icon} />
+        </TouchableOpacity>
+        
+
+        <TouchableOpacity style={styles.buttonRodape} onPress={botaoNotificacao}>
+          <AntDesign name="bells" size={30} color="black" style={styles.icon} />
+        </TouchableOpacity>
+
+
+        <TouchableOpacity style={styles.buttonRodape} onPress={botaoCarro}>
+          <AntDesign name="car" size={30} color="black" style={styles.icon} />
+        </TouchableOpacity>
       </View>
-    </View>
-  );
-};
+      <View style={styles.buttonContainer}>
+              </View>
+            </View>
+          </View>
+      );
+    };
 
 const styles = StyleSheet.create({
   container: {

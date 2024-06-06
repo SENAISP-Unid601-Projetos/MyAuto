@@ -59,6 +59,7 @@ const Agendamento = ({ navigation }) => {
       data: selectedDay,
       horario: selectedHour,
       servico: selectedService,
+
       usuario : valorCookie
     };
 
@@ -222,6 +223,10 @@ const Agendamento = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+  scrollViewContainer: {
+    flexGrow: 1,
+    paddingBottom: 20,
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -233,11 +238,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: '5%',
     flexDirection: 'row',
-    marginTop: '-1%'
+    marginTop: '-2%'
   },
   backButton: {
     marginLeft: -90,
-    marginRight: 100,
+    marginRight: 75,
     marginTop: '10%',
   },
   headerText: {
@@ -257,23 +262,17 @@ const styles = StyleSheet.create({
     marginTop: 35,
     color: 'red',
     marginBottom: 30
-   
   },
   calendarContainer: {
     marginVertical: '5%',
     width: '90%',
     alignSelf: 'center',
   },
-  scrollViewContent: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   selectedDateTimeContainer: {
     backgroundColor: '#001F3D',
     borderRadius: 10,
     marginHorizontal: 12,
-    marginVertical: 8,
+        marginVertical: 8,
     padding: 10,
   },
   selectedDateTime: {
@@ -292,7 +291,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   input: {
-    height: 40,
+    height: 80,
     marginHorizontal: 12,
     marginTop: 10,
     borderWidth: 1,
@@ -317,24 +316,24 @@ const styles = StyleSheet.create({
     top: '0%',
     right: '2%',
     zIndex: 1,
-    padding:2
+    padding: 2
   },
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: '5%',
-    marginTop:10,
-    backgroundColor:'#fafba7',
-    borderRadius:15,
-    padding:20,
-    width:'100%'
+    marginTop: 10,
+    backgroundColor: '#fafba7',
+    borderRadius: 15,
+    padding: 20,
+    width: '100%'
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     margin: '5%',
-    width:"50%",
-    marginEnd:'55%'
+    width: "50%",
+    marginEnd: '55%'
   },
   hourButton: {
     width: '65%',
@@ -343,7 +342,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    marginRight:'3%'
+    marginRight: '3%'
   },
   hourText: {
     fontSize: 16,
@@ -362,6 +361,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 25
   },
+  checkBoxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginHorizontal: 12,
+    marginBottom: 10,
+  },
+  checkBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });
-
 export default Agendamento;
