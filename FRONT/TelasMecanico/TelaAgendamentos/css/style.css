@@ -1,18 +1,3 @@
-p {
-    text-shadow: 2px 2px #F2B705;
-    font-size: 50px;
-    text-align: center;
-    margin-top: 50px; /* Adicionado para descer o texto */
-    font-family: "Luminari", "fantasy";
-}
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fbefcd;
-}
-
 header {
     background-color: #0A0226;
     color: white;
@@ -22,20 +7,59 @@ header {
     height: 240px;
 }
 
+p {
+    text-shadow: 2px 2px #F2B705;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 30px; /* Adicionado para descer o texto */
+    font-family: "Luminari", "fantasy";
+}
+
 header img {
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 230px; /* Ajuste o tamanho da logo conforme necessário */
+    width: 230px;
+    height: 120px; /* Ajuste o tamanho da logo conforme necessário */
     height: auto;
 }
 
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fbefcd;
+}
+
 .container {
-    max-width: 800px;
+    max-width: 1200px; /* Largura máxima */
     margin: 20px auto;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between; /* Espaço entre os elementos */
+    background-color: #fbefcd; /* Cor de fundo padrão */
 }
+
+#btn-realizar-agendamento{
+    background-color: #5096f2;
+    width: 80%;
+    height: 5%;
+    margin-top: 30%;
+    margin-bottom: 5%;
+    color: #f1f1f1;
+    font-size: 17px;
+    
+
+}
+
+#btn-ver-agendamentos{
+    background-color: #2da93b;
+    width: 80%;
+    height: 5%;
+    color: #f1f1f1;
+    font-size: 17px;
+}
+
 
 .menu {
     width: 100%;
@@ -43,7 +67,7 @@ header img {
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
-    margin-top: 100px;
+    margin-top: 120px; /* Espaço entre o cabeçalho e o menu */
 }
 
 .menu button {
@@ -52,19 +76,17 @@ header img {
     border: 4px solid rgb(0, 0, 0);
     border-radius: 8px;
     padding: 10px 80px;
-    border-radius: 8px;
     cursor: pointer;
     font-size: 18px;
 }
 
 .horarios {
-    flex: 1;
-    margin-right: 20px;
+    width: 45%; /* Ajustar a largura para caber ao lado do formulário */
     margin-top: 20px;
 }
 
 .agendamento {
-    flex: 1;
+    width: 45%; /* Ajustar a largura para caber ao lado dos horários */
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -73,7 +95,7 @@ header img {
 }
 
 .agendamento form {
-    display: none;
+    display: block;
 }
 
 .agendamento label {
@@ -138,16 +160,22 @@ header img {
 /* Media queries para responsividade */
 @media only screen and (max-width: 768px) {
     header img {
-        width: 180px;
+        width: 100px; /* Ajustar o tamanho da logo em telas menores */
     }
     .menu button {
         padding: 10px 40px;
+    }
+    .container {
+        flex-direction: column; /* Colocar os elementos um embaixo do outro em telas menores */
+    }
+    .horarios, .agendamento {
+        width: 100%; /* Ajustar a largura para 100% em telas menores */
     }
 }
 
 @media only screen and (max-width: 480px) {
     header img {
-        width: 150px;
+        width: 80px; /* Ajustar o tamanho da logo em telas menores */
     }
     .menu button {
         padding: 10px 30px;
