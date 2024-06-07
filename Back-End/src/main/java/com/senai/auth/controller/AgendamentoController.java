@@ -26,15 +26,6 @@ public class AgendamentoController {
     @Autowired // Adicione esta anotação para injetar o AgendamentoRepository
     private AgendamentoRepository agendamentoRepository;
 
-   // @PostMapping("/agendamento")
-   // public ResponseEntity<Agendamento> agendarServico(@RequestBody Agendamento request) {
-   //     try {
-   //         Agendamento novoAgendamento = agendamentoService.agendarServico(request.getData(), request.getHorario());
-   //         return ResponseEntity.ok(novoAgendamento);
-   //     } catch (Exception e) {
-   //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-    //    }
-    //}
 
     @PostMapping("/agendamento")
     public ResponseEntity<Agendamento> criarAgendamento(@Valid @RequestBody AgendamentoDTO agendamento){

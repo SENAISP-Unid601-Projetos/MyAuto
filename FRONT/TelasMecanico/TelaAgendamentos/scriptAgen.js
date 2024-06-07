@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
             usuarioId: 1  // Substitua pelo ID correto do usuário
         };
 
-        fetch('http://10.110.12.3:8080/api/agendamento', {
+        fetch('http://10.110.12.20:8080/api/agendamento', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

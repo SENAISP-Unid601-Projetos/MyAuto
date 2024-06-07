@@ -16,7 +16,7 @@ const TelaDeNotificacao = ({ navigation }) => {
   const fetchAgendamentos = async () => {
     try {
       const response = await axios.get(
-        "http://10.110.12.3:8080/api/agendamento"
+        "http://10.110.12.20:8080/api/agendamento"
       );
       console.log(response.data);
       setAgendamentosFuturos(response.data); // Aqui, use `response.data` para acessar os dados reais

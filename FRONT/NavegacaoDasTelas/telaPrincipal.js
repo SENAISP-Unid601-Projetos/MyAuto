@@ -45,7 +45,7 @@ const HomeScreen = ({ navigation }) => {
     setRefreshing(true);
     try {
       const valorCookie = await getCookie();  //Aguarde o resultado de getCookie
-      const response = await fetch("http://10.110.12.3:8080/api/agendamento/" + valorCookie);
+      const response = await fetch("http://10.110.12.20:8080/api/agendamento/" + valorCookie);
   
       if (response.ok) {
         const data = await response.json();

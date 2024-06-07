@@ -20,7 +20,7 @@ const ProfileScreen = ({ navigation }) => {
 
       try {
         const valorCookie = await getCookie();
-        const response = await fetch("http://10.110.12.3:8080/api/usuarios/" + valorCookie, {
+        const response = await fetch("http://10.110.12.20:8080/api/usuarios/" + valorCookie, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
   carCard: {
-    padding: 16,
+    padding: "5%",
     marginBottom: 45,
     backgroundColor: '#f8f8f8',
   },
